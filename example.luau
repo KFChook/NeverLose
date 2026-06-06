@@ -15,7 +15,7 @@ local window = NeverLose:CreateWindow({
 	Keybind = "Insert"
 });
 
-local Watermark = window:Watermark();
+--local Watermark = window:Watermark();
 
 --[[local HC = Indicator.new({
 	Name = "HC",
@@ -25,7 +25,7 @@ local Watermark = window:Watermark();
 
 window:AddTabLabel('AIMBOT')
 
-local ping = Watermark:AddBlock("chart-four-vertical-bars" , "0MS");
+--[[local ping = Watermark:AddBlock("chart-four-vertical-bars" , "0MS");
 local UITogg = Watermark:AddBlock("cube-vertexes" , "Neverlose");
 
 UITogg:Input(function()
@@ -36,7 +36,7 @@ task.spawn(function()
 	while true do task.wait(1)
 		ping:SetText(tostring(math.random(30,90))..'MS')
 	end
-end)
+end)--]]
 
 local Rage = window:AddTab({
 	Icon = 'crosshairs',

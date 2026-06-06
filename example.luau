@@ -369,7 +369,7 @@ Logging.new("crosshairs-slash",'Missed shot due to prediction error & YOUR NN',1
 HC:SetRender(false);
 
 while true do task.wait(3)
-	Watermark:SetRender(true);
+	Watermark:SetRender(false);
 	
 	HC:SetColor('Red')
 	HC:SetText("FL")
@@ -378,12 +378,12 @@ while true do task.wait(3)
 	HC:SetColor('Green');
 	HC:SetText("AUTO")
 	task.wait(3)
-	Watermark:SetRender(true);
+	Watermark:SetRender(false);
 	HC:SetColor('White')
 	HC:SetText("HC")
 	task.wait(1)
 	Watermark:SetRender(false);
 	HC:SetRender(false);
 	task.wait(1)
-	HC:SetRender(true);
+	HC:SetRender(false);
 end

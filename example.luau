@@ -4,6 +4,7 @@ local NeverLose = loadstring(game:HttpGet("https://raw.githubusercontent.com/4lp
 
 local Notification = NeverLose:CreateNotification();
 local Logging = NeverLose:CreateLogger();
+local Indicator = NeverLose:CreateIndicator();
 local window = NeverLose:CreateWindow({
 	Logo = NeverLose.GlobalLogo,
 	Name = "Neverlose",
@@ -16,6 +17,11 @@ local window = NeverLose:CreateWindow({
 
 local Watermark = window:Watermark();
 
+local HC = Indicator.new({
+	Name = "HC",
+	Icon = 'crosshairs',
+	Color = 'Red',
+})
 
 window:AddTabLabel('AIMBOT')
 
@@ -364,5 +370,24 @@ Logging.new("crosshairs",'Hit thatguy in the neck for 100 damage',15)
 task.wait(2)
 Logging.new("crosshairs-slash",'Missed shot due to prediction error & YOUR NN',15)
 
+--[HC:SetRender(true);
 
-end
+while true do task.wait(3)
+	Watermark:SetRender(true);
+	
+	HC:SetColor('Red')
+	HC:SetText("FL")
+	task.wait(3);
+	Watermark:SetRender(false);
+	HC:SetColor('Green');
+	HC:SetText("AUTO")
+	task.wait(3)
+	Watermark:SetRender(true);
+	HC:SetColor('White')
+	HC:SetText("HC")
+	task.wait(1)
+	Watermark:SetRender(false);
+	HC:SetRender(false);
+	task.wait(1)
+	HC:SetRender(true);
+end--]]

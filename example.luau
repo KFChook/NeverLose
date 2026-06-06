@@ -343,7 +343,7 @@ window.UserSettings:AddButton({
 	Icon = 'discord',
 	Name = 'Discord',
 	Callback = function()
-		print('invite')
+		print('https://discord.gg/EBCAJzUJt')
 		
 		Logging.new("discord",'Copied discord invite link',5)
 	end,

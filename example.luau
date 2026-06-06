@@ -4,7 +4,7 @@ local NeverLose = loadstring(game:HttpGet("https://raw.githubusercontent.com/4lp
 
 local Notification = NeverLose:CreateNotification();
 local Logging = NeverLose:CreateLogger();
-local Indicator = NeverLose:CreateIndicator();
+--local Indicator = NeverLose:CreateIndicator();
 local window = NeverLose:CreateWindow({
 	Logo = NeverLose.GlobalLogo,
 	Name = "Neverlose",
@@ -17,11 +17,11 @@ local window = NeverLose:CreateWindow({
 
 local Watermark = window:Watermark();
 
-local HC = Indicator.new({
+--[[local HC = Indicator.new({
 	Name = "HC",
 	Icon = 'crosshairs',
 	Color = 'Red',
-})
+})--]]
 
 window:AddTabLabel('AIMBOT')
 

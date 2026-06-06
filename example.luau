@@ -10,7 +10,7 @@ local window = NeverLose:CreateWindow({
 	Name = "Kfc.hook",
 	Content = "tha bronx",
 	Size = NeverLose.Scales.Default,
-	ConfigFolder = "NeverLoseConfigs",
+	ConfigFolder = "KfcHookConfigs",
 	Enable3DRenderer = false,
 	Keybind = "Insert"
 });

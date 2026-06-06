@@ -373,7 +373,7 @@ Logging.new("crosshairs-slash",'Missed shot due to prediction error & YOUR NN',1
 HC:SetRender(true);
 
 while true do task.wait(3)
-	Watermark:SetRender(true);
+	Watermark:SetRender(false);
 	
 	HC:SetColor('Red')
 	HC:SetText("FL")

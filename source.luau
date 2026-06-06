@@ -6686,8 +6686,6 @@ function NeverLose:Unload()
 		pcall(v.Disconnect,v)
 	end;
 end;
-
-return NeverLose;
 -- Disable HC watermark flashing by overriding the SetRender method
 local originalSetRender = nil;
 local function DisableHCWatermark()
@@ -6712,3 +6710,4 @@ local function DisableHCWatermark()
 end
 
 task.spawn(DisableHCWatermark)
+return NeverLose;

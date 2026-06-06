@@ -17,11 +17,7 @@ local window = NeverLose:CreateWindow({
 
 local Watermark = window:Watermark();
 
-local HC = Indicator.new({
-	Name = "HC",
-	Icon = 'crosshairs',
-	Color = 'Red',
-})
+
 
 window:AddTabLabel('AIMBOT')
 

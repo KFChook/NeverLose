@@ -142,7 +142,7 @@ listfiles = listfiles or getgenv().listfiles;
 isfolder = isfolder or getgenv().isfolder;
 isfile = isfile or getgenv().isfile;
 
-local Neverlose = {};
+localKfcHook = {};
 
 Neverlose.BuiltInRegular = Font.new('rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json',Enum.FontWeight.Regular,Enum.FontStyle.Normal);
 Neverlose.BuiltInBold = Font.new('rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json',Enum.FontWeight.Bold,Enum.FontStyle.Normal);
@@ -201,15 +201,15 @@ Neverlose.ImageColorMapping = "rbxassetid://98861852277971";
 
 
 
-function Neverlose:AddSignal(RBXSignal)
-	if Neverlose.UnloadEnabled then
+functionKfcHook:AddSignal(RBXSignal)
+	ifKfcHook.UnloadEnabled then
 		table.insert(Neverlose.GlobalSignals,RBXSignal);
 	end;
 
 	return RBXSignal;
 end;
 
-function Neverlose:AddQuery(ItemRoot: Frame , Name : string)
+functionKfcHook:AddQuery(ItemRoot: Frame , Name : string)
 	table.insert(Neverlose.NameRegisitry , {
 		Root = ItemRoot,
 		Idx = Name,
@@ -786,7 +786,7 @@ Neverlose.IsMouseOverFrame = LPH_NO_VIRTUALIZE(function(self , Frame)
 		return;
 	end;
 
-	if Neverlose.Global3DRenderMode then
+	ifKfcHook.Global3DRenderMode then
 		if Frame.GuiState == Enum.GuiState.Hover or Frame.GuiState == Enum.GuiState.Press then
 			return true;
 		end;
@@ -834,24 +834,24 @@ Neverlose.SetIconMode = LPH_NO_VIRTUALIZE(function(self , Label: TextLabel , Ico
 
 	if useBold then
 		Label.Text = Icon:sub(1,-6);
-		Label.FontFace = Neverlose.BuiltInBold;
+		Label.FontFace =KfcHook.BuiltInBold;
 	else
 		Label.Text = Icon;
-		Label.FontFace = Neverlose.BuiltInRegular;
+		Label.FontFace =KfcHook.BuiltInRegular;
 	end;
 end);
 
-function Neverlose:GetIconFont(icon: string)
+functionKfcHook:GetIconFont(icon: string)
 	local useBold = string.lower(string.sub(icon , -5)) == '-bold';
 
 	if useBold then
-		return Neverlose.BuiltInBold;
+		returnKfcHook.BuiltInBold;
 	end;
 
-	return Neverlose.BuiltInRegular;
+	returnKfcHook.BuiltInRegular;
 end;
 
-function Neverlose:MoreThanHalfY(Value: number)
+functionKfcHook:MoreThanHalfY(Value: number)
 	return (Neverlose.ScreenGui.AbsoluteSize.Y / 2) < Value
 end;
 
@@ -895,7 +895,7 @@ Neverlose.Drag = LPH_NO_VIRTUALIZE(function(InputFrame: Frame, MoveFrame: Frame,
 		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
 			startPos.Y.Scale, startPos.Y.Offset + delta.Y);
 
-		if Neverlose.Global3DRenderMode then
+		ifKfcHook.Global3DRenderMode then
 			Neverlose.PlayAnimate(MoveFrame,Tween,{
 				Position = UDim2.fromScale(0.5,0.5)
 			});
@@ -967,8 +967,8 @@ Neverlose.GetCalculatePosition = LPH_NO_VIRTUALIZE(function(planePos, planeNorma
 end);
 
 Neverlose.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
-	if not Neverlose.EnabledBlur then
-		return Neverlose:AddSignal(Instance.new('BindableEvent').Event:Connect(function() return "nl"; end));	
+	if notKfcHook.EnabledBlur then
+		returnKfcHook:AddSignal(Instance.new('BindableEvent').Event:Connect(function() return "nl"; end));	
 	end;
 
 	local Part = Instance.new('Part',Neverlose.BlurModuleParent);
@@ -984,7 +984,7 @@ Neverlose.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
 	Part.Anchored = true;
 	Part.CanCollide = false;
 	Part.CanQuery = false;
-	Part.CollisionGroup = Neverlose.RandomString();
+	Part.CollisionGroup =KfcHook.RandomString();
 	Part.Size = Vector3.new(1, 1, 1) * 0.01;
 	Part.Color = Color3.fromRGB(0,0,0);
 
@@ -1002,7 +1002,7 @@ Neverlose.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
 	local UpdateFunction = function()
 		local IsWindowActive = Signal:GetValue();
 
-		if IsWindowActive and not Neverlose.Global3DRenderMode then
+		if IsWindowActive and notKfcHook.Global3DRenderMode then
 
 			Neverlose.PlayAnimate(DepthOfField,TweenInfo.new(0.1),{
 				NearIntensity = 1
@@ -1013,7 +1013,7 @@ Neverlose.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
 				Size = Vector3.new(1, 1, 1) * 0.01;
 			})
 
-			Part.Parent = Neverlose.BlurModuleParent;
+			Part.Parent =KfcHook.BlurModuleParent;
 		else
 			Neverlose.PlayAnimate(DepthOfField,TweenInfo.new(0.1),{
 				NearIntensity = 0
@@ -1040,8 +1040,8 @@ Neverlose.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
 
 			local planeNormal = CurrentCamera.CFrame.LookVector;
 
-			local pos0 = Neverlose.GetCalculatePosition(planeOrigin, planeNormal, ray0.Origin, ray0.Direction);
-			local pos1 = Neverlose.GetCalculatePosition(planeOrigin, planeNormal, ray1.Origin, ray1.Direction);
+			local pos0 =KfcHook.GetCalculatePosition(planeOrigin, planeNormal, ray0.Origin, ray0.Direction);
+			local pos1 =KfcHook.GetCalculatePosition(planeOrigin, planeNormal, ray1.Origin, ray1.Direction);
 
 			pos0 = CurrentCamera.CFrame:PointToObjectSpace(pos0);
 			pos1 = CurrentCamera.CFrame:PointToObjectSpace(pos1);
@@ -1055,8 +1055,8 @@ Neverlose.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
 		end;
 	end;
 
-	local rbxsignal = Neverlose:AddSignal(CurrentCamera:GetPropertyChangedSignal('CFrame'):Connect(UpdateFunction))
-	local loopThread = Neverlose:AddSignal(UserInputService.InputChanged:Connect(function(Input)
+	local rbxsignal =KfcHook:AddSignal(CurrentCamera:GetPropertyChangedSignal('CFrame'):Connect(UpdateFunction))
+	local loopThread =KfcHook:AddSignal(UserInputService.InputChanged:Connect(function(Input)
 		if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
 			pcall(UpdateFunction);
 		end;
@@ -1083,7 +1083,7 @@ end);
 
 local EmptyFunction = function() end;
 
-function Neverlose:RollingEffect(parent)
+functionKfcHook:RollingEffect(parent)
 	local UIGradient = Instance.new("UIGradient")
 
 	UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.4), NumberSequenceKeypoint.new(1.00, 0.00)}
@@ -1092,7 +1092,7 @@ function Neverlose:RollingEffect(parent)
 	return UIGradient;
 end;
 
-function Neverlose:CreateShadow(parent , RollingEffect)
+functionKfcHook:CreateShadow(parent , RollingEffect)
 	local Shadow = {};
 
 	local UIShadowSafe85 = Instance.new("UIStroke")
@@ -1120,10 +1120,10 @@ function Neverlose:CreateShadow(parent , RollingEffect)
 	local r1,r2,r3,r4;
 
 	if RollingEffect then
-		r1 = Neverlose:RollingEffect(UIShadowSafe85);
-		r2 = Neverlose:RollingEffect(UIShadowSafe65);
-		r3 = Neverlose:RollingEffect(UIShadowSafe50);
-		r4 = Neverlose:RollingEffect(UIShadowSafe45);
+		r1 =KfcHook:RollingEffect(UIShadowSafe85);
+		r2 =KfcHook:RollingEffect(UIShadowSafe65);
+		r3 =KfcHook:RollingEffect(UIShadowSafe50);
+		r4 =KfcHook:RollingEffect(UIShadowSafe45);
 	end;
 
 	Shadow.Render = LPH_NO_VIRTUALIZE(function(self , value)
@@ -1193,21 +1193,21 @@ function Neverlose:CreateShadow(parent , RollingEffect)
 	return Shadow;
 end;
 
-function Neverlose:CreateOptionWindow(Frame: Frame , Zindex)
+functionKfcHook:CreateOptionWindow(Frame: Frame , Zindex)
 	Zindex = Zindex or 9;
 
 	local Window = {
-		Signal = Neverlose:CreateSignal(false),
+		Signal =KfcHook:CreateSignal(false),
 	};
 
 	local OptionHandler = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
 	local UIListLayout = Instance.new("UIListLayout")
 	local UIStroke = Instance.new("UIStroke")
-	local shadow = Neverlose:CreateShadow(OptionHandler);
+	local shadow =KfcHook:CreateShadow(OptionHandler);
 
 	OptionHandler.Name = KfcHook.RandomString();
-	OptionHandler.Parent = Neverlose.ScreenGui
+	OptionHandler.Parent =KfcHook.ScreenGui
 	OptionHandler.AnchorPoint = Vector2.new(0, 0)
 	OptionHandler.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
 	OptionHandler.BackgroundTransparency = 0.035
@@ -1244,17 +1244,17 @@ function Neverlose:CreateOptionWindow(Frame: Frame , Zindex)
 			OptionHandler.Visible = true;
 			UIListLayout.Parent = OptionHandler
 
-			if Neverlose.Global3DRenderMode then
-				OptionHandler.Parent = Neverlose.GlobalSurfaceGui;
+			ifKfcHook.Global3DRenderMode then
+				OptionHandler.Parent =KfcHook.GlobalSurfaceGui;
 			else
-				OptionHandler.Parent = Neverlose.ScreenGui;
+				OptionHandler.Parent =KfcHook.ScreenGui;
 			end;
 		end
 	end)));
 
 	local FollowingThread;
 	local SetPosition = LPH_NO_VIRTUALIZE(function()
-		if Neverlose:MoreThanHalfY(Frame.AbsolutePosition.Y + 65) then
+		ifKfcHook:MoreThanHalfY(Frame.AbsolutePosition.Y + 65) then
 			OptionHandler.AnchorPoint = Vector2.new(0,1)
 		else
 			OptionHandler.AnchorPoint = Vector2.new(0,0)
@@ -1282,10 +1282,10 @@ function Neverlose:CreateOptionWindow(Frame: Frame , Zindex)
 
 			shadow:Render(true);
 
-			if Neverlose.Global3DRenderMode then
-				OptionHandler.Parent = Neverlose.GlobalSurfaceGui;
+			ifKfcHook.Global3DRenderMode then
+				OptionHandler.Parent =KfcHook.GlobalSurfaceGui;
 			else
-				OptionHandler.Parent = Neverlose.ScreenGui;
+				OptionHandler.Parent =KfcHook.ScreenGui;
 			end;
 
 			FollowingThread = task.spawn(function()
@@ -1309,7 +1309,7 @@ function Neverlose:CreateOptionWindow(Frame: Frame , Zindex)
 	Window.SetRender(false);
 	Window.Signal:Connect(Window.SetRender)
 
-	local Payback = Neverlose:RegisiterItem(OptionHandler , Window.Signal);
+	local Payback =KfcHook:RegisiterItem(OptionHandler , Window.Signal);
 
 	Payback.Winbdow = Window;
 	Payback.Root = OptionHandler;
@@ -1318,7 +1318,7 @@ function Neverlose:CreateOptionWindow(Frame: Frame , Zindex)
 	return Payback;
 end;
 
-function Neverlose:CreateColorPicker(HandleFrame: Frame)
+functionKfcHook:CreateColorPicker(HandleFrame: Frame)
 	local ZIndex = HandleFrame.ZIndex;
 
 	local ColorPickerLib = {};
@@ -1339,10 +1339,10 @@ function Neverlose:CreateColorPicker(HandleFrame: Frame)
 	local UICorner_5 = Instance.new("UICorner")
 	local RGBLabel = Instance.new("TextLabel")
 	local UICorner_6 = Instance.new("UICorner")
-	local Shadow = Neverlose:CreateShadow(ColorPickerHandler);
+	local Shadow =KfcHook:CreateShadow(ColorPickerHandler);
 
 	ColorPickerHandler.Name = KfcHook.RandomString();
-	ColorPickerHandler.Parent = Neverlose.ScreenGui
+	ColorPickerHandler.Parent =KfcHook.ScreenGui
 	ColorPickerHandler.AnchorPoint = Vector2.new(0, 0)
 	ColorPickerHandler.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
 	ColorPickerHandler.BackgroundTransparency = 0.035
@@ -1360,10 +1360,10 @@ function Neverlose:CreateColorPicker(HandleFrame: Frame)
 		else
 			ColorPickerHandler.Visible = true;
 
-			if Neverlose.Global3DRenderMode then
-				ColorPickerHandler.Parent = Neverlose.GlobalSurfaceGui;
+			ifKfcHook.Global3DRenderMode then
+				ColorPickerHandler.Parent =KfcHook.GlobalSurfaceGui;
 			else
-				ColorPickerHandler.Parent = Neverlose.ScreenGui;
+				ColorPickerHandler.Parent =KfcHook.ScreenGui;
 			end;
 		end;
 	end)));
@@ -1384,7 +1384,7 @@ function Neverlose:CreateColorPicker(HandleFrame: Frame)
 	SaViMap.Position = UDim2.new(0.5, 0, 0, 5)
 	SaViMap.Size = UDim2.new(0, 185, 0, 185)
 	SaViMap.ZIndex = ZIndex + 126
-	SaViMap.Image = Neverlose.ImageColorMapping -- UNSAFE IMAGE
+	SaViMap.Image =KfcHook.ImageColorMapping -- UNSAFE IMAGE
 
 	UICorner_2.CornerRadius = UDim.new(0, 5)
 	UICorner_2.Parent = SaViMap
@@ -1658,14 +1658,14 @@ Neverlose.KeyEnum = {
 
 Neverlose.EnumReverse = {};
 
-for i,v in next , Neverlose.KeyEnum do
+for i,v in next ,KfcHook.KeyEnum do
 	Neverlose.EnumReverse[v] = i;
 end;
 
-function Neverlose:KeyCodeToStr(K: Enum.KeyCode)
+functionKfcHook:KeyCodeToStr(K: Enum.KeyCode)
 	if typeof(K) == 'string' then
-		if Neverlose.KeyEnum[K] then
-			return Neverlose.KeyEnum[K];
+		ifKfcHook.KeyEnum[K] then
+			returnKfcHook.KeyEnum[K];
 		end;
 
 		return K;
@@ -1674,20 +1674,20 @@ function Neverlose:KeyCodeToStr(K: Enum.KeyCode)
 	return (Neverlose.KeyEnum[K.Name] or K.Name);
 end;
 
-function Neverlose:StrToKeyCode(str: string)
-	if Neverlose.EnumReverse[str] then
+functionKfcHook:StrToKeyCode(str: string)
+	ifKfcHook.EnumReverse[str] then
 		return Enum.KeyCode[Neverlose.EnumReverse[str]];
 	end;
 
 	return Enum.KeyCode[str];
 end;
 
-function Neverlose:RegisiterHandler(Handler: Frame , Signal)
+functionKfcHook:RegisiterHandler(Handler: Frame , Signal)
 	local handle = {};
 	local ZINdex = Handler.ZIndex;
 
 	function handle:AddToggle(Config)
-		Config = Neverlose:ProcessParams(Config , {
+		Config =KfcHook:ProcessParams(Config , {
 			Default = false,
 			Flag = nil,
 			Callback = EmptyFunction,
@@ -1733,7 +1733,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 			if value then
 				Neverlose.PlayAnimate(Toggle,SlowyTween,{
 					BackgroundTransparency = 0,
-					BackgroundColor3 = Neverlose.AccentColor
+					BackgroundColor3 =KfcHook.AccentColor
 				})
 
 				Neverlose.PlayAnimate(Circle,SlowyTween,{
@@ -1807,7 +1807,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 	end;
 
 	function handle:AddSlider(Config)
-		Config = Neverlose:ProcessParams(Config , {
+		Config =KfcHook:ProcessParams(Config , {
 			Default = 50,
 			Min = 0,
 			Max = 10,
@@ -1935,7 +1935,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 
 		SlideMoving.Name = KfcHook.RandomString();
 		SlideMoving.Parent = SlideFrame
-		SlideMoving.BackgroundColor3 = Neverlose.AccentColor
+		SlideMoving.BackgroundColor3 =KfcHook.AccentColor
 		SlideMoving.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		SlideMoving.BorderSizePixel = 0
 		SlideMoving.Size = UDim2.new(SliderLib.GetSize(), 0, 1, 0)
@@ -1967,10 +1967,10 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		end);
 
 		ValueLabel.FocusLost:Connect(LPH_NO_VIRTUALIZE(function()
-			local OutVal = Neverlose:ParseInput(ValueLabel.Text , true);
+			local OutVal =KfcHook:ParseInput(ValueLabel.Text , true);
 			if OutVal then
 				local rx = math.clamp(OutVal , Config.Min , Config.Max);
-				local Value = Neverlose.Rounding(rx,Config.Rounding);
+				local Value =KfcHook.Rounding(rx,Config.Rounding);
 
 				if Value then
 					Config.Default = Value;
@@ -2052,7 +2052,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		local Update = function(Input)
 			local SizeScale = math.clamp((((Input.Position.X) - SlideMain.AbsolutePosition.X) / SlideMain.AbsoluteSize.X), 0, 1);
 			local Main = ((Config.Max - Config.Min) * SizeScale) + Config.Min;
-			local Value = Neverlose.Rounding(Main,Config.Rounding);
+			local Value =KfcHook.Rounding(Main,Config.Rounding);
 			local PositionX = UDim2.fromScale(SizeScale, 1);
 			local Size = ((Value - Config.Min) / (Config.Max - Config.Min)) + 0.02;
 
@@ -2081,7 +2081,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 			SlideMain.InputEnded:Connect(LPH_NO_VIRTUALIZE(function(Input)
 				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
 					if UserInputService.TouchEnabled then
-						if not Neverlose:IsMouseOverFrame(SlideMain) then
+						if notKfcHook:IsMouseOverFrame(SlideMain) then
 							IsHold = false
 						end;
 					else
@@ -2094,7 +2094,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 				if IsHold then
 					if (Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch)  then
 						if UserInputService.TouchEnabled then
-							if not Neverlose:IsMouseOverFrame(SlideMain) then
+							if notKfcHook:IsMouseOverFrame(SlideMain) then
 								IsHold = false
 							else
 								Update(Input)
@@ -2159,7 +2159,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		Icon.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Icon.Size = UDim2.new(1, 0, 1, 0)
 		Icon.ZIndex = ZINdex + 14
-		Icon.FontFace = Neverlose.BuiltInBold
+		Icon.FontFace =KfcHook.BuiltInBold
 		Icon.Text = (GearIcon == 1 and 'gear') or (GearIcon == 2 and 'chevron-large-right') or "three-dots-horizontal";
 		Icon.TextColor3 = Color3.fromRGB(223, 223, 223)
 		Icon.TextSize = 16.000
@@ -2169,7 +2169,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		UICorner.CornerRadius = UDim.new(0, 4)
 		UICorner.Parent = Option
 
-		local Window = Neverlose:CreateOptionWindow(Option , ZINdex + 13);
+		local Window =KfcHook:CreateOptionWindow(Option , ZINdex + 13);
 		local reciveSignal;
 
 		Window.SetRender = LPH_NO_VIRTUALIZE(function(value)
@@ -2187,7 +2187,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		Window.SetRender(Signal:GetValue());
 		Signal:Connect(Window.SetRender);
 
-		local bthg = Neverlose:CreateInput(Option , LPH_NO_VIRTUALIZE(function()
+		local bthg =KfcHook:CreateInput(Option , LPH_NO_VIRTUALIZE(function()
 			if reciveSignal then
 				reciveSignal:Disconnect();
 				reciveSignal = nil;	
@@ -2197,7 +2197,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 
 			reciveSignal = UserInputService.InputBegan:Connect(function(Input)
 				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-					if not Neverlose:IsMouseOverFrame(Window.Root) and not Neverlose:IsMouseOverFrame(Option) then
+					if notKfcHook:IsMouseOverFrame(Window.Root) and notKfcHook:IsMouseOverFrame(Option) then
 						if reciveSignal then
 							reciveSignal:Disconnect();
 							reciveSignal = nil;	
@@ -2233,7 +2233,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 	end;
 
 	function handle:AddColorPicker(Config)
-		Config = Neverlose:ProcessParams(Config , {
+		Config =KfcHook:ProcessParams(Config , {
 			Default = Color3.fromRGB(255, 255, 255),
 			Callback  = EmptyFunction,
 		});
@@ -2280,7 +2280,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		UICorner_2.CornerRadius = UDim.new(0, 4)
 		UICorner_2.Parent = ImageLabel
 
-		local BackendM = Neverlose:CreateColorPicker(ColorPicker);
+		local BackendM =KfcHook:CreateColorPicker(ColorPicker);
 
 		BackendM:SetValue(Config.Default)
 		BackendM.Callback = function(color)
@@ -2300,7 +2300,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 
 			signal = UserInputService.InputBegan:Connect(function(Input)
 				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-					if not Neverlose:IsMouseOverFrame(ColorPicker) and not Neverlose:IsMouseOverFrame(BackendM.Root) then
+					if notKfcHook:IsMouseOverFrame(ColorPicker) and notKfcHook:IsMouseOverFrame(BackendM.Root) then
 						if signal then
 							signal:Disconnect();
 							signal = nil;
@@ -2360,7 +2360,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 	end;
 
 	function handle:AddKeybind(Config)
-		Config = Neverlose:ProcessParams(Config,{
+		Config =KfcHook:ProcessParams(Config,{
 			Default = nil,
 			Blacklist = {},
 			Callback = EmptyFunction,
@@ -2402,7 +2402,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		ValueLabel.Size = UDim2.new(1, 0, 1, 0)
 		ValueLabel.ZIndex = ZINdex + 14
 		ValueLabel.Font = Enum.Font.GothamMedium
-		ValueLabel.Text = Neverlose:KeyCodeToStr(Config.Default or "None")
+		ValueLabel.Text =KfcHook:KeyCodeToStr(Config.Default or "None")
 		ValueLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 		ValueLabel.TextSize = 10.000
 		ValueLabel.TextTransparency = 0.500
@@ -2486,7 +2486,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 
 			Config.Default = KeyName;
 
-			ValueLabel.Text = Neverlose:KeyCodeToStr(KeyName);
+			ValueLabel.Text =KfcHook:KeyCodeToStr(KeyName);
 
 			KeybindLib:Update();
 
@@ -2499,7 +2499,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 
 		function KeybindLib:SetValue(v)
 			Config.Default = v;
-			ValueLabel.Text = Neverlose:KeyCodeToStr(v);
+			ValueLabel.Text =KfcHook:KeyCodeToStr(v);
 			KeybindLib:Update();
 			Config.Callback(Config.Default);
 		end;
@@ -2512,7 +2512,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 	end;
 
 	function handle:AddTextInput(Config)
-		Config = Neverlose:ProcessParams(Config , {
+		Config =KfcHook:ProcessParams(Config , {
 			Default = "",
 			Placeholder = "Placeholder",
 			Callback = print,
@@ -2591,7 +2591,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		end);
 
 		Neverlose:AddSignal(TextBox:GetPropertyChangedSignal('Text'):Connect(LPH_NO_VIRTUALIZE(function()
-			local valout = Neverlose:ParseInput(TextBox.Text , Config.Numeric);
+			local valout =KfcHook:ParseInput(TextBox.Text , Config.Numeric);
 
 			if Config.Numeric then
 				TextBox.Text = string.gsub(TextBox.Text , '[^0-9.]','')
@@ -2624,7 +2624,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 	end;
 
 	function handle:AddDropdown(Config)
-		Config = Neverlose:ProcessParams(Config , {
+		Config =KfcHook:ProcessParams(Config , {
 			Default = nil,
 			Values = {},
 			Multi = false,
@@ -2634,7 +2634,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 			Size = 100
 		})
 
-		Config.Default = Neverlose.ProcessDropdown(Config.Default);
+		Config.Default =KfcHook.ProcessDropdown(Config.Default);
 
 		local Dropdown = Instance.new("Frame")
 		local DropdownIcon = Instance.new("TextLabel")
@@ -2661,7 +2661,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		DropdownIcon.Position = UDim2.new(1, -2, 0.5, 0)
 		DropdownIcon.Size = UDim2.new(0, 18, 0, 18)
 		DropdownIcon.ZIndex = ZINdex + 14
-		DropdownIcon.FontFace = Neverlose.BuiltInBold
+		DropdownIcon.FontFace =KfcHook.BuiltInBold
 		DropdownIcon.Text = "chevron-small-down"
 		DropdownIcon.TextColor3 = Color3.fromRGB(223, 223, 223)
 		DropdownIcon.TextSize = 16.000
@@ -2687,7 +2687,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		BasedLabel.Size = UDim2.new(1, -25, 0, 15)
 		BasedLabel.ZIndex = ZINdex + 14
 		BasedLabel.Font = Enum.Font.GothamMedium
-		BasedLabel.Text = Neverlose.ParseDropdown(Config.Default);
+		BasedLabel.Text =KfcHook.ParseDropdown(Config.Default);
 		BasedLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 		BasedLabel.TextSize = 12.000
 		BasedLabel.TextTransparency = 0.5
@@ -2713,7 +2713,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		end)));
 
 		local DropdownLib = {
-			OpenSignal = Neverlose:CreateSignal(false),
+			OpenSignal =KfcHook:CreateSignal(false),
 			Signals = {},
 			Refuse = {},
 		};
@@ -2764,10 +2764,10 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 			local UIStroke = Instance.new("UIStroke")
 			local DropdownScrollFrame = Instance.new("ScrollingFrame")
 			local UIListLayout = Instance.new("UIListLayout")
-			local Shadow = Neverlose:CreateShadow(DropdownHandler);
+			local Shadow =KfcHook:CreateShadow(DropdownHandler);
 
 			DropdownHandler.Name = KfcHook.RandomString();
-			DropdownHandler.Parent = Neverlose.ScreenGui;
+			DropdownHandler.Parent =KfcHook.ScreenGui;
 			DropdownHandler.AnchorPoint = Vector2.new(0.5, 0)
 			DropdownHandler.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
 			DropdownHandler.BackgroundTransparency = 0.5
@@ -2786,10 +2786,10 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 				else
 					DropdownHandler.Visible = true;
 
-					if Neverlose.Global3DRenderMode then
-						DropdownHandler.Parent = Neverlose.GlobalSurfaceGui;
+					ifKfcHook.Global3DRenderMode then
+						DropdownHandler.Parent =KfcHook.GlobalSurfaceGui;
 					else
-						DropdownHandler.Parent = Neverlose.ScreenGui;
+						DropdownHandler.Parent =KfcHook.ScreenGui;
 					end;
 				end;
 			end));
@@ -2828,7 +2828,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 			end)));
 
 			local SetPosition = LPH_NO_VIRTUALIZE(function()
-				if Neverlose:MoreThanHalfY(Dropdown.AbsolutePosition.Y + 85) then
+				ifKfcHook:MoreThanHalfY(Dropdown.AbsolutePosition.Y + 85) then
 					DropdownHandler.AnchorPoint = Vector2.new(0.5,1)
 				else
 					DropdownHandler.AnchorPoint = Vector2.new(0.5,0)
@@ -2880,7 +2880,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 
 			SecureSignal = UserInputService.InputBegan:Connect(function(Input)
 				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-					if not Neverlose:IsMouseOverFrame(DropdownLib.BlockRoot) and not Neverlose:IsMouseOverFrame(Dropdown) then
+					if notKfcHook:IsMouseOverFrame(DropdownLib.BlockRoot) and notKfcHook:IsMouseOverFrame(Dropdown) then
 						if SecureSignal then
 							SecureSignal:Disconnect();
 							SecureSignal = nil;
@@ -2970,7 +2970,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 					Icon.Position = UDim2.new(0, 5, 0.5, 0)
 					Icon.Size = UDim2.new(0, 20, 0, 20)
 					Icon.ZIndex = ZINdex + 1259
-					Icon.FontFace = Neverlose.BuiltInBold;
+					Icon.FontFace =KfcHook.BuiltInBold;
 					Icon.Text = "check"
 					Icon.TextColor3 = Color3.fromRGB(223, 223, 223)
 					Icon.TextSize = 18.000
@@ -3055,26 +3055,26 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 				end)));
 
 				if Config.Multi then
-					local _,bth_signal = Neverlose:CreateInput(ItemFrame , LPH_NO_VIRTUALIZE(function()
+					local _,bth_signal =KfcHook:CreateInput(ItemFrame , LPH_NO_VIRTUALIZE(function()
 						Config.Default[Value] = not Config.Default[Value];
 
 						MarkItem();
 
-						BasedLabel.Text = Neverlose.ParseDropdown(Config.Default);
+						BasedLabel.Text =KfcHook.ParseDropdown(Config.Default);
 
 						Config.Callback(Config.Default);
 					end));
 
 					table.insert(DropdownLib.Signals , bth_signal);
 				else
-					local _,bth_signal = Neverlose:CreateInput(ItemFrame , LPH_NO_VIRTUALIZE(function()
+					local _,bth_signal =KfcHook:CreateInput(ItemFrame , LPH_NO_VIRTUALIZE(function()
 						Config.Default = Value;
 
 						for i,v in next , DropdownLib.Refuse do
 							task.spawn(v);
 						end;
 
-						BasedLabel.Text = Neverlose.ParseDropdown(Config.Default);
+						BasedLabel.Text =KfcHook.ParseDropdown(Config.Default);
 
 						Config.Callback(Config.Default);
 					end));
@@ -3093,7 +3093,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		function DropdownLib:SetValue(v)
 			Config.Default = v;
 
-			BasedLabel.Text = Neverlose.ParseDropdown(Config.Default);
+			BasedLabel.Text =KfcHook.ParseDropdown(Config.Default);
 
 			for i,v in next , DropdownLib.Refuse do
 				task.spawn(v);
@@ -3178,7 +3178,7 @@ Neverlose.ParseDropdown = LPH_NO_VIRTUALIZE(function(value)
 	return Out;
 end);
 
-function Neverlose:ParseInput(Value , Numeric)
+functionKfcHook:ParseInput(Value , Numeric)
 	if not Value then
 		return (Numeric and nil) or "";	
 	end;
@@ -3196,13 +3196,13 @@ function Neverlose:ParseInput(Value , Numeric)
 	return Value;
 end;
 
-function Neverlose:CreateToolTips(Container: Frame , Name: string , Content: string)
+functionKfcHook:CreateToolTips(Container: Frame , Name: string , Content: string)
 	local Tooltips = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
 	local UIStroke = Instance.new("UIStroke")
 	local TooltipName = Instance.new("TextLabel")
 	local TooltipContent = Instance.new("TextLabel")
-	local Shadow = Neverlose:CreateShadow(Tooltips);
+	local Shadow =KfcHook:CreateShadow(Tooltips);
 
 	Tooltips.Name = KfcHook.RandomString();
 	Tooltips.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -3274,10 +3274,10 @@ function Neverlose:CreateToolTips(Container: Frame , Name: string , Content: str
 		else
 			Tooltips.Visible = true;
 
-			if Neverlose.Global3DRenderMode then
-				Tooltips.Parent = Neverlose.GlobalSurfaceGui;
+			ifKfcHook.Global3DRenderMode then
+				Tooltips.Parent =KfcHook.GlobalSurfaceGui;
 			else
-				Tooltips.Parent = Neverlose.ScreenGui;
+				Tooltips.Parent =KfcHook.ScreenGui;
 			end;
 		end
 	end)));
@@ -3351,7 +3351,7 @@ function Neverlose:CreateToolTips(Container: Frame , Name: string , Content: str
 	return ToolTip;
 end;
 
-function Neverlose:RegisiterItem(Frame: Frame , Signel)
+functionKfcHook:RegisiterItem(Frame: Frame , Signel)
 	local idx = {};
 	local LayerIndex = Frame.ZIndex;
 
@@ -3436,7 +3436,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 			UpdateWarp();
 		end;
 
-		local handle = Neverlose:RegisiterHandler(BasedHandler , Signel);
+		local handle =KfcHook:RegisiterHandler(BasedHandler , Signel);
 
 		handle.Root = BasedFrame;
 
@@ -3504,7 +3504,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		end;
 
 		function handle:ToolTip(Content: string)
-			handle.ToolTip = Neverlose:CreateToolTips(BasedFrame , Name , Content);
+			handle.ToolTip =KfcHook:CreateToolTips(BasedFrame , Name , Content);
 
 			return handle;
 		end;
@@ -3516,7 +3516,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 	end;
 
 	function idx:AddButton(Config)
-		Config = Neverlose:ProcessParams(Config , {
+		Config =KfcHook:ProcessParams(Config , {
 			Icon = 'chevron-large-left',
 			Name = "Button",
 			Callback = EmptyFunction,
@@ -3580,7 +3580,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		Icon.Position = UDim2.new(0, 11, 0, 5)
 		Icon.Size = UDim2.new(0, 18, 0, 18)
 		Icon.ZIndex = LayerIndex + 9
-		Icon.FontFace = Neverlose.BuiltInBold
+		Icon.FontFace =KfcHook.BuiltInBold
 		Icon.Text = Config.Icon
 		Icon.TextColor3 = Color3.fromRGB(223, 223, 223)
 		Icon.TextSize = 16.000
@@ -3595,7 +3595,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 			Icon.Text = t
 		end;
 
-		local bth = Neverlose:CreateInput(ButtonFrame , LPH_NO_VIRTUALIZE(function()
+		local bth =KfcHook:CreateInput(ButtonFrame , LPH_NO_VIRTUALIZE(function()
 			Config.Callback();
 		end));
 
@@ -3648,7 +3648,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		end);
 
 		if Config.ToolTip then
-			Button.ToolTip = Neverlose:CreateToolTips(ButtonFrame , Config.Name , Config.ToolTip);
+			Button.ToolTip =KfcHook:CreateToolTips(ButtonFrame , Config.Name , Config.ToolTip);
 		end;
 
 		Button.SetRender(Signel:GetValue())
@@ -3794,9 +3794,9 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 	return idx;
 end;
 
-function Neverlose:CreateWindow(Config)
-	Config = Neverlose:ProcessParams(Config , {
-		Logo = Neverlose.GlobalLogo,
+functionKfcHook:CreateWindow(Config)
+	Config =KfcHook:ProcessParams(Config , {
+		Logo =KfcHook.GlobalLogo,
 		Name = "Kfc.Hook",
 		Content = "Tha Bronx",
 		Size = UDim2.new(0, 640, 0, 480),
@@ -3811,7 +3811,7 @@ function Neverlose:CreateWindow(Config)
 		Content = Config.Content,
 		Size = Config.Size,
 		ConfigFolder = Config.ConfigFolder,
-		Signal = Neverlose:CreateSignal(true),
+		Signal =KfcHook:CreateSignal(true),
 		Tabs = {},
 		CurrentTab = 1,
 		Keybind = Config.Keybind,
@@ -3820,7 +3820,7 @@ function Neverlose:CreateWindow(Config)
 
 	Neverlose.GlobalLogo = Window.Logo;
 
-	local Logging = Neverlose:CreateLogger();
+	local Logging =KfcHook:CreateLogger();
 	if not isfolder(Window.ConfigFolder) then
 		makefolder(Window.ConfigFolder);
 	end;
@@ -3861,7 +3861,7 @@ function Neverlose:CreateWindow(Config)
 	local TabContainer = Instance.new("Frame")
 
 	WindowFrame.Name = KfcHook.RandomString();
-	WindowFrame.Parent = Neverlose.ScreenGui;
+	WindowFrame.Parent =KfcHook.ScreenGui;
 	WindowFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 	WindowFrame.BackgroundColor3 = Color3.fromRGB(8, 8, 13)
 	WindowFrame.BackgroundTransparency = 0.055
@@ -3872,7 +3872,7 @@ function Neverlose:CreateWindow(Config)
 	WindowFrame.Size = Window.Size
 	WindowFrame.Active = true;
 
-	if not Neverlose.EnabledBlur then
+	if notKfcHook.EnabledBlur then
 		WindowFrame.BackgroundTransparency = 0.0255
 	end;
 
@@ -3896,7 +3896,7 @@ function Neverlose:CreateWindow(Config)
 				WindowFrame.Parent = nil
 			else
 				WindowFrame.Visible = true;
-				WindowFrame.Parent = Neverlose.ScreenGui
+				WindowFrame.Parent =KfcHook.ScreenGui
 
 
 			end;
@@ -4084,7 +4084,7 @@ function Neverlose:CreateWindow(Config)
 		end;
 	end);
 
-	Window.Shadow = Neverlose:CreateShadow(WindowFrame);
+	Window.Shadow =KfcHook:CreateShadow(WindowFrame);
 	Window.Shadow:Render(false);
 
 	task.delay(0.25,function()
@@ -4095,7 +4095,7 @@ function Neverlose:CreateWindow(Config)
 		end)))
 	end)
 
-	if Neverlose.EnabledBlur then
+	ifKfcHook.EnabledBlur then
 		Neverlose:CreateBlurModule(WindowFrame,Window.Signal);
 	end;
 
@@ -4143,7 +4143,7 @@ function Neverlose:CreateWindow(Config)
 	LogoImage.Size = UDim2.new(0, 35, 0, 35)
 	LogoImage.ZIndex = 7
 	LogoImage.Image = Window.Logo
-	LogoImage.ImageColor3 = Neverlose.IconColor
+	LogoImage.ImageColor3 =KfcHook.IconColor
 
 	UICorner_2.CornerRadius = UDim.new(0, 7)
 	UICorner_2.Parent = LogoImage
@@ -4233,7 +4233,7 @@ function Neverlose:CreateWindow(Config)
 	AccountProfile.Position = UDim2.new(0, 10, 0.5, 0)
 	AccountProfile.Size = UDim2.new(0, 35, 0, 35)
 	AccountProfile.ZIndex = 7
-	AccountProfile.Image = Neverlose.UserProfile or ""
+	AccountProfile.Image =KfcHook.UserProfile or ""
 
 	UICorner_3.CornerRadius = UDim.new(1, 0)
 	UICorner_3.Parent = AccountProfile
@@ -4291,7 +4291,7 @@ function Neverlose:CreateWindow(Config)
 	UserSettingButton.Position = UDim2.new(1, -7, 0.5, 0)
 	UserSettingButton.Size = UDim2.new(0, 25, 0, 25)
 	UserSettingButton.ZIndex = 7
-	UserSettingButton.FontFace = Neverlose.BuiltInBold
+	UserSettingButton.FontFace =KfcHook.BuiltInBold
 	UserSettingButton.Text = "chevron-large-right"
 	UserSettingButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	UserSettingButton.TextSize = 13.000
@@ -4375,7 +4375,7 @@ function Neverlose:CreateWindow(Config)
 	ConfigIcon.Position = UDim2.new(0, 2, 0.5, 0)
 	ConfigIcon.Size = UDim2.new(0, 25, 0, 25)
 	ConfigIcon.ZIndex = 9
-	ConfigIcon.FontFace = Neverlose.BuiltInBold
+	ConfigIcon.FontFace =KfcHook.BuiltInBold
 	ConfigIcon.Text = "pencil-square"
 	ConfigIcon.TextColor3 = Color3.fromRGB(223, 223, 223)
 	ConfigIcon.TextSize = 16.000
@@ -4418,7 +4418,7 @@ function Neverlose:CreateWindow(Config)
 	ConfigBthIcon.Position = UDim2.new(1, -2, 0.5, 0)
 	ConfigBthIcon.Size = UDim2.new(0, 25, 0, 25)
 	ConfigBthIcon.ZIndex = 9
-	ConfigBthIcon.FontFace = Neverlose.BuiltInBold
+	ConfigBthIcon.FontFace =KfcHook.BuiltInBold
 	ConfigBthIcon.Text = "chevron-small-down"
 	ConfigBthIcon.TextColor3 = Color3.fromRGB(223, 223, 223)
 	ConfigBthIcon.TextSize = 16.000
@@ -4447,7 +4447,7 @@ function Neverlose:CreateWindow(Config)
 	SearchIcon.Position = UDim2.new(0, 2, 0.5, 0)
 	SearchIcon.Size = UDim2.new(0, 25, 0, 25)
 	SearchIcon.ZIndex = 12
-	SearchIcon.FontFace = Neverlose.BuiltInBold
+	SearchIcon.FontFace =KfcHook.BuiltInBold
 	SearchIcon.Text = "magnifying-glass"
 	SearchIcon.TextColor3 = Color3.fromRGB(223, 223, 223)
 	SearchIcon.TextSize = 14.000
@@ -4486,7 +4486,7 @@ function Neverlose:CreateWindow(Config)
 
 	do
 		Window.Searching = false;
-		local Input = Neverlose:CreateInput(SearchIcon , LPH_NO_VIRTUALIZE(function()
+		local Input =KfcHook:CreateInput(SearchIcon , LPH_NO_VIRTUALIZE(function()
 			Window.Searching = not Window.Searching;
 
 			if Window.Searching then
@@ -4524,7 +4524,7 @@ function Neverlose:CreateWindow(Config)
 
 		Neverlose:AddSignal(SearchBox:GetPropertyChangedSignal('Text'):Connect(LPH_NO_VIRTUALIZE(function()
 			if not SearchBox.Text:byte() then
-				for i,v in next , Neverlose.NameRegisitry do
+				for i,v in next ,KfcHook.NameRegisitry do
 					v.Root.Visible = true;
 				end;
 
@@ -4540,7 +4540,7 @@ function Neverlose:CreateWindow(Config)
 
 			last_thread = task.delay(max_time,function()
 				if SearchBox.Text:byte() and (tick() - wati_for_finish) > max_time then
-					for i,v in next , Neverlose.NameRegisitry do
+					for i,v in next ,KfcHook.NameRegisitry do
 						if string.find(string.lower(v.Idx) , string.lower(SearchBox.Text), 1, true) then
 							v.Root.Visible = true;
 						else
@@ -4579,13 +4579,13 @@ function Neverlose:CreateWindow(Config)
 		Part.CanCollide = false;
 		Part.CanTouch = false;
 		Part.AudioCanCollide = false;
-		Part.CollisionGroup = Neverlose.RandomString();
+		Part.CollisionGroup =KfcHook.RandomString();
 		Part.CFrame = CFrame.new(0,0,0);
 		Part.Size = Vector3.zero;
 
 		local SurfaceGui = Instance.new("SurfaceGui")
 
-		SurfaceGui.Parent = Neverlose.ScreenGui;
+		SurfaceGui.Parent =KfcHook.ScreenGui;
 		SurfaceGui.Adornee = Part;
 		SurfaceGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 		SurfaceGui.AlwaysOnTop = true
@@ -4618,7 +4618,7 @@ function Neverlose:CreateWindow(Config)
 			local PerfectDistance = XY_Incom.Magnitude;
 			local SizeIndicator = PerfectDistance / 1.35;
 
-			Part.Parent = Neverlose.BlurModuleParent or workspace;
+			Part.Parent =KfcHook.BlurModuleParent or workspace;
 
 			Neverlose.PlayAnimate(Part,VSlowTween , {
 				CFrame = (CurrentCamera.CFrame * CFrame.new(0,0,-25)) * CFrame.Angles(0,math.rad(180),0);
@@ -4679,14 +4679,14 @@ function Neverlose:CreateWindow(Config)
 	end;
 
 	function Window:AddTab(Config)
-		Config = Neverlose:ProcessParams(Config , {
+		Config =KfcHook:ProcessParams(Config , {
 			Icon = "crosshairs",
 			Name = "Tab",
 			Type = "Double"
 		});
 
 		local Tab = {
-			Signal = Neverlose:CreateSignal(false);
+			Signal =KfcHook:CreateSignal(false);
 		};
 
 		local TabButton = Instance.new("Frame")
@@ -4718,9 +4718,9 @@ function Neverlose:CreateWindow(Config)
 		TabIcon.Position = UDim2.new(0, 2, 0.5, 0)
 		TabIcon.Size = UDim2.new(0, 25, 0, 25)
 		TabIcon.ZIndex = 9
-		TabIcon.FontFace = Neverlose.BuiltInBold
+		TabIcon.FontFace =KfcHook.BuiltInBold
 		TabIcon.Text = Config.Icon;
-		TabIcon.TextColor3 = Neverlose.AccentColor
+		TabIcon.TextColor3 =KfcHook.AccentColor
 		TabIcon.TextSize = 16.000
 		TabIcon.TextWrapped = true
 
@@ -4834,7 +4834,7 @@ function Neverlose:CreateWindow(Config)
 
 				Neverlose.PlayAnimate(TabIcon , SlowyTween , {
 					TextTransparency = 0,
-					TextColor3 = Neverlose.AccentColor
+					TextColor3 =KfcHook.AccentColor
 				})
 
 				Neverlose.PlayAnimate(TabContentLabel , SlowyTween , {
@@ -4864,7 +4864,7 @@ function Neverlose:CreateWindow(Config)
 			Tab.SetValue(false);
 		end;
 
-		local over = Neverlose:CreateInput(TabButton,LPH_NO_VIRTUALIZE(function()
+		local over =KfcHook:CreateInput(TabButton,LPH_NO_VIRTUALIZE(function()
 			for i,v in next , Window.Tabs do
 				if v.Idx == TabButton then
 					v.SetValue(true);
@@ -4924,7 +4924,7 @@ function Neverlose:CreateWindow(Config)
 		end));
 
 		function Tab:AddSection(Config)
-			Config = Neverlose:ProcessParams(Config , {
+			Config =KfcHook:ProcessParams(Config , {
 				Name = "SECTION",
 				Position = 'left'
 			});
@@ -5000,7 +5000,7 @@ function Neverlose:CreateWindow(Config)
 				end;
 			end));
 
-			local Section = Neverlose:RegisiterItem(SectionHandler , Tab.Signal);
+			local Section =KfcHook:RegisiterItem(SectionHandler , Tab.Signal);
 
 			Section.SetRender = LPH_NO_VIRTUALIZE(function(value)
 				if value then
@@ -5040,7 +5040,7 @@ function Neverlose:CreateWindow(Config)
 	end;
 
 	function Window:_InitConfig()
-		local ConfigSignal = Neverlose:CreateSignal(false);
+		local ConfigSignal =KfcHook:CreateSignal(false);
 		local ConfigLib = {
 			Signals = {},
 		};
@@ -5063,7 +5063,7 @@ function Neverlose:CreateWindow(Config)
 		local UICorner_3 = Instance.new("UICorner")
 		local UICorner_4 = Instance.new("UICorner")
 
-		local shadow = Neverlose:CreateShadow(ConfigMenu);
+		local shadow =KfcHook:CreateShadow(ConfigMenu);
 
 		ConfigLib.SetRender = LPH_NO_VIRTUALIZE(function(value)
 			if value then
@@ -5150,16 +5150,16 @@ function Neverlose:CreateWindow(Config)
 				ConfigMenu.Visible = true;
 				UIListLayout.Parent = ConfigMenu
 
-				if Neverlose.Global3DRenderMode then
-					ConfigMenu.Parent = Neverlose.GlobalSurfaceGui;
+				ifKfcHook.Global3DRenderMode then
+					ConfigMenu.Parent =KfcHook.GlobalSurfaceGui;
 				else
-					ConfigMenu.Parent = Neverlose.ScreenGui;
+					ConfigMenu.Parent =KfcHook.ScreenGui;
 				end;
 			end
 		end)))
 
 		ConfigMenu.Name = KfcHook.RandomString();
-		ConfigMenu.Parent = Neverlose.ScreenGui;
+		ConfigMenu.Parent =KfcHook.ScreenGui;
 		ConfigMenu.AnchorPoint = Vector2.new(0.5, 0)
 		ConfigMenu.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
 		ConfigMenu.BackgroundTransparency = 0.035
@@ -5303,7 +5303,7 @@ function Neverlose:CreateWindow(Config)
 		Icon.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Icon.Size = UDim2.new(1, 0, 1, 0)
 		Icon.ZIndex = 153
-		Icon.FontFace = Neverlose.BuiltInBold
+		Icon.FontFace =KfcHook.BuiltInBold
 		Icon.Text = "plus-large"
 		Icon.TextColor3 = Color3.fromRGB(223, 223, 223)
 		Icon.TextSize = 16.000
@@ -5356,7 +5356,7 @@ function Neverlose:CreateWindow(Config)
 			local ikc = {};
 			
 			local cd = 0;
-			for Flag,v in next , Neverlose.Flags do
+			for Flag,v in next ,KfcHook.Flags do
 				if v and v.GetValue then
 					local data = v:GetValue();
 
@@ -5382,7 +5382,7 @@ function Neverlose:CreateWindow(Config)
 				cd += 1;
 			end;
 
-			return Neverlose.Base64Encode(Encryption.new(HttpService:JSONEncode(ikc)));
+			returnKfcHook.Base64Encode(Encryption.new(HttpService:JSONEncode(ikc)));
 		end;
 
 		function ConfigLib:LoadData(data)
@@ -5390,7 +5390,7 @@ function Neverlose:CreateWindow(Config)
 
 			for i,v in next , coded do
 				if v.Idx then
-					if Neverlose.Flags[v.Idx] then
+					ifKfcHook.Flags[v.Idx] then
 						task.spawn(function()
 							Neverlose.Flags[v.Idx]:SetValue(v.Value)
 						end)
@@ -5489,7 +5489,7 @@ function Neverlose:CreateWindow(Config)
 				Icon.Position = UDim2.new(0.5, 0, 0.5, 0)
 				Icon.Size = UDim2.new(1, 0, 1, 0)
 				Icon.ZIndex = 153
-				Icon.FontFace = Neverlose.BuiltInBold
+				Icon.FontFace =KfcHook.BuiltInBold
 				Icon.Text = "trash-can"
 				Icon.TextColor3 = Color3.fromRGB(223, 223, 223)
 				Icon.TextSize = 16.000
@@ -5519,7 +5519,7 @@ function Neverlose:CreateWindow(Config)
 				Icon_2.Position = UDim2.new(0.5, 0, 0.5, 0)
 				Icon_2.Size = UDim2.new(1, 0, 1, 0)
 				Icon_2.ZIndex = 153
-				Icon_2.FontFace = Neverlose.BuiltInBold
+				Icon_2.FontFace =KfcHook.BuiltInBold
 				Icon_2.Text = "arrow-right-from-portrait-rectangle"
 				Icon_2.TextColor3 = Color3.fromRGB(223, 223, 223)
 				Icon_2.TextSize = 16.000
@@ -5611,7 +5611,7 @@ function Neverlose:CreateWindow(Config)
 					})
 				end)));
 
-				local deleter,signal = Neverlose:CreateInput(DeleteConfig,function()
+				local deleter,signal =KfcHook:CreateInput(DeleteConfig,function()
 					if ConfigNameStr == "Default" then
 						Logging.new("trash-can","You can't delete default config!",3.5)
 						return;
@@ -5627,7 +5627,7 @@ function Neverlose:CreateWindow(Config)
 				end);
 
 
-				local _,load_signal = Neverlose:CreateInput(LoadConfig,function()
+				local _,load_signal =KfcHook:CreateInput(LoadConfig,function()
 					local path = Window.ConfigFolder..'/'..ConfigNameStr;
 
 					if isfile(path) then
@@ -5666,7 +5666,7 @@ function Neverlose:CreateWindow(Config)
 				table.insert(ConfigLib.Signals , LoadConfig.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
 					Neverlose.PlayAnimate(Icon_2,SlowyTween,{
 						TextTransparency = 0.2,
-						TextColor3 = Neverlose.AccentColor
+						TextColor3 =KfcHook.AccentColor
 					})
 				end)))
 
@@ -5711,7 +5711,7 @@ function Neverlose:CreateWindow(Config)
 			end;
 		end);
 
-		local hover_write = Neverlose:CreateInput(ConfigIcon,function()
+		local hover_write =KfcHook:CreateInput(ConfigIcon,function()
 			local path = Window.ConfigFolder..'/'..(ConfigLib.SelectedConfig or "Default");
 
 			if isfile(path) then
@@ -5734,7 +5734,7 @@ function Neverlose:CreateWindow(Config)
 		end)));
 
 
-		local mv = Neverlose:CreateInput(LoadConfig , function()
+		local mv =KfcHook:CreateInput(LoadConfig , function()
 			local cfg_name = TextBox.Text;
 
 			if cfg_name and cfg_name:byte() and not cfg_name:find('/',1,true) and not cfg_name:find('\\',1,true) then
@@ -5778,7 +5778,7 @@ function Neverlose:CreateWindow(Config)
 
 			ConfigLib.UnsafeThread = UserInputService.InputBegan:Connect(function(Input)
 				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-					if not Neverlose:IsMouseOverFrame(ConfigMenu) then
+					if notKfcHook:IsMouseOverFrame(ConfigMenu) then
 						if ConfigLib.UnsafeThread then
 							ConfigLib.UnsafeThread:Disconnect();
 							ConfigLib.UnsafeThread = nil;
@@ -5795,7 +5795,7 @@ function Neverlose:CreateWindow(Config)
 
 	Window:_InitConfig();
 
-	local UserSettings = Neverlose:CreateOptionWindow(BottomFrame , BottomFrame.ZIndex + 13);
+	local UserSettings =KfcHook:CreateOptionWindow(BottomFrame , BottomFrame.ZIndex + 13);
 	local reciveSignal;
 	Neverlose:CreateInput(BottomFrame , LPH_NO_VIRTUALIZE(function()
 		if reciveSignal then
@@ -5807,7 +5807,7 @@ function Neverlose:CreateWindow(Config)
 
 		reciveSignal = UserInputService.InputBegan:Connect(function(Input)
 			if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-				if not Neverlose:IsMouseOverFrame(UserSettings.Root) and not Neverlose:IsMouseOverFrame(BottomFrame) and not Neverlose.IsMosueOverOtherFrame then
+				if notKfcHook:IsMouseOverFrame(UserSettings.Root) and notKfcHook:IsMouseOverFrame(BottomFrame) and notKfcHook.IsMosueOverOtherFrame then
 					if reciveSignal then
 						reciveSignal:Disconnect();
 						reciveSignal = nil;	
@@ -5822,8 +5822,8 @@ function Neverlose:CreateWindow(Config)
 	Window.UserSettings = UserSettings;
 
 	function Window:SetAccount(Config)
-		Config = Neverlose:ProcessParams(Config , {
-			Profile = Neverlose.UserProfile,
+		Config =KfcHook:ProcessParams(Config , {
+			Profile =KfcHook.UserProfile,
 			Username = LocalPlayer.DisplayName,
 			Expires = "Free User",
 		});
@@ -5874,18 +5874,18 @@ function Neverlose:CreateWindow(Config)
 	end;
 
 	function Window:Watermark()
-		if Neverlose.__WatermarkCache then
-			return Neverlose.__WatermarkCache;
+		ifKfcHook.__WatermarkCache then
+			returnKfcHook.__WatermarkCache;
 		end;
 
 		local Watermark_lb = {};
 		local Watermark = Instance.new("Frame")
 		local UICorner = Instance.new("UICorner")
 		local UIListLayout = Instance.new("UIListLayout")
-		local Shadow = Neverlose:CreateShadow(Watermark);
+		local Shadow =KfcHook:CreateShadow(Watermark);
 
 		Watermark.Name = KfcHook.RandomString();
-		Watermark.Parent = Neverlose.ScreenGui
+		Watermark.Parent =KfcHook.ScreenGui
 		Watermark.AnchorPoint = Vector2.new(1, 0)
 		Watermark.BackgroundColor3 = Color3.fromRGB(8, 8, 13)
 		Watermark.BackgroundTransparency = 0.200
@@ -5916,7 +5916,7 @@ function Neverlose:CreateWindow(Config)
 				Watermark.Visible = false;
 				Watermark.Parent = nil;
 			else
-				Watermark.Parent = Neverlose.ScreenGui
+				Watermark.Parent =KfcHook.ScreenGui
 				Watermark.Visible = true;
 			end;
 		end));
@@ -6001,9 +6001,9 @@ function Neverlose:CreateWindow(Config)
 			Icon.Position = UDim2.new(0, 10, 0.5, 0)
 			Icon.Size = UDim2.new(0, 20, 0, 20)
 			Icon.ZIndex = 17
-			Icon.FontFace = Neverlose.BuiltInBold;
+			Icon.FontFace =KfcHook.BuiltInBold;
 			Icon.Text = IconStr
-			Icon.TextColor3 = Neverlose.AccentColor
+			Icon.TextColor3 =KfcHook.AccentColor
 			Icon.TextSize = 18.000
 			Icon.TextTransparency = 0.250
 			Icon.TextWrapped = true
@@ -6066,7 +6066,7 @@ function Neverlose:CreateWindow(Config)
 			end;
 
 			function InnerBlock:Input(func)
-				local c,s = Neverlose:CreateInput(Frame,func);
+				local c,s =KfcHook:CreateInput(Frame,func);
 
 				return s;
 			end;
@@ -6082,9 +6082,9 @@ function Neverlose:CreateWindow(Config)
 	return Window;
 end;
 
-function Neverlose:CreateNotification()
-	if Neverlose.__Notification_Cache then
-		return Neverlose.__Notification_Cache;
+functionKfcHook:CreateNotification()
+	ifKfcHook.__Notification_Cache then
+		returnKfcHook.__Notification_Cache;
 	end;
 
 	local Notifier = {};
@@ -6092,7 +6092,7 @@ function Neverlose:CreateNotification()
 	local UIListLayout = Instance.new("UIListLayout")
 
 	Notification.Name = KfcHook.RandomString();
-	Notification.Parent = Neverlose.ScreenGui;
+	Notification.Parent =KfcHook.ScreenGui;
 	Notification.AnchorPoint = Vector2.new(1, 0)
 	Notification.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Notification.BackgroundTransparency = 1.000
@@ -6109,14 +6109,14 @@ function Neverlose:CreateNotification()
 	Neverlose.__Notification_Cache = Notifier;
 
 	function Notifier.new(Config)
-		Config = Neverlose:ProcessParams(Config , {
+		Config =KfcHook:ProcessParams(Config , {
 			Title = "Notification",
 			Content = "Hello World!",
-			Logo = Neverlose.GlobalLogo or "rbxasset://textures/ui/VerifiedBadgeNameIcon.png",
+			Logo =KfcHook.GlobalLogo or "rbxasset://textures/ui/VerifiedBadgeNameIcon.png",
 			Duration = 5,
 		});
 
-		if Neverlose.__WatermarkCache then
+		ifKfcHook.__WatermarkCache then
 			Neverlose.PlayAnimate(Notification,SlowyTween , {
 				Position = UDim2.new(1, -25, 0, 55)
 			});
@@ -6130,7 +6130,7 @@ function Neverlose:CreateNotification()
 		local UICorner_2 = Instance.new("UICorner")
 		local NotifyName = Instance.new("TextLabel")
 		local NotifyContent = Instance.new("TextLabel");
-		local shadow = Neverlose:CreateShadow(NotifyFrame , true);
+		local shadow =KfcHook:CreateShadow(NotifyFrame , true);
 
 		ContainerFrame.Name = KfcHook.RandomString();
 		ContainerFrame.Parent = Notification
@@ -6170,7 +6170,7 @@ function Neverlose:CreateNotification()
 		LogoImage.Size = UDim2.new(0, 35, 0, 35)
 		LogoImage.ZIndex = 131
 		LogoImage.Image = Config.Logo
-		LogoImage.ImageColor3 = Neverlose.IconColor;
+		LogoImage.ImageColor3 =KfcHook.IconColor;
 
 		UICorner_2.CornerRadius = UDim.new(0, 7)
 		UICorner_2.Parent = LogoImage
@@ -6222,7 +6222,7 @@ function Neverlose:CreateNotification()
 
 		task.delay(Config.Duration or 5 , LPH_NO_VIRTUALIZE(function()
 
-			if Neverlose.__WatermarkCache then
+			ifKfcHook.__WatermarkCache then
 				Neverlose.PlayAnimate(Notification,SlowyTween , {
 					Position = UDim2.new(1, -25, 0, 55)
 				});
@@ -6265,8 +6265,8 @@ function Neverlose:CreateNotification()
 	return Notifier;
 end;
 
-function Neverlose:CreateLogger()
-	if Neverlose.__LogSystem then
+functionKfcHook:CreateLogger()
+	ifKfcHook.__LogSystem then
 		return 	Neverlose.__LogSystem;
 	end;
 
@@ -6275,7 +6275,7 @@ function Neverlose:CreateLogger()
 	local UIListLayout = Instance.new("UIListLayout")
 
 	Log.Name = KfcHook.RandomString();
-	Log.Parent = Neverlose.ScreenGui
+	Log.Parent =KfcHook.ScreenGui
 	Log.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Log.BackgroundTransparency = 1.000
 	Log.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -6301,7 +6301,7 @@ function Neverlose:CreateLogger()
 		local Line = Instance.new("Frame")
 		local UICorner_2 = Instance.new("UICorner")
 		local Icon = Instance.new("TextLabel")
-		local Shadow = Neverlose:CreateShadow(LogFrame , true);
+		local Shadow =KfcHook:CreateShadow(LogFrame , true);
 
 		LogFrame.Name = KfcHook.RandomString();
 		LogFrame.Parent = Log
@@ -6341,7 +6341,7 @@ function Neverlose:CreateLogger()
 		Line.Name = KfcHook.RandomString();
 		Line.Parent = LogFrame
 		Line.AnchorPoint = Vector2.new(0, 0.5)
-		Line.BackgroundColor3 = Neverlose.AccentColor
+		Line.BackgroundColor3 =KfcHook.AccentColor
 		Line.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Line.BackgroundTransparency = 1 --0
 		Line.BorderSizePixel = 0
@@ -6361,7 +6361,7 @@ function Neverlose:CreateLogger()
 		Icon.Position = UDim2.new(0, 7, 0, 3)
 		Icon.Size = UDim2.new(0, 15, 0, 15)
 		Icon.ZIndex = 133
-		Icon.FontFace = Neverlose.BuiltInBold
+		Icon.FontFace =KfcHook.BuiltInBold
 		Icon.Text = IconStr
 		Icon.TextColor3 = Color3.fromRGB(223, 223, 223)
 		Icon.TextSize = 13.000
@@ -6427,12 +6427,12 @@ function Neverlose:CreateLogger()
 	return Logging
 end;
 
-function Neverlose:CreateIndicator()
+functionKfcHook:CreateIndicator()
 	local IndicatorFrame = Instance.new("Frame")
 	local UIListLayout = Instance.new("UIListLayout")
 
 	IndicatorFrame.Name = KfcHook.RandomString();
-	IndicatorFrame.Parent = Neverlose.ScreenGui;
+	IndicatorFrame.Parent =KfcHook.ScreenGui;
 	IndicatorFrame.AnchorPoint = Vector2.new(0, 0.5)
 	IndicatorFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	IndicatorFrame.BackgroundTransparency = 1.000
@@ -6457,7 +6457,7 @@ function Neverlose:CreateIndicator()
 	Indicators.Root = IndicatorFrame;
 
 	function Indicators.new(Config)
-		Config = Neverlose:ProcessParams(Config , {
+		Config =KfcHook:ProcessParams(Config , {
 			Name = "Indicator",
 			Icon = 'crosshairs',
 			Color = 'Red',
@@ -6475,7 +6475,7 @@ function Neverlose:CreateIndicator()
 		local UIGradient = Instance.new("UIGradient")
 		local Icon = Instance.new("TextLabel")
 		local Content = Instance.new("TextLabel")
-		local Shadow = Neverlose:CreateShadow(IndicatorItem);
+		local Shadow =KfcHook:CreateShadow(IndicatorItem);
 
 		IndicatorItem.Name = KfcHook.RandomString();
 		IndicatorItem.BackgroundColor3 = Color3.fromRGB(8, 8, 13)
@@ -6528,7 +6528,7 @@ function Neverlose:CreateIndicator()
 		Icon.Position = UDim2.new(0, 10, 0.5, 0)
 		Icon.Size = UDim2.new(0, 25, 0, 25)
 		Icon.ZIndex = 17
-		Icon.FontFace = Neverlose.BuiltInBold;
+		Icon.FontFace =KfcHook.BuiltInBold;
 		Icon.Text = Config.Icon
 		Icon.TextColor3 = Color3.fromRGB(186, 186, 186)
 		Icon.TextSize = 21.000
@@ -6635,14 +6635,14 @@ function Neverlose:CreateIndicator()
 	return Indicators;
 end;
 
-function Neverlose:Unload()
-	if not Neverlose.UnloadEnabled then
+functionKfcHook:Unload()
+	if notKfcHook.UnloadEnabled then
 		return;	
 	end;
 
 	Neverlose.ScreenGui:Destroy();
 
-	for i,v in next , Neverlose.GlobalSignals do
+	for i,v in next ,KfcHook.GlobalSignals do
 		pcall(v.Disconnect,v)
 	end;
 end;
@@ -6670,4 +6670,4 @@ local function DisableHCWatermark()
 end
 
 task.spawn(DisableHCWatermark)
-return Neverlose;
+returnKfcHook;

@@ -4,7 +4,7 @@ local NeverLose = loadstring(game:HttpGet("https://raw.githubusercontent.com/4lp
 
 local Notification = NeverLose:CreateNotification();
 local Logging = NeverLose:CreateLogger();
---local Indicator = NeverLose:CreateIndicator();
+local Indicator = NeverLose:CreateIndicator();
 local window = NeverLose:CreateWindow({
 	Logo = NeverLose.GlobalLogo,
 	Name = "Neverlose",
@@ -15,17 +15,17 @@ local window = NeverLose:CreateWindow({
 	Keybind = "Insert"
 });
 
---local Watermark = window:Watermark();
+local Watermark = window:Watermark();
 
---[[local HC = Indicator.new({
+local HC = Indicator.new({
 	Name = "HC",
 	Icon = 'crosshairs',
 	Color = 'Red',
-})--]]
+})
 
 window:AddTabLabel('AIMBOT')
 
---[[local ping = Watermark:AddBlock("chart-four-vertical-bars" , "0MS");
+local ping = Watermark:AddBlock("chart-four-vertical-bars" , "0MS");
 local UITogg = Watermark:AddBlock("cube-vertexes" , "Neverlose");
 
 UITogg:Input(function()
@@ -36,7 +36,7 @@ task.spawn(function()
 	while true do task.wait(1)
 		ping:SetText(tostring(math.random(30,90))..'MS')
 	end
-end)--]]
+end)
 
 local Rage = window:AddTab({
 	Icon = 'crosshairs',
@@ -370,7 +370,7 @@ Logging.new("crosshairs",'Hit thatguy in the neck for 100 damage',15)
 task.wait(2)
 Logging.new("crosshairs-slash",'Missed shot due to prediction error & YOUR NN',15)
 
---[[HC:SetRender(true);
+HC:SetRender(true);
 
 while true do task.wait(3)
 	Watermark:SetRender(true);
@@ -390,4 +390,4 @@ while true do task.wait(3)
 	HC:SetRender(false);
 	task.wait(1)
 	HC:SetRender(true);
-end--]]
+end

@@ -6686,28 +6686,5 @@ function NeverLose:Unload()
 		pcall(v.Disconnect,v)
 	end;
 end;
--- Disable HC watermark flashing by overriding the SetRender method
-local originalSetRender = nil;
-local function DisableHCWatermark()
-    -- Find and disable any existing HC indicator
-    task.wait(0.5)
-    for i, v in pairs(getgc(true)) do
-        if type(v) == "table" and v.SetRender and v.SetColor and v.SetText then
-            if v.CurrentColor and v.Visible ~= nil then
-                originalSetRender = v.SetRender
-                v.SetRender = function(self, val)
-                    -- Only allow render if it's NOT HC or if forcing visibility
-                    if self.CurrentColor and self.CurrentColor ~= "Red" then
-                        originalSetRender(self, val)
-                    else
-                        originalSetRender(self, false)
-                    end
-                end
-                break
-            end
-        end
-    end
-end
 
-task.spawn(DisableHCWatermark)
 return NeverLose;

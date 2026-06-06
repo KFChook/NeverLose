@@ -142,12 +142,12 @@ listfiles = listfiles or getgenv().listfiles;
 isfolder = isfolder or getgenv().isfolder;
 isfile = isfile or getgenv().isfile;
 
-localKFCHook = {};
+local Neverlose = {};
 
-KFCHook.BuiltInRegular = Font.new('rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json',Enum.FontWeight.Regular,Enum.FontStyle.Normal);
-KFCHook.BuiltInBold = Font.new('rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json',Enum.FontWeight.Bold,Enum.FontStyle.Normal);
-KFCHook.GlobalSignals = {};
-KFCHook.UnloadEnabled = false;
+Neverlose.BuiltInRegular = Font.new('rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json',Enum.FontWeight.Regular,Enum.FontStyle.Normal);
+Neverlose.BuiltInBold = Font.new('rbxasset://LuaPackages/Packages/_Index/BuilderIcons/BuilderIcons/BuilderIcons.json',Enum.FontWeight.Bold,Enum.FontStyle.Normal);
+Neverlose.GlobalSignals = {};
+Neverlose.UnloadEnabled = false;
 
 local cloneref: cloneref = cloneref or function(f) return f end;
 local TweenService: TweenService = cloneref(game:GetService('TweenService'));
@@ -168,49 +168,49 @@ local FastTween = TweenInfo.new(0.05);
 local VSlowTween = TweenInfo.new(0.5,Enum.EasingStyle.Quint);
 local Encryption = {};
 
-KFCHook.UserProfile = Players:GetUserThumbnailAsync(LocalPlayer.UserId , Enum.ThumbnailType.HeadShot , Enum.ThumbnailSize.Size150x150)
-KFCHook.RandomString = LPH_NO_VIRTUALIZE(function()
+Neverlose.UserProfile = Players:GetUserThumbnailAsync(LocalPlayer.UserId , Enum.ThumbnailType.HeadShot , Enum.ThumbnailSize.Size150x150)
+Neverlose.RandomString = LPH_NO_VIRTUALIZE(function()
 	return string.rep(string.char(math.random(1,7)),math.random(1,4))..string.rep(string.char(math.random(1,7)),math.random(1,4))..string.rep(string.char(math.random(1,7)),math.random(1,4))..string.rep(string.char(math.random(1,7)),math.random(1,4))..string.rep(string.char(math.random(1,7)),math.random(1,4))..string.rep(string.char(math.random(1,7)),math.random(1,4))..string.rep(string.char(math.random(1,7)),math.random(1,4))..string.rep(string.char(math.random(1,7)),math.random(1,4))..string.rep(string.char(math.random(1,7)),math.random(1,4))..string.rep(string.char(math.random(1,7)),math.random(1,4))..string.rep(string.char(math.random(1,7)),math.random(1,4));
 end);
 
 ProtectGui(GlobalWindow);
 
-GlobalWindow.Name = KFCHook.RandomString();
+GlobalWindow.Name = Neverlose.RandomString();
 GlobalWindow.IgnoreGuiInset = true;
 GlobalWindow.ZIndexBehavior = Enum.ZIndexBehavior.Global;
 GlobalWindow.ResetOnSpawn = false;
 GlobalWindow.Parent = CoreGui;
 
-KFCHook.Scales = {
+Neverlose.Scales = {
 	Small = UDim2.fromOffset(540,380),
 	Mobile = UDim2.fromOffset(640,385),
 	Default = UDim2.fromOffset(640 , 480),
 	Large = UDim2.fromOffset(800 , 600)
 };
 
-KFCHook.IconColor = Color3.fromRGB(255, 255, 255);
-KFCHook.ScreenGui = GlobalWindow;
-KFCHook.Flags = {};
-KFCHook.AccentColor = Color3.fromRGB(78, 127, 252);
-KFCHook.MainColor = Color3.fromRGB(8, 8, 13);
-KFCHook.RegisiteryColor = {};
-KFCHook.NameRegisitry = {};
-KFCHook.IsMosueOverOtherFrame = false;
-KFCHook.GlobalLogo = "rbxassetid://98861852277971";
-KFCHook.ImageColorMapping = "rbxassetid://98861852277971";
+Neverlose.IconColor = Color3.fromRGB(255, 255, 255);
+Neverlose.ScreenGui = GlobalWindow;
+Neverlose.Flags = {};
+Neverlose.AccentColor = Color3.fromRGB(78, 127, 252);
+Neverlose.MainColor = Color3.fromRGB(8, 8, 13);
+Neverlose.RegisiteryColor = {};
+Neverlose.NameRegisitry = {};
+Neverlose.IsMosueOverOtherFrame = false;
+Neverlose.GlobalLogo = "rbxassetid://98861852277971";
+Neverlose.ImageColorMapping = "rbxassetid://98861852277971";
 
 
 
-functionKFCHook:AddSignal(RBXSignal)
-	ifKFCHook.UnloadEnabled then
-		table.insert(KFCHook.GlobalSignals,RBXSignal);
+function Neverlose:AddSignal(RBXSignal)
+	if Neverlose.UnloadEnabled then
+		table.insert(Neverlose.GlobalSignals,RBXSignal);
 	end;
 
 	return RBXSignal;
 end;
 
-functionKFCHook:AddQuery(ItemRoot: Frame , Name : string)
-	table.insert(KFCHook.NameRegisitry , {
+function Neverlose:AddQuery(ItemRoot: Frame , Name : string)
+	table.insert(Neverlose.NameRegisitry , {
 		Root = ItemRoot,
 		Idx = Name,
 	});
@@ -256,7 +256,7 @@ end;
 do
 	local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
-	KFCHook.Base64Encode = LPH_NO_VIRTUALIZE(function(data)
+	Neverlose.Base64Encode = LPH_NO_VIRTUALIZE(function(data)
 		return ((data:gsub('.', function(x) 
 			local r,b='',x:byte()
 			for i=8,1,-1 do r=r..(b%2^i-b%2^(i-1)>0 and '1' or '0') end
@@ -269,7 +269,7 @@ do
 		end)..({ '', '==', '=' })[#data%3+1])
 	end);
 
-	KFCHook.Base64Decode = LPH_NO_VIRTUALIZE(function(data)
+	Neverlose.Base64Decode = LPH_NO_VIRTUALIZE(function(data)
 		data = string.gsub(data, '[^'..b..'=]', '')
 		return (data:gsub('.', function(x)
 			if (x == '=') then return '' end
@@ -285,8 +285,8 @@ do
 	end);
 end;
 
-KFCHook.LoadIcon = LPH_NO_VIRTUALIZE(function()
-	KFCHook.RobloxIcon = {
+Neverlose.LoadIcon = LPH_NO_VIRTUALIZE(function()
+	Neverlose.RobloxIcon = {
 		["3d-cube-arrow-left"] = "3d-cube-arrow-left",
 		["amazon"] = "amazon",
 		["arm-left"] = "arm-left",
@@ -781,12 +781,12 @@ KFCHook.LoadIcon = LPH_NO_VIRTUALIZE(function()
 	};
 end);
 
-KFCHook.IsMouseOverFrame = LPH_NO_VIRTUALIZE(function(self , Frame)
+Neverlose.IsMouseOverFrame = LPH_NO_VIRTUALIZE(function(self , Frame)
 	if not Frame then
 		return;
 	end;
 
-	ifKFCHook.Global3DRenderMode then
+	if Neverlose.Global3DRenderMode then
 		if Frame.GuiState == Enum.GuiState.Hover or Frame.GuiState == Enum.GuiState.Press then
 			return true;
 		end;
@@ -801,7 +801,7 @@ KFCHook.IsMouseOverFrame = LPH_NO_VIRTUALIZE(function(self , Frame)
 	end;
 end);
 
-KFCHook.CreateSignal = LPH_NO_VIRTUALIZE(function(self , DefaultValue)
+Neverlose.CreateSignal = LPH_NO_VIRTUALIZE(function(self , DefaultValue)
 	local __cache = Instance.new('BindableEvent');
 	local bind = {
 		Value = DefaultValue,
@@ -821,7 +821,7 @@ KFCHook.CreateSignal = LPH_NO_VIRTUALIZE(function(self , DefaultValue)
 	function bind:Connect(f)
 		local signal = __cache.Event:Connect(f);
 
-		KFCHook:AddSignal(signal);
+		Neverlose:AddSignal(signal);
 
 		return signal;
 	end;
@@ -829,36 +829,36 @@ KFCHook.CreateSignal = LPH_NO_VIRTUALIZE(function(self , DefaultValue)
 	return bind;
 end);
 
-KFCHook.SetIconMode = LPH_NO_VIRTUALIZE(function(self , Label: TextLabel , Icon: string)
+Neverlose.SetIconMode = LPH_NO_VIRTUALIZE(function(self , Label: TextLabel , Icon: string)
 	local useBold = string.lower(string.sub(Icon , -5)) == '-bold';
 
 	if useBold then
 		Label.Text = Icon:sub(1,-6);
-		Label.FontFace =KFCHook.BuiltInBold;
+		Label.FontFace = Neverlose.BuiltInBold;
 	else
 		Label.Text = Icon;
-		Label.FontFace =KFCHook.BuiltInRegular;
+		Label.FontFace = Neverlose.BuiltInRegular;
 	end;
 end);
 
-functionKFCHook:GetIconFont(icon: string)
+function Neverlose:GetIconFont(icon: string)
 	local useBold = string.lower(string.sub(icon , -5)) == '-bold';
 
 	if useBold then
-		returnKFCHook.BuiltInBold;
+		return Neverlose.BuiltInBold;
 	end;
 
-	returnKFCHook.BuiltInRegular;
+	return Neverlose.BuiltInRegular;
 end;
 
-functionKFCHook:MoreThanHalfY(Value: number)
-	return (KFCHook.ScreenGui.AbsoluteSize.Y / 2) < Value
+function Neverlose:MoreThanHalfY(Value: number)
+	return (Neverlose.ScreenGui.AbsoluteSize.Y / 2) < Value
 end;
 
-KFCHook.IsStudio = RunService:IsStudio();
-KFCHook.IsMobile = UserInputService.TouchEnabled;
+Neverlose.IsStudio = RunService:IsStudio();
+Neverlose.IsMobile = UserInputService.TouchEnabled;
 
-KFCHook.CreateInput = LPH_NO_VIRTUALIZE(function(self , Frame , Callback)
+Neverlose.CreateInput = LPH_NO_VIRTUALIZE(function(self , Frame , Callback)
 	local Button = Instance.new('ImageButton',Frame);
 
 	Button.ZIndex = Frame.ZIndex + 10;
@@ -876,7 +876,7 @@ KFCHook.CreateInput = LPH_NO_VIRTUALIZE(function(self , Frame , Callback)
 	return Button;
 end);
 
-KFCHook.PlayAnimate = LPH_NO_VIRTUALIZE(function(Self , Info , Property)
+Neverlose.PlayAnimate = LPH_NO_VIRTUALIZE(function(Self , Info , Property)
 	local Tween = TweenService:Create(Self , Info or TweenInfo.new(0.25) , Property);
 
 	Tween:Play();
@@ -884,7 +884,7 @@ KFCHook.PlayAnimate = LPH_NO_VIRTUALIZE(function(Self , Info , Property)
 	return Tween;
 end);
 
-KFCHook.Drag = LPH_NO_VIRTUALIZE(function(InputFrame: Frame, MoveFrame: Frame, Speed : number)
+Neverlose.Drag = LPH_NO_VIRTUALIZE(function(InputFrame: Frame, MoveFrame: Frame, Speed : number)
 	local dragToggle: boolean = false;
 	local dragStart: Vector3 = nil;
 	local startPos: UDim2 = nil;
@@ -895,18 +895,18 @@ KFCHook.Drag = LPH_NO_VIRTUALIZE(function(InputFrame: Frame, MoveFrame: Frame, S
 		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
 			startPos.Y.Scale, startPos.Y.Offset + delta.Y);
 
-		ifKFCHook.Global3DRenderMode then
-			KFCHook.PlayAnimate(MoveFrame,Tween,{
+		if Neverlose.Global3DRenderMode then
+			Neverlose.PlayAnimate(MoveFrame,Tween,{
 				Position = UDim2.fromScale(0.5,0.5)
 			});
 		else
-			KFCHook.PlayAnimate(MoveFrame,Tween,{
+			Neverlose.PlayAnimate(MoveFrame,Tween,{
 				Position = position
 			});
 		end;
 	end;
 
-	KFCHook:AddSignal(InputFrame.InputBegan:Connect(function(input)
+	Neverlose:AddSignal(InputFrame.InputBegan:Connect(function(input)
 		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
 			dragToggle = true;
 			dragStart = input.Position;
@@ -923,7 +923,7 @@ KFCHook.Drag = LPH_NO_VIRTUALIZE(function(InputFrame: Frame, MoveFrame: Frame, S
 		end
 	end));
 
-	KFCHook:AddSignal(UserInputService.InputChanged:Connect(function(input)
+	Neverlose:AddSignal(UserInputService.InputChanged:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
 			if dragToggle then
 				updateInput(input)
@@ -932,12 +932,12 @@ KFCHook.Drag = LPH_NO_VIRTUALIZE(function(InputFrame: Frame, MoveFrame: Frame, S
 	end));
 end);
 
-KFCHook.Rounding = LPH_NO_VIRTUALIZE(function(num, numDecimalPlaces)
+Neverlose.Rounding = LPH_NO_VIRTUALIZE(function(num, numDecimalPlaces)
 	local mult = 10 ^ (numDecimalPlaces or 0);
 	return math.floor(num * mult + 0.5) / mult;
 end);
 
-KFCHook.ProcessParams = LPH_NO_VIRTUALIZE(function(self , Params , Fixed)
+Neverlose.ProcessParams = LPH_NO_VIRTUALIZE(function(self , Params , Fixed)
 	Params = Params or {};
 
 	local k = Params or {};
@@ -951,10 +951,10 @@ KFCHook.ProcessParams = LPH_NO_VIRTUALIZE(function(self , Params , Fixed)
 	return k;
 end);
 
-KFCHook.EnabledBlur = true;
-KFCHook.BlurModuleParent = workspace.CurrentCamera;
+Neverlose.EnabledBlur = true;
+Neverlose.BlurModuleParent = workspace.CurrentCamera;
 
-KFCHook.GetCalculatePosition = LPH_NO_VIRTUALIZE(function(planePos, planeNormal, rayOrigin, rayDirection)
+Neverlose.GetCalculatePosition = LPH_NO_VIRTUALIZE(function(planePos, planeNormal, rayOrigin, rayDirection)
 	local n = planeNormal;
 	local d = rayDirection;
 	local v = rayOrigin - planePos;
@@ -966,12 +966,12 @@ KFCHook.GetCalculatePosition = LPH_NO_VIRTUALIZE(function(planePos, planeNormal,
 	return rayOrigin + (a * rayDirection);
 end);
 
-KFCHook.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
-	if notKFCHook.EnabledBlur then
-		returnKFCHook:AddSignal(Instance.new('BindableEvent').Event:Connect(function() return "nl"; end));	
+Neverlose.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
+	if not Neverlose.EnabledBlur then
+		return Neverlose:AddSignal(Instance.new('BindableEvent').Event:Connect(function() return "nl"; end));	
 	end;
 
-	local Part = Instance.new('Part',KFCHook.BlurModuleParent);
+	local Part = Instance.new('Part',Neverlose.BlurModuleParent);
 	local DepthOfField = Instance.new('DepthOfFieldEffect',cloneref(game:GetService('Lighting')));
 	local BlockMesh = Instance.new("BlockMesh");
 
@@ -984,7 +984,7 @@ KFCHook.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
 	Part.Anchored = true;
 	Part.CanCollide = false;
 	Part.CanQuery = false;
-	Part.CollisionGroup =KFCHook.RandomString();
+	Part.CollisionGroup = Neverlose.RandomString();
 	Part.Size = Vector3.new(1, 1, 1) * 0.01;
 	Part.Color = Color3.fromRGB(0,0,0);
 
@@ -993,33 +993,33 @@ KFCHook.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
 	DepthOfField.FocusDistance = 0;
 	DepthOfField.InFocusRadius = 1000;
 	DepthOfField.NearIntensity = 1;
-	DepthOfField.Name = KFCHook.RandomString();
+	DepthOfField.Name = Neverlose.RandomString();
 
-	Part.Name = KFCHook.RandomString();
+	Part.Name = Neverlose.RandomString();
 
 	local disconnect;
 
 	local UpdateFunction = function()
 		local IsWindowActive = Signal:GetValue();
 
-		if IsWindowActive and notKFCHook.Global3DRenderMode then
+		if IsWindowActive and not Neverlose.Global3DRenderMode then
 
-			KFCHook.PlayAnimate(DepthOfField,TweenInfo.new(0.1),{
+			Neverlose.PlayAnimate(DepthOfField,TweenInfo.new(0.1),{
 				NearIntensity = 1
 			})
 
-			KFCHook.PlayAnimate(Part,TweenInfo.new(0.1),{
+			Neverlose.PlayAnimate(Part,TweenInfo.new(0.1),{
 				Transparency = 0.97,
 				Size = Vector3.new(1, 1, 1) * 0.01;
 			})
 
-			Part.Parent =KFCHook.BlurModuleParent;
+			Part.Parent = Neverlose.BlurModuleParent;
 		else
-			KFCHook.PlayAnimate(DepthOfField,TweenInfo.new(0.1),{
+			Neverlose.PlayAnimate(DepthOfField,TweenInfo.new(0.1),{
 				NearIntensity = 0
 			})
 
-			KFCHook.PlayAnimate(Part,TweenInfo.new(0.1),{
+			Neverlose.PlayAnimate(Part,TweenInfo.new(0.1),{
 				Size = Vector3.zero,
 				Transparency = 1.5,
 			})
@@ -1040,8 +1040,8 @@ KFCHook.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
 
 			local planeNormal = CurrentCamera.CFrame.LookVector;
 
-			local pos0 =KFCHook.GetCalculatePosition(planeOrigin, planeNormal, ray0.Origin, ray0.Direction);
-			local pos1 =KFCHook.GetCalculatePosition(planeOrigin, planeNormal, ray1.Origin, ray1.Direction);
+			local pos0 = Neverlose.GetCalculatePosition(planeOrigin, planeNormal, ray0.Origin, ray0.Direction);
+			local pos1 = Neverlose.GetCalculatePosition(planeOrigin, planeNormal, ray1.Origin, ray1.Direction);
 
 			pos0 = CurrentCamera.CFrame:PointToObjectSpace(pos0);
 			pos1 = CurrentCamera.CFrame:PointToObjectSpace(pos1);
@@ -1055,8 +1055,8 @@ KFCHook.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
 		end;
 	end;
 
-	local rbxsignal =KFCHook:AddSignal(CurrentCamera:GetPropertyChangedSignal('CFrame'):Connect(UpdateFunction))
-	local loopThread =KFCHook:AddSignal(UserInputService.InputChanged:Connect(function(Input)
+	local rbxsignal = Neverlose:AddSignal(CurrentCamera:GetPropertyChangedSignal('CFrame'):Connect(UpdateFunction))
+	local loopThread = Neverlose:AddSignal(UserInputService.InputChanged:Connect(function(Input)
 		if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
 			pcall(UpdateFunction);
 		end;
@@ -1083,7 +1083,7 @@ end);
 
 local EmptyFunction = function() end;
 
-functionKFCHook:RollingEffect(parent)
+function Neverlose:RollingEffect(parent)
 	local UIGradient = Instance.new("UIGradient")
 
 	UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.4), NumberSequenceKeypoint.new(1.00, 0.00)}
@@ -1092,7 +1092,7 @@ functionKFCHook:RollingEffect(parent)
 	return UIGradient;
 end;
 
-functionKFCHook:CreateShadow(parent , RollingEffect)
+function Neverlose:CreateShadow(parent , RollingEffect)
 	local Shadow = {};
 
 	local UIShadowSafe85 = Instance.new("UIStroke")
@@ -1120,10 +1120,10 @@ functionKFCHook:CreateShadow(parent , RollingEffect)
 	local r1,r2,r3,r4;
 
 	if RollingEffect then
-		r1 =KFCHook:RollingEffect(UIShadowSafe85);
-		r2 =KFCHook:RollingEffect(UIShadowSafe65);
-		r3 =KFCHook:RollingEffect(UIShadowSafe50);
-		r4 =KFCHook:RollingEffect(UIShadowSafe45);
+		r1 = Neverlose:RollingEffect(UIShadowSafe85);
+		r2 = Neverlose:RollingEffect(UIShadowSafe65);
+		r3 = Neverlose:RollingEffect(UIShadowSafe50);
+		r4 = Neverlose:RollingEffect(UIShadowSafe45);
 	end;
 
 	Shadow.Render = LPH_NO_VIRTUALIZE(function(self , value)
@@ -1133,19 +1133,19 @@ functionKFCHook:CreateShadow(parent , RollingEffect)
 		end;
 
 		if value then
-			KFCHook.PlayAnimate(UIShadowSafe85 , SlowyTween , {
+			Neverlose.PlayAnimate(UIShadowSafe85 , SlowyTween , {
 				Transparency = 0.900
 			})
 
-			KFCHook.PlayAnimate(UIShadowSafe65 , SlowyTween , {
+			Neverlose.PlayAnimate(UIShadowSafe65 , SlowyTween , {
 				Transparency = 0.900
 			})
 
-			KFCHook.PlayAnimate(UIShadowSafe50 , SlowyTween , {
+			Neverlose.PlayAnimate(UIShadowSafe50 , SlowyTween , {
 				Transparency = 0.900
 			})
 
-			KFCHook.PlayAnimate(UIShadowSafe45 , SlowyTween , {
+			Neverlose.PlayAnimate(UIShadowSafe45 , SlowyTween , {
 				Transparency = 0.900
 			})
 
@@ -1153,38 +1153,38 @@ functionKFCHook:CreateShadow(parent , RollingEffect)
 				RollingEffectThread = task.spawn(function()
 					local level = 20;
 					while true do task.wait(0.025)
-						KFCHook.PlayAnimate(r1 , SlowyTween , {
+						Neverlose.PlayAnimate(r1 , SlowyTween , {
 							Rotation = r1.Rotation + level
 						});
 
-						KFCHook.PlayAnimate(r2 , SlowyTween , {
+						Neverlose.PlayAnimate(r2 , SlowyTween , {
 							Rotation = r2.Rotation + level
 						});
 
-						KFCHook.PlayAnimate(r3 , SlowyTween , {
+						Neverlose.PlayAnimate(r3 , SlowyTween , {
 							Rotation = r3.Rotation + level
 						});
 
-						KFCHook.PlayAnimate(r4 , SlowyTween , {
+						Neverlose.PlayAnimate(r4 , SlowyTween , {
 							Rotation = r4.Rotation + level
 						});
 					end;
 				end);
 			end;
 		else
-			KFCHook.PlayAnimate(UIShadowSafe85 , SlowyTween , {
+			Neverlose.PlayAnimate(UIShadowSafe85 , SlowyTween , {
 				Transparency = 1
 			})
 
-			KFCHook.PlayAnimate(UIShadowSafe65 , SlowyTween , {
+			Neverlose.PlayAnimate(UIShadowSafe65 , SlowyTween , {
 				Transparency = 1
 			})
 
-			KFCHook.PlayAnimate(UIShadowSafe50 , SlowyTween , {
+			Neverlose.PlayAnimate(UIShadowSafe50 , SlowyTween , {
 				Transparency = 1
 			})
 
-			KFCHook.PlayAnimate(UIShadowSafe45 , SlowyTween , {
+			Neverlose.PlayAnimate(UIShadowSafe45 , SlowyTween , {
 				Transparency = 1
 			})
 		end;
@@ -1193,21 +1193,21 @@ functionKFCHook:CreateShadow(parent , RollingEffect)
 	return Shadow;
 end;
 
-functionKFCHook:CreateOptionWindow(Frame: Frame , Zindex)
+function Neverlose:CreateOptionWindow(Frame: Frame , Zindex)
 	Zindex = Zindex or 9;
 
 	local Window = {
-		Signal =KFCHook:CreateSignal(false),
+		Signal = Neverlose:CreateSignal(false),
 	};
 
 	local OptionHandler = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
 	local UIListLayout = Instance.new("UIListLayout")
 	local UIStroke = Instance.new("UIStroke")
-	local shadow =KFCHook:CreateShadow(OptionHandler);
+	local shadow = Neverlose:CreateShadow(OptionHandler);
 
-	OptionHandler.Name = KFCHook.RandomString();
-	OptionHandler.Parent =KFCHook.ScreenGui
+	OptionHandler.Name = Neverlose.RandomString();
+	OptionHandler.Parent = Neverlose.ScreenGui
 	OptionHandler.AnchorPoint = Vector2.new(0, 0)
 	OptionHandler.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
 	OptionHandler.BackgroundTransparency = 0.035
@@ -1229,13 +1229,13 @@ functionKFCHook:CreateOptionWindow(Frame: Frame , Zindex)
 	UIStroke.Color = Color3.fromRGB(45, 48, 58)
 	UIStroke.Parent = OptionHandler
 
-	KFCHook:AddSignal(UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
-		KFCHook.PlayAnimate(OptionHandler , SlowyTween , {
+	Neverlose:AddSignal(UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
+		Neverlose.PlayAnimate(OptionHandler , SlowyTween , {
 			Size = UDim2.new(0, 220, 0, UIListLayout.AbsoluteContentSize.Y - 1)
 		})
 	end)));
 
-	KFCHook:AddSignal(OptionHandler:GetPropertyChangedSignal('BackgroundTransparency'):Connect(LPH_NO_VIRTUALIZE(function()
+	Neverlose:AddSignal(OptionHandler:GetPropertyChangedSignal('BackgroundTransparency'):Connect(LPH_NO_VIRTUALIZE(function()
 		if OptionHandler.BackgroundTransparency > 0.9 then
 			OptionHandler.Visible = false;
 			UIListLayout.Parent = nil;
@@ -1244,17 +1244,17 @@ functionKFCHook:CreateOptionWindow(Frame: Frame , Zindex)
 			OptionHandler.Visible = true;
 			UIListLayout.Parent = OptionHandler
 
-			ifKFCHook.Global3DRenderMode then
-				OptionHandler.Parent =KFCHook.GlobalSurfaceGui;
+			if Neverlose.Global3DRenderMode then
+				OptionHandler.Parent = Neverlose.GlobalSurfaceGui;
 			else
-				OptionHandler.Parent =KFCHook.ScreenGui;
+				OptionHandler.Parent = Neverlose.ScreenGui;
 			end;
 		end
 	end)));
 
 	local FollowingThread;
 	local SetPosition = LPH_NO_VIRTUALIZE(function()
-		ifKFCHook:MoreThanHalfY(Frame.AbsolutePosition.Y + 65) then
+		if Neverlose:MoreThanHalfY(Frame.AbsolutePosition.Y + 65) then
 			OptionHandler.AnchorPoint = Vector2.new(0,1)
 		else
 			OptionHandler.AnchorPoint = Vector2.new(0,0)
@@ -1272,20 +1272,20 @@ functionKFCHook:CreateOptionWindow(Frame: Frame , Zindex)
 		if value then
 			SetPosition();
 
-			KFCHook.PlayAnimate(OptionHandler , SlowyTween , {
+			Neverlose.PlayAnimate(OptionHandler , SlowyTween , {
 				BackgroundTransparency = 0.035
 			})
 
-			KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 				Transparency = 0.650
 			})
 
 			shadow:Render(true);
 
-			ifKFCHook.Global3DRenderMode then
-				OptionHandler.Parent =KFCHook.GlobalSurfaceGui;
+			if Neverlose.Global3DRenderMode then
+				OptionHandler.Parent = Neverlose.GlobalSurfaceGui;
 			else
-				OptionHandler.Parent =KFCHook.ScreenGui;
+				OptionHandler.Parent = Neverlose.ScreenGui;
 			end;
 
 			FollowingThread = task.spawn(function()
@@ -1294,11 +1294,11 @@ functionKFCHook:CreateOptionWindow(Frame: Frame , Zindex)
 				end
 			end)
 		else
-			KFCHook.PlayAnimate(OptionHandler , SlowyTween , {
+			Neverlose.PlayAnimate(OptionHandler , SlowyTween , {
 				BackgroundTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 				Transparency = 1
 			})
 
@@ -1309,7 +1309,7 @@ functionKFCHook:CreateOptionWindow(Frame: Frame , Zindex)
 	Window.SetRender(false);
 	Window.Signal:Connect(Window.SetRender)
 
-	local Payback =KFCHook:RegisiterItem(OptionHandler , Window.Signal);
+	local Payback = Neverlose:RegisiterItem(OptionHandler , Window.Signal);
 
 	Payback.Winbdow = Window;
 	Payback.Root = OptionHandler;
@@ -1318,7 +1318,7 @@ functionKFCHook:CreateOptionWindow(Frame: Frame , Zindex)
 	return Payback;
 end;
 
-functionKFCHook:CreateColorPicker(HandleFrame: Frame)
+function Neverlose:CreateColorPicker(HandleFrame: Frame)
 	local ZIndex = HandleFrame.ZIndex;
 
 	local ColorPickerLib = {};
@@ -1339,10 +1339,10 @@ functionKFCHook:CreateColorPicker(HandleFrame: Frame)
 	local UICorner_5 = Instance.new("UICorner")
 	local RGBLabel = Instance.new("TextLabel")
 	local UICorner_6 = Instance.new("UICorner")
-	local Shadow =KFCHook:CreateShadow(ColorPickerHandler);
+	local Shadow = Neverlose:CreateShadow(ColorPickerHandler);
 
-	ColorPickerHandler.Name = KFCHook.RandomString();
-	ColorPickerHandler.Parent =KFCHook.ScreenGui
+	ColorPickerHandler.Name = Neverlose.RandomString();
+	ColorPickerHandler.Parent = Neverlose.ScreenGui
 	ColorPickerHandler.AnchorPoint = Vector2.new(0, 0)
 	ColorPickerHandler.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
 	ColorPickerHandler.BackgroundTransparency = 0.035
@@ -1353,17 +1353,17 @@ functionKFCHook:CreateColorPicker(HandleFrame: Frame)
 	ColorPickerHandler.Size = UDim2.new(0, 200, 0, 240)
 	ColorPickerHandler.ZIndex = ZIndex + 125
 
-	KFCHook:AddSignal(ColorPickerHandler:GetPropertyChangedSignal('BackgroundTransparency'):Connect(LPH_NO_VIRTUALIZE(function()
+	Neverlose:AddSignal(ColorPickerHandler:GetPropertyChangedSignal('BackgroundTransparency'):Connect(LPH_NO_VIRTUALIZE(function()
 		if ColorPickerHandler.BackgroundTransparency > 0.9 then
 			ColorPickerHandler.Visible = false;
 			ColorPickerHandler.Parent = nil
 		else
 			ColorPickerHandler.Visible = true;
 
-			ifKFCHook.Global3DRenderMode then
-				ColorPickerHandler.Parent =KFCHook.GlobalSurfaceGui;
+			if Neverlose.Global3DRenderMode then
+				ColorPickerHandler.Parent = Neverlose.GlobalSurfaceGui;
 			else
-				ColorPickerHandler.Parent =KFCHook.ScreenGui;
+				ColorPickerHandler.Parent = Neverlose.ScreenGui;
 			end;
 		end;
 	end)));
@@ -1375,7 +1375,7 @@ functionKFCHook:CreateColorPicker(HandleFrame: Frame)
 	UIStroke.Color = Color3.fromRGB(45, 48, 58)
 	UIStroke.Parent = ColorPickerHandler
 
-	SaViMap.Name = KFCHook.RandomString();
+	SaViMap.Name = Neverlose.RandomString();
 	SaViMap.Parent = ColorPickerHandler
 	SaViMap.AnchorPoint = Vector2.new(0.5, 0)
 	SaViMap.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
@@ -1384,12 +1384,12 @@ functionKFCHook:CreateColorPicker(HandleFrame: Frame)
 	SaViMap.Position = UDim2.new(0.5, 0, 0, 5)
 	SaViMap.Size = UDim2.new(0, 185, 0, 185)
 	SaViMap.ZIndex = ZIndex + 126
-	SaViMap.Image =KFCHook.ImageColorMapping -- UNSAFE IMAGE
+	SaViMap.Image = Neverlose.ImageColorMapping -- UNSAFE IMAGE
 
 	UICorner_2.CornerRadius = UDim.new(0, 5)
 	UICorner_2.Parent = SaViMap
 
-	ColorZoneSelection.Name = KFCHook.RandomString();
+	ColorZoneSelection.Name = Neverlose.RandomString();
 	ColorZoneSelection.Parent = SaViMap
 	ColorZoneSelection.AnchorPoint = Vector2.new(0.5, 0.5)
 	ColorZoneSelection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1406,7 +1406,7 @@ functionKFCHook:CreateColorPicker(HandleFrame: Frame)
 	UIStroke_2.Color = Color3.fromRGB(255, 255, 255)
 	UIStroke_2.Parent = ColorZoneSelection
 
-	ColorMap.Name = KFCHook.RandomString();
+	ColorMap.Name = Neverlose.RandomString();
 	ColorMap.Parent = ColorPickerHandler
 	ColorMap.AnchorPoint = Vector2.new(0.5, 0)
 	ColorMap.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1422,7 +1422,7 @@ functionKFCHook:CreateColorPicker(HandleFrame: Frame)
 	UICorner_4.CornerRadius = UDim.new(0, 3)
 	UICorner_4.Parent = ColorMap
 
-	ColorMapSelection.Name = KFCHook.RandomString();
+	ColorMapSelection.Name = Neverlose.RandomString();
 	ColorMapSelection.Parent = ColorMap
 	ColorMapSelection.AnchorPoint = Vector2.new(0.5, 0.5)
 	ColorMapSelection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1440,7 +1440,7 @@ functionKFCHook:CreateColorPicker(HandleFrame: Frame)
 	UICorner_5.CornerRadius = UDim.new(0, 3)
 	UICorner_5.Parent = ColorMapSelection
 
-	RGBLabel.Name = KFCHook.RandomString();
+	RGBLabel.Name = Neverlose.RandomString();
 	RGBLabel.Parent = ColorPickerHandler
 	RGBLabel.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
 	RGBLabel.BackgroundTransparency = 0.750
@@ -1463,64 +1463,64 @@ functionKFCHook:CreateColorPicker(HandleFrame: Frame)
 		if value then
 			ColorPickerHandler.Position = UDim2.new(0,HandleFrame.AbsolutePosition.X + 20 , 0 ,HandleFrame.AbsolutePosition.Y + 75);
 
-			KFCHook.PlayAnimate(ColorPickerHandler,SlowyTween , {
+			Neverlose.PlayAnimate(ColorPickerHandler,SlowyTween , {
 				BackgroundTransparency = 0.035
 			})
 
-			KFCHook.PlayAnimate(UIStroke,SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke,SlowyTween , {
 				Transparency = 0.650
 			})
 
-			KFCHook.PlayAnimate(SaViMap,SlowyTween , {
+			Neverlose.PlayAnimate(SaViMap,SlowyTween , {
 				BackgroundTransparency = 0,
 				ImageTransparency = 0
 			})
 
-			KFCHook.PlayAnimate(UIStroke_2,SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke_2,SlowyTween , {
 				Transparency = 0
 			})
 
-			KFCHook.PlayAnimate(ColorMap,SlowyTween , {
+			Neverlose.PlayAnimate(ColorMap,SlowyTween , {
 				BackgroundTransparency = 0
 			})
 
-			KFCHook.PlayAnimate(UIStroke_3,SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke_3,SlowyTween , {
 				Transparency = 0
 			})
 
-			KFCHook.PlayAnimate(RGBLabel,SlowyTween , {
+			Neverlose.PlayAnimate(RGBLabel,SlowyTween , {
 				BackgroundTransparency = 0.750,
 				TextTransparency = 0.400
 			})
 
 			Shadow:Render(true)
 		else
-			KFCHook.PlayAnimate(ColorPickerHandler,SlowyTween , {
+			Neverlose.PlayAnimate(ColorPickerHandler,SlowyTween , {
 				BackgroundTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(UIStroke,SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke,SlowyTween , {
 				Transparency = 1
 			})
 
-			KFCHook.PlayAnimate(SaViMap,SlowyTween , {
+			Neverlose.PlayAnimate(SaViMap,SlowyTween , {
 				BackgroundTransparency = 1,
 				ImageTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(UIStroke_2,SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke_2,SlowyTween , {
 				Transparency = 1
 			})
 
-			KFCHook.PlayAnimate(ColorMap,SlowyTween , {
+			Neverlose.PlayAnimate(ColorMap,SlowyTween , {
 				BackgroundTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(UIStroke_3,SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke_3,SlowyTween , {
 				Transparency = 1
 			})
 
-			KFCHook.PlayAnimate(RGBLabel,SlowyTween , {
+			Neverlose.PlayAnimate(RGBLabel,SlowyTween , {
 				BackgroundTransparency = 1,
 				TextTransparency = 1
 			})
@@ -1539,15 +1539,15 @@ functionKFCHook:CreateColorPicker(HandleFrame: Frame)
 	function ColorPickerLib:Update()
 		local RealColor = Color3.fromHSV(ColorPickerLib.H , ColorPickerLib.S , ColorPickerLib.V);
 
-		KFCHook.PlayAnimate(ColorZoneSelection,ManualTween,{
+		Neverlose.PlayAnimate(ColorZoneSelection,ManualTween,{
 			Position = UDim2.fromScale(ColorPickerLib.S , 1 - ColorPickerLib.V)
 		});
 
-		KFCHook.PlayAnimate(SaViMap,ManualTween,{
+		Neverlose.PlayAnimate(SaViMap,ManualTween,{
 			BackgroundColor3 = Color3.fromHSV(ColorPickerLib.H , 1 , 1)
 		});
 
-		KFCHook.PlayAnimate(ColorMapSelection,ManualTween,{
+		Neverlose.PlayAnimate(ColorMapSelection,ManualTween,{
 			Position = UDim2.fromScale(ColorPickerLib.H,0.5)
 		});
 
@@ -1572,19 +1572,19 @@ functionKFCHook:CreateColorPicker(HandleFrame: Frame)
 
 	ColorPickerLib.IsHold = false;
 
-	KFCHook:AddSignal(ColorPickerHandler.InputBegan:Connect(function(Input)
+	Neverlose:AddSignal(ColorPickerHandler.InputBegan:Connect(function(Input)
 		if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
 			ColorPickerLib.IsHold = true;
 		end;
 	end));
 
-	KFCHook:AddSignal(ColorPickerHandler.InputEnded:Connect(function(Input)
+	Neverlose:AddSignal(ColorPickerHandler.InputEnded:Connect(function(Input)
 		if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
 			ColorPickerLib.IsHold = false;
 		end;
 	end));
 
-	KFCHook:AddSignal(ColorMap.InputBegan:Connect(LPH_NO_VIRTUALIZE(function(Input)
+	Neverlose:AddSignal(ColorMap.InputBegan:Connect(LPH_NO_VIRTUALIZE(function(Input)
 		if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
 			ColorPickerLib.IsHold = true;
 
@@ -1600,7 +1600,7 @@ functionKFCHook:CreateColorPicker(HandleFrame: Frame)
 		end;
 	end)));
 
-	KFCHook:AddSignal(SaViMap.InputBegan:Connect(LPH_NO_VIRTUALIZE(function(Input)
+	Neverlose:AddSignal(SaViMap.InputBegan:Connect(LPH_NO_VIRTUALIZE(function(Input)
 		if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
 			ColorPickerLib.IsHold = true;
 
@@ -1621,7 +1621,7 @@ functionKFCHook:CreateColorPicker(HandleFrame: Frame)
 	return ColorPickerLib;
 end;
 
-KFCHook.KeyEnum = {
+Neverlose.KeyEnum = {
 	One = '1',
 	Two = '2',
 	Three = '3',
@@ -1656,38 +1656,38 @@ KFCHook.KeyEnum = {
 	Escape = "Esc",
 };
 
-KFCHook.EnumReverse = {};
+Neverlose.EnumReverse = {};
 
-for i,v in next ,KFCHook.KeyEnum do
-	KFCHook.EnumReverse[v] = i;
+for i,v in next , Neverlose.KeyEnum do
+	Neverlose.EnumReverse[v] = i;
 end;
 
-functionKFCHook:KeyCodeToStr(K: Enum.KeyCode)
+function Neverlose:KeyCodeToStr(K: Enum.KeyCode)
 	if typeof(K) == 'string' then
-		ifKFCHook.KeyEnum[K] then
-			returnKFCHook.KeyEnum[K];
+		if Neverlose.KeyEnum[K] then
+			return Neverlose.KeyEnum[K];
 		end;
 
 		return K;
 	end;
 
-	return (KFCHook.KeyEnum[K.Name] or K.Name);
+	return (Neverlose.KeyEnum[K.Name] or K.Name);
 end;
 
-functionKFCHook:StrToKeyCode(str: string)
-	ifKFCHook.EnumReverse[str] then
-		return Enum.KeyCode[KFCHook.EnumReverse[str]];
+function Neverlose:StrToKeyCode(str: string)
+	if Neverlose.EnumReverse[str] then
+		return Enum.KeyCode[Neverlose.EnumReverse[str]];
 	end;
 
 	return Enum.KeyCode[str];
 end;
 
-functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
+function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 	local handle = {};
 	local ZINdex = Handler.ZIndex;
 
 	function handle:AddToggle(Config)
-		Config =KFCHook:ProcessParams(Config , {
+		Config = Neverlose:ProcessParams(Config , {
 			Default = false,
 			Flag = nil,
 			Callback = EmptyFunction,
@@ -1698,7 +1698,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		local Circle = Instance.new("Frame")
 		local UICorner_2 = Instance.new("UICorner")
 
-		Toggle.Name = KFCHook.RandomString();
+		Toggle.Name = Neverlose.RandomString();
 		Toggle.Parent = Handler
 		Toggle.BackgroundColor3 = Color3.fromRGB(10, 13, 21)
 		Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1711,7 +1711,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		UICorner.CornerRadius = UDim.new(1, 0)
 		UICorner.Parent = Toggle
 
-		Circle.Name = KFCHook.RandomString();
+		Circle.Name = Neverlose.RandomString();
 		Circle.Parent = Toggle
 		Circle.AnchorPoint = Vector2.new(0.5, 0.5)
 		Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1731,23 +1731,23 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 
 		ToggleLib.SetUI = LPH_NO_VIRTUALIZE(function(value)
 			if value then
-				KFCHook.PlayAnimate(Toggle,SlowyTween,{
+				Neverlose.PlayAnimate(Toggle,SlowyTween,{
 					BackgroundTransparency = 0,
-					BackgroundColor3 =KFCHook.AccentColor
+					BackgroundColor3 = Neverlose.AccentColor
 				})
 
-				KFCHook.PlayAnimate(Circle,SlowyTween,{
+				Neverlose.PlayAnimate(Circle,SlowyTween,{
 					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 					BackgroundTransparency = 0,
 					Position = UDim2.new(0.7, 0, 0.5, 0)
 				})
 			else
-				KFCHook.PlayAnimate(Toggle,SlowyTween,{
+				Neverlose.PlayAnimate(Toggle,SlowyTween,{
 					BackgroundTransparency = 0,
 					BackgroundColor3 = Color3.fromRGB(10, 13, 21)
 				})
 
-				KFCHook.PlayAnimate(Circle,SlowyTween,{
+				Neverlose.PlayAnimate(Circle,SlowyTween,{
 					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 					BackgroundTransparency = 0.500,
 					Position = UDim2.new(0.300000012, 0, 0.5, 0)
@@ -1759,12 +1759,12 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 			if value then
 				ToggleLib.SetUI(Config.Default);
 			else
-				KFCHook.PlayAnimate(Toggle,SlowyTween,{
+				Neverlose.PlayAnimate(Toggle,SlowyTween,{
 					BackgroundTransparency = 1,
 					BackgroundColor3 = Color3.fromRGB(10, 13, 21)
 				})
 
-				KFCHook.PlayAnimate(Circle,SlowyTween,{
+				Neverlose.PlayAnimate(Circle,SlowyTween,{
 					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 					BackgroundTransparency = 1,
 					Position = UDim2.new(0.300000012, 0, 0.5, 0)
@@ -1775,7 +1775,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		ToggleLib.SetUI(Config.Default);
 		ToggleLib.SetVisible(Signal:GetValue());
 
-		KFCHook:CreateInput(Toggle , LPH_NO_VIRTUALIZE(function()
+		Neverlose:CreateInput(Toggle , LPH_NO_VIRTUALIZE(function()
 			Config.Default = not Config.Default;
 
 			ToggleLib.SetUI(Config.Default);
@@ -1800,14 +1800,14 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		end;
 
 		if Config.Flag then
-			KFCHook.Flags[Config.Flag] = ToggleLib;
+			Neverlose.Flags[Config.Flag] = ToggleLib;
 		end;
 
 		return ToggleLib;
 	end;
 
 	function handle:AddSlider(Config)
-		Config =KFCHook:ProcessParams(Config , {
+		Config = Neverlose:ProcessParams(Config , {
 			Default = 50,
 			Min = 0,
 			Max = 10,
@@ -1860,7 +1860,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		local UICorner_5 = Instance.new("UICorner")
 		local boxSize = 2;
 
-		Slider.Name = KFCHook.RandomString();
+		Slider.Name = Neverlose.RandomString();
 		Slider.Parent = Handler
 		Slider.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
 		Slider.BackgroundTransparency = 1.000
@@ -1874,7 +1874,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		UICorner.CornerRadius = UDim.new(0, 4)
 		UICorner.Parent = Slider
 
-		ValueFrame.Name = KFCHook.RandomString();
+		ValueFrame.Name = Neverlose.RandomString();
 		ValueFrame.Parent = Slider
 		ValueFrame.AnchorPoint = Vector2.new(1, 0)
 		ValueFrame.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
@@ -1892,7 +1892,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		UIStroke.Color = Color3.fromRGB(45, 48, 58)
 		UIStroke.Parent = ValueFrame
 
-		ValueLabel.Name = KFCHook.RandomString();
+		ValueLabel.Name = Neverlose.RandomString();
 		ValueLabel.Parent = ValueFrame
 		ValueLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 		ValueLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1909,7 +1909,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		ValueLabel.ClearTextOnFocus = false;
 		ValueLabel.TextTransparency = 0.350
 
-		SlideMain.Name = KFCHook.RandomString();
+		SlideMain.Name = Neverlose.RandomString();
 		SlideMain.Parent = Slider
 		SlideMain.AnchorPoint = Vector2.new(0, 0.5)
 		SlideMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1920,7 +1920,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		SlideMain.Size = UDim2.new(1, -((SliderLib.MaximumSize + 11)), 0, 18)
 		SlideMain.ZIndex = ZINdex + 13
 
-		SlideFrame.Name = KFCHook.RandomString();
+		SlideFrame.Name = Neverlose.RandomString();
 		SlideFrame.Parent = SlideMain
 		SlideFrame.AnchorPoint = Vector2.new(0, 0.5)
 		SlideFrame.BackgroundColor3 = Color3.fromRGB(30, 29, 36)
@@ -1933,9 +1933,9 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		UICorner_3.CornerRadius = UDim.new(1, 0)
 		UICorner_3.Parent = SlideFrame
 
-		SlideMoving.Name = KFCHook.RandomString();
+		SlideMoving.Name = Neverlose.RandomString();
 		SlideMoving.Parent = SlideFrame
-		SlideMoving.BackgroundColor3 =KFCHook.AccentColor
+		SlideMoving.BackgroundColor3 = Neverlose.AccentColor
 		SlideMoving.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		SlideMoving.BorderSizePixel = 0
 		SlideMoving.Size = UDim2.new(SliderLib.GetSize(), 0, 1, 0)
@@ -1967,10 +1967,10 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		end);
 
 		ValueLabel.FocusLost:Connect(LPH_NO_VIRTUALIZE(function()
-			local OutVal =KFCHook:ParseInput(ValueLabel.Text , true);
+			local OutVal = Neverlose:ParseInput(ValueLabel.Text , true);
 			if OutVal then
 				local rx = math.clamp(OutVal , Config.Min , Config.Max);
-				local Value =KFCHook.Rounding(rx,Config.Rounding);
+				local Value = Neverlose.Rounding(rx,Config.Rounding);
 
 				if Value then
 					Config.Default = Value;
@@ -1993,54 +1993,54 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 
 		SliderLib.SetRender = LPH_NO_VIRTUALIZE(function(value)
 			if value then
-				KFCHook.PlayAnimate(ValueFrame,SlowyTween,{
+				Neverlose.PlayAnimate(ValueFrame,SlowyTween,{
 					BackgroundTransparency = 0,
 					Size = UDim2.new(0, SliderLib.MaximumSize + boxSize, 0, 18)
 				});
 
-				KFCHook.PlayAnimate(UIStroke,SlowyTween,{
+				Neverlose.PlayAnimate(UIStroke,SlowyTween,{
 					Transparency = 0.650
 				});
 
-				KFCHook.PlayAnimate(ValueLabel,SlowyTween,{
+				Neverlose.PlayAnimate(ValueLabel,SlowyTween,{
 					TextTransparency = 0.350
 				});
 
-				KFCHook.PlayAnimate(SlideFrame,SlowyTween,{
+				Neverlose.PlayAnimate(SlideFrame,SlowyTween,{
 					BackgroundTransparency = 0
 				});
 
-				KFCHook.PlayAnimate(SlideMoving,SlowyTween,{
+				Neverlose.PlayAnimate(SlideMoving,SlowyTween,{
 					BackgroundTransparency = 0,
 					Size = UDim2.new(SliderLib.GetSize(), 0, 1, 0)
 				});
 
-				KFCHook.PlayAnimate(Frame,SlowyTween,{
+				Neverlose.PlayAnimate(Frame,SlowyTween,{
 					BackgroundTransparency = 0
 				});
 			else
-				KFCHook.PlayAnimate(ValueFrame,SlowyTween,{
+				Neverlose.PlayAnimate(ValueFrame,SlowyTween,{
 					BackgroundTransparency = 1,
 				});
 
-				KFCHook.PlayAnimate(UIStroke,SlowyTween,{
+				Neverlose.PlayAnimate(UIStroke,SlowyTween,{
 					Transparency = 1
 				});
 
-				KFCHook.PlayAnimate(ValueLabel,SlowyTween,{
+				Neverlose.PlayAnimate(ValueLabel,SlowyTween,{
 					TextTransparency = 1
 				});
 
-				KFCHook.PlayAnimate(SlideFrame,SlowyTween,{
+				Neverlose.PlayAnimate(SlideFrame,SlowyTween,{
 					BackgroundTransparency = 1
 				});
 
-				KFCHook.PlayAnimate(SlideMoving,SlowyTween,{
+				Neverlose.PlayAnimate(SlideMoving,SlowyTween,{
 					BackgroundTransparency = 1,
 					Size = UDim2.new(0, 0, 1, 0)
 				});
 
-				KFCHook.PlayAnimate(Frame,SlowyTween,{
+				Neverlose.PlayAnimate(Frame,SlowyTween,{
 					BackgroundTransparency = 1
 				});
 			end;
@@ -2052,7 +2052,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		local Update = function(Input)
 			local SizeScale = math.clamp((((Input.Position.X) - SlideMain.AbsolutePosition.X) / SlideMain.AbsoluteSize.X), 0, 1);
 			local Main = ((Config.Max - Config.Min) * SizeScale) + Config.Min;
-			local Value =KFCHook.Rounding(Main,Config.Rounding);
+			local Value = Neverlose.Rounding(Main,Config.Rounding);
 			local PositionX = UDim2.fromScale(SizeScale, 1);
 			local Size = ((Value - Config.Min) / (Config.Max - Config.Min)) + 0.02;
 
@@ -2081,7 +2081,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 			SlideMain.InputEnded:Connect(LPH_NO_VIRTUALIZE(function(Input)
 				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
 					if UserInputService.TouchEnabled then
-						if notKFCHook:IsMouseOverFrame(SlideMain) then
+						if not Neverlose:IsMouseOverFrame(SlideMain) then
 							IsHold = false
 						end;
 					else
@@ -2094,7 +2094,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 				if IsHold then
 					if (Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch)  then
 						if UserInputService.TouchEnabled then
-							if notKFCHook:IsMouseOverFrame(SlideMain) then
+							if not Neverlose:IsMouseOverFrame(SlideMain) then
 								IsHold = false
 							else
 								Update(Input)
@@ -2115,7 +2115,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 			Config.Default = v;
 
 			if Signal:GetValue() then
-				KFCHook.PlayAnimate(SlideMoving,SlowyTween,{
+				Neverlose.PlayAnimate(SlideMoving,SlowyTween,{
 					BackgroundTransparency = 0,
 					Size = UDim2.new(SliderLib.GetSize(), 0, 1, 0)
 				});
@@ -2127,7 +2127,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		end;
 
 		if Config.Flag then
-			KFCHook.Flags[Config.Flag] = SliderLib;
+			Neverlose.Flags[Config.Flag] = SliderLib;
 		end;
 
 		return SliderLib;
@@ -2138,7 +2138,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		local Icon = Instance.new("TextLabel")
 		local UICorner = Instance.new("UICorner")
 
-		Option.Name = KFCHook.RandomString();
+		Option.Name = Neverlose.RandomString();
 		Option.Parent = Handler
 		Option.BackgroundColor3 = Color3.fromRGB(39, 40, 49)
 		Option.BackgroundTransparency = 1.000
@@ -2149,7 +2149,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		Option.ZIndex = ZINdex + 13
 		Option.LayoutOrder = -(#Handler:GetChildren() + 5);
 
-		Icon.Name = KFCHook.RandomString();
+		Icon.Name = Neverlose.RandomString();
 		Icon.Parent = Option
 		Icon.AnchorPoint = Vector2.new(0.5, 0.5)
 		Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2159,7 +2159,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		Icon.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Icon.Size = UDim2.new(1, 0, 1, 0)
 		Icon.ZIndex = ZINdex + 14
-		Icon.FontFace =KFCHook.BuiltInBold
+		Icon.FontFace = Neverlose.BuiltInBold
 		Icon.Text = (GearIcon == 1 and 'gear') or (GearIcon == 2 and 'chevron-large-right') or "three-dots-horizontal";
 		Icon.TextColor3 = Color3.fromRGB(223, 223, 223)
 		Icon.TextSize = 16.000
@@ -2169,16 +2169,16 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		UICorner.CornerRadius = UDim.new(0, 4)
 		UICorner.Parent = Option
 
-		local Window =KFCHook:CreateOptionWindow(Option , ZINdex + 13);
+		local Window = Neverlose:CreateOptionWindow(Option , ZINdex + 13);
 		local reciveSignal;
 
 		Window.SetRender = LPH_NO_VIRTUALIZE(function(value)
 			if value then
-				KFCHook.PlayAnimate(Icon , SlowyTween , {
+				Neverlose.PlayAnimate(Icon , SlowyTween , {
 					TextTransparency = 0.400
 				})
 			else
-				KFCHook.PlayAnimate(Icon , SlowyTween , {
+				Neverlose.PlayAnimate(Icon , SlowyTween , {
 					TextTransparency = 1
 				})
 			end;
@@ -2187,7 +2187,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		Window.SetRender(Signal:GetValue());
 		Signal:Connect(Window.SetRender);
 
-		local bthg =KFCHook:CreateInput(Option , LPH_NO_VIRTUALIZE(function()
+		local bthg = Neverlose:CreateInput(Option , LPH_NO_VIRTUALIZE(function()
 			if reciveSignal then
 				reciveSignal:Disconnect();
 				reciveSignal = nil;	
@@ -2197,7 +2197,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 
 			reciveSignal = UserInputService.InputBegan:Connect(function(Input)
 				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-					if notKFCHook:IsMouseOverFrame(Window.Root) and notKFCHook:IsMouseOverFrame(Option) then
+					if not Neverlose:IsMouseOverFrame(Window.Root) and not Neverlose:IsMouseOverFrame(Option) then
 						if reciveSignal then
 							reciveSignal:Disconnect();
 							reciveSignal = nil;	
@@ -2209,22 +2209,22 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 			end)
 		end));
 
-		KFCHook:AddSignal(bthg.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
-			KFCHook.PlayAnimate(Option , SlowyTween , {
+		Neverlose:AddSignal(bthg.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose.PlayAnimate(Option , SlowyTween , {
 				BackgroundTransparency = 0.5
 			})
 
-			KFCHook.PlayAnimate(Icon , SlowyTween , {
+			Neverlose.PlayAnimate(Icon , SlowyTween , {
 				TextTransparency = 0.25
 			})
 		end)));
 
-		KFCHook:AddSignal(bthg.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
-			KFCHook.PlayAnimate(Option , SlowyTween , {
+		Neverlose:AddSignal(bthg.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose.PlayAnimate(Option , SlowyTween , {
 				BackgroundTransparency = 1.000
 			})
 
-			KFCHook.PlayAnimate(Icon , SlowyTween , {
+			Neverlose.PlayAnimate(Icon , SlowyTween , {
 				TextTransparency = 0.400
 			})
 		end)));
@@ -2233,7 +2233,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 	end;
 
 	function handle:AddColorPicker(Config)
-		Config =KFCHook:ProcessParams(Config , {
+		Config = Neverlose:ProcessParams(Config , {
 			Default = Color3.fromRGB(255, 255, 255),
 			Callback  = EmptyFunction,
 		});
@@ -2249,7 +2249,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		local ImageLabel = Instance.new("ImageLabel")
 		local UICorner_2 = Instance.new("UICorner")
 
-		ColorPicker.Name = KFCHook.RandomString();
+		ColorPicker.Name = Neverlose.RandomString();
 		ColorPicker.Parent = Handler
 		ColorPicker.BackgroundColor3 = Config.Default;
 		ColorPicker.BackgroundTransparency = 0
@@ -2280,7 +2280,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		UICorner_2.CornerRadius = UDim.new(0, 4)
 		UICorner_2.Parent = ImageLabel
 
-		local BackendM =KFCHook:CreateColorPicker(ColorPicker);
+		local BackendM = Neverlose:CreateColorPicker(ColorPicker);
 
 		BackendM:SetValue(Config.Default)
 		BackendM.Callback = function(color)
@@ -2290,7 +2290,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		end;
 
 		local signal;
-		KFCHook:CreateInput(ColorPicker , LPH_NO_VIRTUALIZE(function()
+		Neverlose:CreateInput(ColorPicker , LPH_NO_VIRTUALIZE(function()
 			if signal then
 				signal:Disconnect();
 				signal = nil;
@@ -2300,7 +2300,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 
 			signal = UserInputService.InputBegan:Connect(function(Input)
 				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-					if notKFCHook:IsMouseOverFrame(ColorPicker) and notKFCHook:IsMouseOverFrame(BackendM.Root) then
+					if not Neverlose:IsMouseOverFrame(ColorPicker) and not Neverlose:IsMouseOverFrame(BackendM.Root) then
 						if signal then
 							signal:Disconnect();
 							signal = nil;
@@ -2314,27 +2314,27 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 
 		ColorPickerLib.SetRender = LPH_NO_VIRTUALIZE(function(value)
 			if value then
-				KFCHook.PlayAnimate(ColorPicker , SlowyTween , {
+				Neverlose.PlayAnimate(ColorPicker , SlowyTween , {
 					BackgroundTransparency = 0
 				})
 
-				KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+				Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 					Transparency = 0.650
 				})
 
-				KFCHook.PlayAnimate(ImageLabel , SlowyTween , {
+				Neverlose.PlayAnimate(ImageLabel , SlowyTween , {
 					ImageTransparency = 0.9
 				})
 			else
-				KFCHook.PlayAnimate(ColorPicker , SlowyTween , {
+				Neverlose.PlayAnimate(ColorPicker , SlowyTween , {
 					BackgroundTransparency = 1
 				})
 
-				KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+				Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 					Transparency = 1
 				})
 
-				KFCHook.PlayAnimate(ImageLabel , SlowyTween , {
+				Neverlose.PlayAnimate(ImageLabel , SlowyTween , {
 					ImageTransparency = 1
 				})
 			end;
@@ -2353,14 +2353,14 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		end;
 
 		if Config.Flag then
-			KFCHook.Flags[Config.Flag] = ColorPickerLib;
+			Neverlose.Flags[Config.Flag] = ColorPickerLib;
 		end;
 
 		return ColorPickerLib;
 	end;
 
 	function handle:AddKeybind(Config)
-		Config =KFCHook:ProcessParams(Config,{
+		Config = Neverlose:ProcessParams(Config,{
 			Default = nil,
 			Blacklist = {},
 			Callback = EmptyFunction,
@@ -2374,7 +2374,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		local UIStroke = Instance.new("UIStroke")
 		local ValueLabel = Instance.new("TextLabel")
 
-		Keybind.Name = KFCHook.RandomString();
+		Keybind.Name = Neverlose.RandomString();
 		Keybind.Parent = Handler
 		Keybind.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
 		Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2390,7 +2390,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		UIStroke.Color = Color3.fromRGB(45, 48, 58)
 		UIStroke.Parent = Keybind
 
-		ValueLabel.Name = KFCHook.RandomString();
+		ValueLabel.Name = Neverlose.RandomString();
 		ValueLabel.Parent = Keybind
 		ValueLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 		ValueLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2402,34 +2402,34 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		ValueLabel.Size = UDim2.new(1, 0, 1, 0)
 		ValueLabel.ZIndex = ZINdex + 14
 		ValueLabel.Font = Enum.Font.GothamMedium
-		ValueLabel.Text =KFCHook:KeyCodeToStr(Config.Default or "None")
+		ValueLabel.Text = Neverlose:KeyCodeToStr(Config.Default or "None")
 		ValueLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 		ValueLabel.TextSize = 10.000
 		ValueLabel.TextTransparency = 0.500
 
 		KeybindLib.SetRender = LPH_NO_VIRTUALIZE(function(value)
 			if value then
-				KFCHook.PlayAnimate(Keybind,SlowyTween, {
+				Neverlose.PlayAnimate(Keybind,SlowyTween, {
 					BackgroundTransparency = 0
 				})
 
-				KFCHook.PlayAnimate(UIStroke,SlowyTween, {
+				Neverlose.PlayAnimate(UIStroke,SlowyTween, {
 					Transparency = 0.650
 				})
 
-				KFCHook.PlayAnimate(ValueLabel,SlowyTween, {
+				Neverlose.PlayAnimate(ValueLabel,SlowyTween, {
 					TextTransparency = 0.500
 				})
 			else
-				KFCHook.PlayAnimate(Keybind,SlowyTween, {
+				Neverlose.PlayAnimate(Keybind,SlowyTween, {
 					BackgroundTransparency = 1
 				})
 
-				KFCHook.PlayAnimate(UIStroke,SlowyTween, {
+				Neverlose.PlayAnimate(UIStroke,SlowyTween, {
 					Transparency = 1
 				})
 
-				KFCHook.PlayAnimate(ValueLabel,SlowyTween, {
+				Neverlose.PlayAnimate(ValueLabel,SlowyTween, {
 					TextTransparency = 1
 				})
 			end;
@@ -2438,7 +2438,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		function KeybindLib:Update()
 			local size = TextService:GetTextSize(ValueLabel.Text,ValueLabel.TextSize,ValueLabel.Font,Vector2.new(math.huge,math.huge));
 
-			KFCHook.PlayAnimate(Keybind , SlowyTween , {
+			Neverlose.PlayAnimate(Keybind , SlowyTween , {
 				Size = UDim2.new(0, size.X + 7, 0, 18)
 			})
 		end;
@@ -2453,7 +2453,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		Signal:Connect(KeybindLib.SetRender);
 
 		local IsBinding = false;
-		KFCHook:CreateInput(Keybind , function()
+		Neverlose:CreateInput(Keybind , function()
 			if IsBinding then
 				return;
 			end;
@@ -2486,7 +2486,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 
 			Config.Default = KeyName;
 
-			ValueLabel.Text =KFCHook:KeyCodeToStr(KeyName);
+			ValueLabel.Text = Neverlose:KeyCodeToStr(KeyName);
 
 			KeybindLib:Update();
 
@@ -2499,20 +2499,20 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 
 		function KeybindLib:SetValue(v)
 			Config.Default = v;
-			ValueLabel.Text =KFCHook:KeyCodeToStr(v);
+			ValueLabel.Text = Neverlose:KeyCodeToStr(v);
 			KeybindLib:Update();
 			Config.Callback(Config.Default);
 		end;
 
 		if Config.Flag then
-			KFCHook.Flags[Config.Flag] = KeybindLib;
+			Neverlose.Flags[Config.Flag] = KeybindLib;
 		end;
 
 		return KeybindLib;
 	end;
 
 	function handle:AddTextInput(Config)
-		Config =KFCHook:ProcessParams(Config , {
+		Config = Neverlose:ProcessParams(Config , {
 			Default = "",
 			Placeholder = "Placeholder",
 			Callback = print,
@@ -2528,7 +2528,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		local UIStroke = Instance.new("UIStroke")
 		local TextBox = Instance.new("TextBox")
 
-		TextInput.Name = KFCHook.RandomString();
+		TextInput.Name = Neverlose.RandomString();
 		TextInput.Parent = Handler
 		TextInput.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
 		TextInput.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2564,34 +2564,34 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 
 		TextBoxLib.SetRender = LPH_NO_VIRTUALIZE(function(value)
 			if value then
-				KFCHook.PlayAnimate(TextInput , SlowyTween ,{
+				Neverlose.PlayAnimate(TextInput , SlowyTween ,{
 					BackgroundTransparency = 0
 				})	
 
-				KFCHook.PlayAnimate(UIStroke , SlowyTween ,{
+				Neverlose.PlayAnimate(UIStroke , SlowyTween ,{
 					Transparency = 0.650
 				})	
 
-				KFCHook.PlayAnimate(TextBox , SlowyTween ,{
+				Neverlose.PlayAnimate(TextBox , SlowyTween ,{
 					TextTransparency = 0.350
 				})	
 			else
-				KFCHook.PlayAnimate(TextInput , SlowyTween ,{
+				Neverlose.PlayAnimate(TextInput , SlowyTween ,{
 					BackgroundTransparency = 1
 				})	
 
-				KFCHook.PlayAnimate(UIStroke , SlowyTween ,{
+				Neverlose.PlayAnimate(UIStroke , SlowyTween ,{
 					Transparency = 1
 				})	
 
-				KFCHook.PlayAnimate(TextBox , SlowyTween ,{
+				Neverlose.PlayAnimate(TextBox , SlowyTween ,{
 					TextTransparency = 1
 				})
 			end;
 		end);
 
-		KFCHook:AddSignal(TextBox:GetPropertyChangedSignal('Text'):Connect(LPH_NO_VIRTUALIZE(function()
-			local valout =KFCHook:ParseInput(TextBox.Text , Config.Numeric);
+		Neverlose:AddSignal(TextBox:GetPropertyChangedSignal('Text'):Connect(LPH_NO_VIRTUALIZE(function()
+			local valout = Neverlose:ParseInput(TextBox.Text , Config.Numeric);
 
 			if Config.Numeric then
 				TextBox.Text = string.gsub(TextBox.Text , '[^0-9.]','')
@@ -2617,14 +2617,14 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		end;
 
 		if Config.Flag then
-			KFCHook.Flags[Config.Flag] = TextBoxLib;
+			Neverlose.Flags[Config.Flag] = TextBoxLib;
 		end;
 
 		return TextBoxLib;
 	end;
 
 	function handle:AddDropdown(Config)
-		Config =KFCHook:ProcessParams(Config , {
+		Config = Neverlose:ProcessParams(Config , {
 			Default = nil,
 			Values = {},
 			Multi = false,
@@ -2634,7 +2634,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 			Size = 100
 		})
 
-		Config.Default =KFCHook.ProcessDropdown(Config.Default);
+		Config.Default = Neverlose.ProcessDropdown(Config.Default);
 
 		local Dropdown = Instance.new("Frame")
 		local DropdownIcon = Instance.new("TextLabel")
@@ -2642,7 +2642,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		local UIStroke = Instance.new("UIStroke")
 		local BasedLabel = Instance.new("TextLabel")
 
-		Dropdown.Name = KFCHook.RandomString();
+		Dropdown.Name = Neverlose.RandomString();
 		Dropdown.Parent = Handler
 		Dropdown.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
 		Dropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2651,7 +2651,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		Dropdown.Size = UDim2.new(0, Config.Size, 0, 18)
 		Dropdown.ZIndex = ZINdex + 13
 
-		DropdownIcon.Name = KFCHook.RandomString();
+		DropdownIcon.Name = Neverlose.RandomString();
 		DropdownIcon.Parent = Dropdown
 		DropdownIcon.AnchorPoint = Vector2.new(1, 0.5)
 		DropdownIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2661,7 +2661,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		DropdownIcon.Position = UDim2.new(1, -2, 0.5, 0)
 		DropdownIcon.Size = UDim2.new(0, 18, 0, 18)
 		DropdownIcon.ZIndex = ZINdex + 14
-		DropdownIcon.FontFace =KFCHook.BuiltInBold
+		DropdownIcon.FontFace = Neverlose.BuiltInBold
 		DropdownIcon.Text = "chevron-small-down"
 		DropdownIcon.TextColor3 = Color3.fromRGB(223, 223, 223)
 		DropdownIcon.TextSize = 16.000
@@ -2675,7 +2675,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		UIStroke.Color = Color3.fromRGB(45, 48, 58)
 		UIStroke.Parent = Dropdown
 
-		BasedLabel.Name = KFCHook.RandomString();
+		BasedLabel.Name = Neverlose.RandomString();
 		BasedLabel.Parent = Dropdown
 		BasedLabel.AnchorPoint = Vector2.new(0, 0.5)
 		BasedLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2687,7 +2687,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		BasedLabel.Size = UDim2.new(1, -25, 0, 15)
 		BasedLabel.ZIndex = ZINdex + 14
 		BasedLabel.Font = Enum.Font.GothamMedium
-		BasedLabel.Text =KFCHook.ParseDropdown(Config.Default);
+		BasedLabel.Text = Neverlose.ParseDropdown(Config.Default);
 		BasedLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 		BasedLabel.TextSize = 12.000
 		BasedLabel.TextTransparency = 0.5
@@ -2700,55 +2700,55 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 			UIGradient.Parent = BasedLabel;
 		end;
 
-		KFCHook:AddSignal(Dropdown.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
-			KFCHook.PlayAnimate(BasedLabel , SlowyTween , {
+		Neverlose:AddSignal(Dropdown.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose.PlayAnimate(BasedLabel , SlowyTween , {
 				TextTransparency = 0.200
 			})
 		end)));
 
-		KFCHook:AddSignal(Dropdown.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
-			KFCHook.PlayAnimate(BasedLabel , SlowyTween , {
+		Neverlose:AddSignal(Dropdown.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose.PlayAnimate(BasedLabel , SlowyTween , {
 				TextTransparency = 0.5
 			})
 		end)));
 
 		local DropdownLib = {
-			OpenSignal =KFCHook:CreateSignal(false),
+			OpenSignal = Neverlose:CreateSignal(false),
 			Signals = {},
 			Refuse = {},
 		};
 
 		DropdownLib.SetRender = LPH_NO_VIRTUALIZE(function(value)
 			if value then
-				KFCHook.PlayAnimate(Dropdown , SlowyTween , {
+				Neverlose.PlayAnimate(Dropdown , SlowyTween , {
 					BackgroundTransparency = 0
 				});
 
-				KFCHook.PlayAnimate(DropdownIcon , SlowyTween , {
+				Neverlose.PlayAnimate(DropdownIcon , SlowyTween , {
 					TextTransparency = 0.250
 				});
 
-				KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+				Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 					Transparency = 0.650
 				});
 
-				KFCHook.PlayAnimate(BasedLabel , SlowyTween , {
+				Neverlose.PlayAnimate(BasedLabel , SlowyTween , {
 					TextTransparency = 0.5
 				});
 			else
-				KFCHook.PlayAnimate(Dropdown , SlowyTween , {
+				Neverlose.PlayAnimate(Dropdown , SlowyTween , {
 					BackgroundTransparency = 1
 				});
 
-				KFCHook.PlayAnimate(DropdownIcon , SlowyTween , {
+				Neverlose.PlayAnimate(DropdownIcon , SlowyTween , {
 					TextTransparency = 1
 				});
 
-				KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+				Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 					Transparency = 1
 				});
 
-				KFCHook.PlayAnimate(BasedLabel , SlowyTween , {
+				Neverlose.PlayAnimate(BasedLabel , SlowyTween , {
 					TextTransparency = 1
 				});
 			end
@@ -2764,10 +2764,10 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 			local UIStroke = Instance.new("UIStroke")
 			local DropdownScrollFrame = Instance.new("ScrollingFrame")
 			local UIListLayout = Instance.new("UIListLayout")
-			local Shadow =KFCHook:CreateShadow(DropdownHandler);
+			local Shadow = Neverlose:CreateShadow(DropdownHandler);
 
-			DropdownHandler.Name = KFCHook.RandomString();
-			DropdownHandler.Parent =KFCHook.ScreenGui;
+			DropdownHandler.Name = Neverlose.RandomString();
+			DropdownHandler.Parent = Neverlose.ScreenGui;
 			DropdownHandler.AnchorPoint = Vector2.new(0.5, 0)
 			DropdownHandler.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
 			DropdownHandler.BackgroundTransparency = 0.5
@@ -2779,17 +2779,17 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 			DropdownHandler.ZIndex = ZINdex + 125
 			DropdownLib.BlockRoot = DropdownHandler;
 
-			KFCHook:AddSignal(DropdownHandler:GetPropertyChangedSignal('BackgroundTransparency'):Connect(function()
+			Neverlose:AddSignal(DropdownHandler:GetPropertyChangedSignal('BackgroundTransparency'):Connect(function()
 				if DropdownHandler.BackgroundTransparency > 0.9 then
 					DropdownHandler.Visible = false;
 					DropdownHandler.Parent = nil;
 				else
 					DropdownHandler.Visible = true;
 
-					ifKFCHook.Global3DRenderMode then
-						DropdownHandler.Parent =KFCHook.GlobalSurfaceGui;
+					if Neverlose.Global3DRenderMode then
+						DropdownHandler.Parent = Neverlose.GlobalSurfaceGui;
 					else
-						DropdownHandler.Parent =KFCHook.ScreenGui;
+						DropdownHandler.Parent = Neverlose.ScreenGui;
 					end;
 				end;
 			end));
@@ -2801,7 +2801,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 			UIStroke.Color = Color3.fromRGB(45, 48, 58)
 			UIStroke.Parent = DropdownHandler
 
-			DropdownScrollFrame.Name = KFCHook.RandomString();
+			DropdownScrollFrame.Name = Neverlose.RandomString();
 			DropdownScrollFrame.Parent = DropdownHandler
 			DropdownScrollFrame.Active = true
 			DropdownScrollFrame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -2820,15 +2820,15 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 			UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 			UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
-			KFCHook:AddSignal(UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose:AddSignal(UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
 				DropdownScrollFrame.CanvasSize = UDim2.fromOffset(0,UIListLayout.AbsoluteContentSize.Y)
-				KFCHook.PlayAnimate(DropdownHandler , SlowyTween , {
+				Neverlose.PlayAnimate(DropdownHandler , SlowyTween , {
 					Size = UDim2.new(0, (Dropdown.AbsoluteSize.X + 5) + DropdownLib.ExtentSize, 0, math.min(UIListLayout.AbsoluteContentSize.Y + 5, 250));
 				})
 			end)));
 
 			local SetPosition = LPH_NO_VIRTUALIZE(function()
-				ifKFCHook:MoreThanHalfY(Dropdown.AbsolutePosition.Y + 85) then
+				if Neverlose:MoreThanHalfY(Dropdown.AbsolutePosition.Y + 85) then
 					DropdownHandler.AnchorPoint = Vector2.new(0.5,1)
 				else
 					DropdownHandler.AnchorPoint = Vector2.new(0.5,0)
@@ -2848,7 +2848,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 
 					SetPosition();
 
-					KFCHook.PlayAnimate(DropdownHandler , SlowyTween , {
+					Neverlose.PlayAnimate(DropdownHandler , SlowyTween , {
 						BackgroundTransparency = 0.035
 					})
 
@@ -2857,7 +2857,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 					end;
 				else
 
-					KFCHook.PlayAnimate(DropdownHandler , SlowyTween , {
+					Neverlose.PlayAnimate(DropdownHandler , SlowyTween , {
 						BackgroundTransparency = 1
 					})
 
@@ -2869,24 +2869,24 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		end;
 
 		local SecureSignal;
-		KFCHook:CreateInput(Dropdown , LPH_NO_VIRTUALIZE(function()
+		Neverlose:CreateInput(Dropdown , LPH_NO_VIRTUALIZE(function()
 			if SecureSignal then
 				SecureSignal:Disconnect();
 				SecureSignal = nil;
 			end;
 
 			DropdownLib.SetFrameRender(true);
-			KFCHook.IsMosueOverOtherFrame = true;
+			Neverlose.IsMosueOverOtherFrame = true;
 
 			SecureSignal = UserInputService.InputBegan:Connect(function(Input)
 				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-					if notKFCHook:IsMouseOverFrame(DropdownLib.BlockRoot) and notKFCHook:IsMouseOverFrame(Dropdown) then
+					if not Neverlose:IsMouseOverFrame(DropdownLib.BlockRoot) and not Neverlose:IsMouseOverFrame(Dropdown) then
 						if SecureSignal then
 							SecureSignal:Disconnect();
 							SecureSignal = nil;
 						end;
 
-						KFCHook.IsMosueOverOtherFrame = false;
+						Neverlose.IsMosueOverOtherFrame = false;
 						DropdownLib.SetFrameRender(false);
 					end;
 				end
@@ -2925,7 +2925,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 				local ItemLabel = Instance.new("TextLabel")
 				local UICorner = Instance.new("UICorner")
 
-				ItemFrame.Name = KFCHook.RandomString();
+				ItemFrame.Name = Neverlose.RandomString();
 				ItemFrame.Parent = DropdownLib.RootItem
 				ItemFrame.BackgroundColor3 = Color3.fromRGB(29, 31, 38)
 				ItemFrame.BackgroundTransparency = 1.000
@@ -2934,7 +2934,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 				ItemFrame.Size = UDim2.new(1, 0, 0, 25)
 				ItemFrame.ZIndex = ZINdex + 1258
 
-				ItemLabel.Name = KFCHook.RandomString();
+				ItemLabel.Name = Neverlose.RandomString();
 				ItemLabel.Parent = ItemFrame
 				ItemLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				ItemLabel.BackgroundTransparency = 1.000
@@ -2970,7 +2970,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 					Icon.Position = UDim2.new(0, 5, 0.5, 0)
 					Icon.Size = UDim2.new(0, 20, 0, 20)
 					Icon.ZIndex = ZINdex + 1259
-					Icon.FontFace =KFCHook.BuiltInBold;
+					Icon.FontFace = Neverlose.BuiltInBold;
 					Icon.Text = "check"
 					Icon.TextColor3 = Color3.fromRGB(223, 223, 223)
 					Icon.TextSize = 18.000
@@ -2979,23 +2979,23 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 
 					local VisiblewOfMult = LPH_NO_VIRTUALIZE(function()
 						if DropdownLib.IsMatch(Value) then
-							KFCHook.PlayAnimate(ItemLabel , VSlowTween , {
+							Neverlose.PlayAnimate(ItemLabel , VSlowTween , {
 								TextTransparency = 0.200,
 								Position = UDim2.new(0, 30, 0, 4)
 							})
 
-							KFCHook.PlayAnimate(Icon , vs , {
+							Neverlose.PlayAnimate(Icon , vs , {
 								TextTransparency = 0.250
 							})
 
 							Lastone = ItemLabel;
 						else
 
-							KFCHook.PlayAnimate(Icon , SlowyTween , {
+							Neverlose.PlayAnimate(Icon , SlowyTween , {
 								TextTransparency = 1
 							})
 
-							KFCHook.PlayAnimate(ItemLabel , VSlowTween , {
+							Neverlose.PlayAnimate(ItemLabel , VSlowTween , {
 								TextTransparency = 0.5,
 								Position = UDim2.new(0, 15, 0, 4)
 							})
@@ -3007,13 +3007,13 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 				else
 					local DefaultVisible = LPH_NO_VIRTUALIZE(function()
 						if DropdownLib.IsMatch(Value) then
-							KFCHook.PlayAnimate(ItemLabel , SlowyTween , {
+							Neverlose.PlayAnimate(ItemLabel , SlowyTween , {
 								TextTransparency = 0.200
 							})
 
 							Lastone = ItemLabel;
 						else
-							KFCHook.PlayAnimate(ItemLabel , SlowyTween , {
+							Neverlose.PlayAnimate(ItemLabel , SlowyTween , {
 								TextTransparency = 0.5
 							})
 						end;
@@ -3027,13 +3027,13 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 				table.insert(DropdownLib.Refuse , MarkItem)
 
 				table.insert(DropdownLib.Signals,ItemFrame.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
-					KFCHook.PlayAnimate(ItemFrame , SlowyTween , {
+					Neverlose.PlayAnimate(ItemFrame , SlowyTween , {
 						BackgroundTransparency = 0.1
 					})
 				end)));
 
 				table.insert(DropdownLib.Signals,ItemFrame.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
-					KFCHook.PlayAnimate(ItemFrame , SlowyTween , {
+					Neverlose.PlayAnimate(ItemFrame , SlowyTween , {
 						BackgroundTransparency = 1
 					})
 				end)));
@@ -3042,12 +3042,12 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 					if val then
 						MarkItem();
 					else
-						KFCHook.PlayAnimate(ItemLabel , SlowyTween , {
+						Neverlose.PlayAnimate(ItemLabel , SlowyTween , {
 							TextTransparency = 1
 						})
 
 						if MIcon then
-							KFCHook.PlayAnimate(MIcon , SlowyTween , {
+							Neverlose.PlayAnimate(MIcon , SlowyTween , {
 								TextTransparency = 1
 							})
 						end;
@@ -3055,26 +3055,26 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 				end)));
 
 				if Config.Multi then
-					local _,bth_signal =KFCHook:CreateInput(ItemFrame , LPH_NO_VIRTUALIZE(function()
+					local _,bth_signal = Neverlose:CreateInput(ItemFrame , LPH_NO_VIRTUALIZE(function()
 						Config.Default[Value] = not Config.Default[Value];
 
 						MarkItem();
 
-						BasedLabel.Text =KFCHook.ParseDropdown(Config.Default);
+						BasedLabel.Text = Neverlose.ParseDropdown(Config.Default);
 
 						Config.Callback(Config.Default);
 					end));
 
 					table.insert(DropdownLib.Signals , bth_signal);
 				else
-					local _,bth_signal =KFCHook:CreateInput(ItemFrame , LPH_NO_VIRTUALIZE(function()
+					local _,bth_signal = Neverlose:CreateInput(ItemFrame , LPH_NO_VIRTUALIZE(function()
 						Config.Default = Value;
 
 						for i,v in next , DropdownLib.Refuse do
 							task.spawn(v);
 						end;
 
-						BasedLabel.Text =KFCHook.ParseDropdown(Config.Default);
+						BasedLabel.Text = Neverlose.ParseDropdown(Config.Default);
 
 						Config.Callback(Config.Default);
 					end));
@@ -3093,7 +3093,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		function DropdownLib:SetValue(v)
 			Config.Default = v;
 
-			BasedLabel.Text =KFCHook.ParseDropdown(Config.Default);
+			BasedLabel.Text = Neverlose.ParseDropdown(Config.Default);
 
 			for i,v in next , DropdownLib.Refuse do
 				task.spawn(v);
@@ -3111,7 +3111,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 		end;
 
 		if Config.Flag then
-			KFCHook.Flags[Config.Flag] = DropdownLib;
+			Neverlose.Flags[Config.Flag] = DropdownLib;
 		end;
 
 		return DropdownLib;
@@ -3120,7 +3120,7 @@ functionKFCHook:RegisiterHandler(Handler: Frame , Signal)
 	return handle;
 end;
 
-KFCHook.ProcessDropdown = LPH_NO_VIRTUALIZE(function(value)
+Neverlose.ProcessDropdown = LPH_NO_VIRTUALIZE(function(value)
 	if typeof(value) == 'table' then
 		local data = {};
 
@@ -3138,7 +3138,7 @@ KFCHook.ProcessDropdown = LPH_NO_VIRTUALIZE(function(value)
 	end;
 end);
 
-KFCHook.ParseDropdown = LPH_NO_VIRTUALIZE(function(value)
+Neverlose.ParseDropdown = LPH_NO_VIRTUALIZE(function(value)
 	if not value then return 'Select'; end;
 
 	local Out;
@@ -3178,7 +3178,7 @@ KFCHook.ParseDropdown = LPH_NO_VIRTUALIZE(function(value)
 	return Out;
 end);
 
-functionKFCHook:ParseInput(Value , Numeric)
+function Neverlose:ParseInput(Value , Numeric)
 	if not Value then
 		return (Numeric and nil) or "";	
 	end;
@@ -3196,15 +3196,15 @@ functionKFCHook:ParseInput(Value , Numeric)
 	return Value;
 end;
 
-functionKFCHook:CreateToolTips(Container: Frame , Name: string , Content: string)
+function Neverlose:CreateToolTips(Container: Frame , Name: string , Content: string)
 	local Tooltips = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
 	local UIStroke = Instance.new("UIStroke")
 	local TooltipName = Instance.new("TextLabel")
 	local TooltipContent = Instance.new("TextLabel")
-	local Shadow =KFCHook:CreateShadow(Tooltips);
+	local Shadow = Neverlose:CreateShadow(Tooltips);
 
-	Tooltips.Name = KFCHook.RandomString();
+	Tooltips.Name = Neverlose.RandomString();
 	Tooltips.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
 	Tooltips.BackgroundTransparency = 0.075
 	Tooltips.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -3221,7 +3221,7 @@ functionKFCHook:CreateToolTips(Container: Frame , Name: string , Content: string
 	UIStroke.Color = Color3.fromRGB(45, 48, 58)
 	UIStroke.Parent = Tooltips
 
-	TooltipName.Name = KFCHook.RandomString();
+	TooltipName.Name = Neverlose.RandomString();
 	TooltipName.Parent = Tooltips
 	TooltipName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	TooltipName.BackgroundTransparency = 1.000
@@ -3236,7 +3236,7 @@ functionKFCHook:CreateToolTips(Container: Frame , Name: string , Content: string
 	TooltipName.TextSize = 15.000
 	TooltipName.TextXAlignment = Enum.TextXAlignment.Left
 
-	TooltipContent.Name = KFCHook.RandomString();
+	TooltipContent.Name = Neverlose.RandomString();
 	TooltipContent.Parent = Tooltips
 	TooltipContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	TooltipContent.BackgroundTransparency = 1.000
@@ -3262,22 +3262,22 @@ functionKFCHook:CreateToolTips(Container: Frame , Name: string , Content: string
 		local MaxX = math.max(SizeName.X , SizeContent.X) + 65;
 		local MaxY = SizeName.Y + SizeContent.Y + 30;
 
-		KFCHook.PlayAnimate(Tooltips,SlowyTween , {
+		Neverlose.PlayAnimate(Tooltips,SlowyTween , {
 			Size = UDim2.new(0,MaxX,0,MaxY)
 		})
 	end)
 
-	KFCHook:AddSignal(Tooltips:GetPropertyChangedSignal('BackgroundTransparency'):Connect(LPH_NO_VIRTUALIZE(function()
+	Neverlose:AddSignal(Tooltips:GetPropertyChangedSignal('BackgroundTransparency'):Connect(LPH_NO_VIRTUALIZE(function()
 		if Tooltips.BackgroundTransparency > 0.9 then
 			Tooltips.Visible = false;
 			Tooltips.Parent = nil;
 		else
 			Tooltips.Visible = true;
 
-			ifKFCHook.Global3DRenderMode then
-				Tooltips.Parent =KFCHook.GlobalSurfaceGui;
+			if Neverlose.Global3DRenderMode then
+				Tooltips.Parent = Neverlose.GlobalSurfaceGui;
 			else
-				Tooltips.Parent =KFCHook.ScreenGui;
+				Tooltips.Parent = Neverlose.ScreenGui;
 			end;
 		end
 	end)));
@@ -3286,38 +3286,38 @@ functionKFCHook:CreateToolTips(Container: Frame , Name: string , Content: string
 		if value then
 			Tooltips.Position = UDim2.fromOffset(Container.AbsolutePosition.X + Container.AbsoluteSize.X , Container.AbsolutePosition.Y + (Container.AbsoluteSize.Y + 25));
 
-			KFCHook.PlayAnimate(Tooltips , SlowyTween , {
+			Neverlose.PlayAnimate(Tooltips , SlowyTween , {
 				BackgroundTransparency = 0.075
 			})
 
-			KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 				Transparency = 0.650
 			})
 
-			KFCHook.PlayAnimate(TooltipName , SlowyTween , {
+			Neverlose.PlayAnimate(TooltipName , SlowyTween , {
 				TextTransparency = 0
 			})
 
-			KFCHook.PlayAnimate(TooltipContent , SlowyTween , {
+			Neverlose.PlayAnimate(TooltipContent , SlowyTween , {
 				TextTransparency = 0.650
 			})
 
 			ToolTip.Update();
 			Shadow:Render(true);
 		else
-			KFCHook.PlayAnimate(Tooltips , SlowyTween , {
+			Neverlose.PlayAnimate(Tooltips , SlowyTween , {
 				BackgroundTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 				Transparency = 1
 			})
 
-			KFCHook.PlayAnimate(TooltipName , SlowyTween , {
+			Neverlose.PlayAnimate(TooltipName , SlowyTween , {
 				TextTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(TooltipContent , SlowyTween , {
+			Neverlose.PlayAnimate(TooltipContent , SlowyTween , {
 				TextTransparency = 1
 			})
 
@@ -3329,7 +3329,7 @@ functionKFCHook:CreateToolTips(Container: Frame , Name: string , Content: string
 	ToolTip.Update();
 
 	local DelayThread;
-	KFCHook:AddSignal(Container.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
+	Neverlose:AddSignal(Container.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
 		if DelayThread then
 			task.cancel(DelayThread);
 			DelayThread = nil;
@@ -3338,7 +3338,7 @@ functionKFCHook:CreateToolTips(Container: Frame , Name: string , Content: string
 		DelayThread = task.delay(1,ToolTip.SetRender,true);
 	end)));
 
-	KFCHook:AddSignal(Container.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
+	Neverlose:AddSignal(Container.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
 		if DelayThread then
 			task.cancel(DelayThread);
 			DelayThread = nil;
@@ -3351,7 +3351,7 @@ functionKFCHook:CreateToolTips(Container: Frame , Name: string , Content: string
 	return ToolTip;
 end;
 
-functionKFCHook:RegisiterItem(Frame: Frame , Signel)
+function Neverlose:RegisiterItem(Frame: Frame , Signel)
 	local idx = {};
 	local LayerIndex = Frame.ZIndex;
 
@@ -3363,7 +3363,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		local UIListLayout = Instance.new("UIListLayout")
 		local UICorner = Instance.new("UICorner")
 
-		BasedFrame.Name = KFCHook.RandomString();
+		BasedFrame.Name = Neverlose.RandomString();
 		BasedFrame.Parent = Frame
 		BasedFrame.BackgroundColor3 = Color3.fromRGB(25, 27, 33)
 		BasedFrame.BackgroundTransparency = 1.000
@@ -3372,9 +3372,9 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		BasedFrame.Size = UDim2.new(1, 0, 0, 30)
 		BasedFrame.ZIndex = LayerIndex + 8
 
-		KFCHook:AddQuery(BasedFrame , Name);
+		Neverlose:AddQuery(BasedFrame , Name);
 
-		BasedLabel.Name = KFCHook.RandomString();
+		BasedLabel.Name = Neverlose.RandomString();
 		BasedLabel.Parent = BasedFrame
 		BasedLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		BasedLabel.BackgroundTransparency = 1.000
@@ -3390,7 +3390,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		BasedLabel.TextTransparency = 0.35
 		BasedLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-		LineFrame.Name = KFCHook.RandomString();
+		LineFrame.Name = Neverlose.RandomString();
 		LineFrame.Parent = BasedFrame
 		LineFrame.AnchorPoint = Vector2.new(0.5, 1)
 		LineFrame.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -3401,7 +3401,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		LineFrame.Size = UDim2.new(1, -20, 0, 1)
 		LineFrame.ZIndex = LayerIndex + 11
 
-		BasedHandler.Name = KFCHook.RandomString();
+		BasedHandler.Name = Neverlose.RandomString();
 		BasedHandler.Parent = BasedFrame
 		BasedHandler.AnchorPoint = Vector2.new(1, 0)
 		BasedHandler.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -3424,7 +3424,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 
 		local UpdateWarp = LPH_NO_VIRTUALIZE(function()
 			local size = TextService:GetTextSize(BasedLabel.Text , BasedLabel.TextSize , BasedLabel.Font , Vector2.new(math.huge,math.huge));
-			KFCHook.PlayAnimate(BasedFrame , SlowyTween , {
+			Neverlose.PlayAnimate(BasedFrame , SlowyTween , {
 				Size = UDim2.new(1, 0, 0, size.Y + 13);
 			})
 
@@ -3436,33 +3436,33 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 			UpdateWarp();
 		end;
 
-		local handle =KFCHook:RegisiterHandler(BasedHandler , Signel);
+		local handle = Neverlose:RegisiterHandler(BasedHandler , Signel);
 
 		handle.Root = BasedFrame;
 
 		handle.SetRender = LPH_NO_VIRTUALIZE(function(value)
 			if value then
-				KFCHook.PlayAnimate(BasedFrame , SlowyTween , {
+				Neverlose.PlayAnimate(BasedFrame , SlowyTween , {
 					BackgroundTransparency = 1
 				});
 
-				KFCHook.PlayAnimate(BasedLabel , SlowyTween , {
+				Neverlose.PlayAnimate(BasedLabel , SlowyTween , {
 					TextTransparency = 0.35
 				})
 
-				KFCHook.PlayAnimate(LineFrame , SlowyTween , {
+				Neverlose.PlayAnimate(LineFrame , SlowyTween , {
 					BackgroundTransparency = 0.650
 				})
 			else
-				KFCHook.PlayAnimate(BasedFrame , SlowyTween , {
+				Neverlose.PlayAnimate(BasedFrame , SlowyTween , {
 					BackgroundTransparency = 1
 				});
 
-				KFCHook.PlayAnimate(BasedLabel , SlowyTween , {
+				Neverlose.PlayAnimate(BasedLabel , SlowyTween , {
 					TextTransparency = 1
 				})
 
-				KFCHook.PlayAnimate(LineFrame , SlowyTween , {
+				Neverlose.PlayAnimate(LineFrame , SlowyTween , {
 					BackgroundTransparency = 1
 				})
 			end;
@@ -3472,23 +3472,23 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 			BasedFrame.Visible = val;
 		end;
 
-		KFCHook:AddSignal(BasedFrame.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
-			KFCHook.PlayAnimate(BasedFrame , SlowyTween , {
+		Neverlose:AddSignal(BasedFrame.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose.PlayAnimate(BasedFrame , SlowyTween , {
 				BackgroundTransparency = 0.35
 			});
 
-			KFCHook.PlayAnimate(BasedLabel , SlowyTween , {
+			Neverlose.PlayAnimate(BasedLabel , SlowyTween , {
 				TextTransparency = 0.25
 			})
 
 		end)))
 
-		KFCHook:AddSignal(BasedFrame.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
-			KFCHook.PlayAnimate(BasedFrame , SlowyTween , {
+		Neverlose:AddSignal(BasedFrame.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose.PlayAnimate(BasedFrame , SlowyTween , {
 				BackgroundTransparency = 1
 			});
 
-			KFCHook.PlayAnimate(BasedLabel , SlowyTween , {
+			Neverlose.PlayAnimate(BasedLabel , SlowyTween , {
 				TextTransparency = 0.35
 			})
 		end)))
@@ -3504,7 +3504,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		end;
 
 		function handle:ToolTip(Content: string)
-			handle.ToolTip =KFCHook:CreateToolTips(BasedFrame , Name , Content);
+			handle.ToolTip = Neverlose:CreateToolTips(BasedFrame , Name , Content);
 
 			return handle;
 		end;
@@ -3516,7 +3516,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 	end;
 
 	function idx:AddButton(Config)
-		Config =KFCHook:ProcessParams(Config , {
+		Config = Neverlose:ProcessParams(Config , {
 			Icon = 'chevron-large-left',
 			Name = "Button",
 			Callback = EmptyFunction,
@@ -3530,9 +3530,9 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		local UICorner = Instance.new("UICorner")
 		local Icon = Instance.new("TextLabel")
 
-		KFCHook:AddQuery(ButtonFrame , Config.Name);
+		Neverlose:AddQuery(ButtonFrame , Config.Name);
 
-		ButtonFrame.Name = KFCHook.RandomString();
+		ButtonFrame.Name = Neverlose.RandomString();
 		ButtonFrame.Parent = Frame
 		ButtonFrame.BackgroundColor3 = Color3.fromRGB(25, 27, 33)
 		ButtonFrame.BackgroundTransparency = 1.000
@@ -3541,7 +3541,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		ButtonFrame.Size = UDim2.new(1, 0, 0, 30)
 		ButtonFrame.ZIndex = LayerIndex + 8
 
-		BasedLabel.Name = KFCHook.RandomString();
+		BasedLabel.Name = Neverlose.RandomString();
 		BasedLabel.Parent = ButtonFrame
 		BasedLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		BasedLabel.BackgroundTransparency = 1.000
@@ -3557,7 +3557,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		BasedLabel.TextTransparency = 0.200
 		BasedLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-		LineFrame.Name = KFCHook.RandomString();
+		LineFrame.Name = Neverlose.RandomString();
 		LineFrame.Parent = ButtonFrame
 		LineFrame.AnchorPoint = Vector2.new(0.5, 1)
 		LineFrame.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -3571,7 +3571,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		UICorner.CornerRadius = UDim.new(0, 10)
 		UICorner.Parent = ButtonFrame
 
-		Icon.Name = KFCHook.RandomString();
+		Icon.Name = Neverlose.RandomString();
 		Icon.Parent = ButtonFrame
 		Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Icon.BackgroundTransparency = 1.000
@@ -3580,7 +3580,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		Icon.Position = UDim2.new(0, 11, 0, 5)
 		Icon.Size = UDim2.new(0, 18, 0, 18)
 		Icon.ZIndex = LayerIndex + 9
-		Icon.FontFace =KFCHook.BuiltInBold
+		Icon.FontFace = Neverlose.BuiltInBold
 		Icon.Text = Config.Icon
 		Icon.TextColor3 = Color3.fromRGB(223, 223, 223)
 		Icon.TextSize = 16.000
@@ -3595,60 +3595,60 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 			Icon.Text = t
 		end;
 
-		local bth =KFCHook:CreateInput(ButtonFrame , LPH_NO_VIRTUALIZE(function()
+		local bth = Neverlose:CreateInput(ButtonFrame , LPH_NO_VIRTUALIZE(function()
 			Config.Callback();
 		end));
 
-		KFCHook:AddSignal(bth.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
-			KFCHook.PlayAnimate(ButtonFrame , SlowyTween , {
+		Neverlose:AddSignal(bth.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose.PlayAnimate(ButtonFrame , SlowyTween , {
 				BackgroundTransparency = 0.35
 			});
 		end)))
 
-		KFCHook:AddSignal(bth.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
-			KFCHook.PlayAnimate(ButtonFrame , SlowyTween , {
+		Neverlose:AddSignal(bth.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose.PlayAnimate(ButtonFrame , SlowyTween , {
 				BackgroundTransparency = 1
 			});
 		end)))
 
 		Button.SetRender = LPH_NO_VIRTUALIZE(function(value)
 			if value then
-				KFCHook.PlayAnimate(ButtonFrame , SlowyTween , {
+				Neverlose.PlayAnimate(ButtonFrame , SlowyTween , {
 					BackgroundTransparency = 1
 				});
 
-				KFCHook.PlayAnimate(BasedLabel , SlowyTween , {
+				Neverlose.PlayAnimate(BasedLabel , SlowyTween , {
 					TextTransparency = 0.200
 				});
 
-				KFCHook.PlayAnimate(LineFrame , SlowyTween , {
+				Neverlose.PlayAnimate(LineFrame , SlowyTween , {
 					BackgroundTransparency = 0.650
 				});
 
-				KFCHook.PlayAnimate(Icon , SlowyTween , {
+				Neverlose.PlayAnimate(Icon , SlowyTween , {
 					TextTransparency = 0.250
 				});
 			else
-				KFCHook.PlayAnimate(ButtonFrame , SlowyTween , {
+				Neverlose.PlayAnimate(ButtonFrame , SlowyTween , {
 					BackgroundTransparency = 1
 				});
 
-				KFCHook.PlayAnimate(BasedLabel , SlowyTween , {
+				Neverlose.PlayAnimate(BasedLabel , SlowyTween , {
 					TextTransparency = 1
 				});
 
-				KFCHook.PlayAnimate(LineFrame , SlowyTween , {
+				Neverlose.PlayAnimate(LineFrame , SlowyTween , {
 					BackgroundTransparency = 1
 				});
 
-				KFCHook.PlayAnimate(Icon , SlowyTween , {
+				Neverlose.PlayAnimate(Icon , SlowyTween , {
 					TextTransparency = 1
 				});
 			end;
 		end);
 
 		if Config.ToolTip then
-			Button.ToolTip =KFCHook:CreateToolTips(ButtonFrame , Config.Name , Config.ToolTip);
+			Button.ToolTip = Neverlose:CreateToolTips(ButtonFrame , Config.Name , Config.ToolTip);
 		end;
 
 		Button.SetRender(Signel:GetValue())
@@ -3666,7 +3666,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		local UICorner_2 = Instance.new("UICorner")
 		local UserStatusLabel = Instance.new("TextLabel")
 
-		UserFrame.Name = KFCHook.RandomString();
+		UserFrame.Name = Neverlose.RandomString();
 		UserFrame.Parent = Frame
 		UserFrame.BackgroundColor3 = Color3.fromRGB(25, 27, 33)
 		UserFrame.BackgroundTransparency = 1.000
@@ -3675,7 +3675,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		UserFrame.Size = UDim2.new(1, 0, 0, 60)
 		UserFrame.ZIndex = LayerIndex + 8
 
-		UserLabel.Name = KFCHook.RandomString();
+		UserLabel.Name = Neverlose.RandomString();
 		UserLabel.Parent = UserFrame
 		UserLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		UserLabel.BackgroundTransparency = 1.000
@@ -3691,7 +3691,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		UserLabel.TextTransparency = 0.200
 		UserLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-		LineFrame.Name = KFCHook.RandomString();
+		LineFrame.Name = Neverlose.RandomString();
 		LineFrame.Parent = UserFrame
 		LineFrame.AnchorPoint = Vector2.new(0.5, 1)
 		LineFrame.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -3705,7 +3705,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		UICorner.CornerRadius = UDim.new(0, 10)
 		UICorner.Parent = UserFrame
 
-		LogoImage.Name = KFCHook.RandomString();
+		LogoImage.Name = Neverlose.RandomString();
 		LogoImage.Parent = UserFrame
 		LogoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		LogoImage.BackgroundTransparency = 1.000
@@ -3719,7 +3719,7 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 		UICorner_2.CornerRadius = UDim.new(1, 0)
 		UICorner_2.Parent = LogoImage
 
-		UserStatusLabel.Name = KFCHook.RandomString();
+		UserStatusLabel.Name = Neverlose.RandomString();
 		UserStatusLabel.Parent = UserFrame
 		UserStatusLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		UserStatusLabel.BackgroundTransparency = 1.000
@@ -3739,35 +3739,35 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 
 		UserFrameItem.SetRender = LPH_NO_VIRTUALIZE(function(value)
 			if value then
-				KFCHook.PlayAnimate(UserLabel,SlowyTween,{
+				Neverlose.PlayAnimate(UserLabel,SlowyTween,{
 					TextTransparency = 0.200
 				})
 
-				KFCHook.PlayAnimate(LineFrame,SlowyTween,{
+				Neverlose.PlayAnimate(LineFrame,SlowyTween,{
 					BackgroundTransparency = 0.650
 				})
 
-				KFCHook.PlayAnimate(LogoImage,SlowyTween,{
+				Neverlose.PlayAnimate(LogoImage,SlowyTween,{
 					ImageTransparency = 0
 				})
 
-				KFCHook.PlayAnimate(UserStatusLabel,SlowyTween,{
+				Neverlose.PlayAnimate(UserStatusLabel,SlowyTween,{
 					TextTransparency = 0.200
 				})
 			else
-				KFCHook.PlayAnimate(UserLabel,SlowyTween,{
+				Neverlose.PlayAnimate(UserLabel,SlowyTween,{
 					TextTransparency = 1
 				})
 
-				KFCHook.PlayAnimate(LineFrame,SlowyTween,{
+				Neverlose.PlayAnimate(LineFrame,SlowyTween,{
 					BackgroundTransparency = 1
 				})
 
-				KFCHook.PlayAnimate(LogoImage,SlowyTween,{
+				Neverlose.PlayAnimate(LogoImage,SlowyTween,{
 					ImageTransparency = 1
 				})
 
-				KFCHook.PlayAnimate(UserStatusLabel,SlowyTween,{
+				Neverlose.PlayAnimate(UserStatusLabel,SlowyTween,{
 					TextTransparency = 1
 				})
 			end;
@@ -3794,13 +3794,13 @@ functionKFCHook:RegisiterItem(Frame: Frame , Signel)
 	return idx;
 end;
 
-functionKFCHook:CreateWindow(Config)
-	Config =KFCHook:ProcessParams(Config , {
-		Logo =KFCHook.GlobalLogo,
+function Neverlose:CreateWindow(Config)
+	Config = Neverlose:ProcessParams(Config , {
+		Logo = Neverlose.GlobalLogo,
 		Name = "Kfc.Hook",
 		Content = "Tha Bronx",
 		Size = UDim2.new(0, 640, 0, 480),
-		ConfigFolder = "KFCHookConfigs",
+		ConfigFolder = "NeverloseConfigs",
 		Enable3DRenderer = false,
 		Keybind = "Insert"
 	});
@@ -3811,16 +3811,16 @@ functionKFCHook:CreateWindow(Config)
 		Content = Config.Content,
 		Size = Config.Size,
 		ConfigFolder = Config.ConfigFolder,
-		Signal =KFCHook:CreateSignal(true),
+		Signal = Neverlose:CreateSignal(true),
 		Tabs = {},
 		CurrentTab = 1,
 		Keybind = Config.Keybind,
 		Enable3DRenderer = Config.Enable3DRenderer
 	};
 
-	KFCHook.GlobalLogo = Window.Logo;
+	Neverlose.GlobalLogo = Window.Logo;
 
-	local Logging =KFCHook:CreateLogger();
+	local Logging = Neverlose:CreateLogger();
 	if not isfolder(Window.ConfigFolder) then
 		makefolder(Window.ConfigFolder);
 	end;
@@ -3860,8 +3860,8 @@ functionKFCHook:CreateWindow(Config)
 	local SearchBox = Instance.new("TextBox")
 	local TabContainer = Instance.new("Frame")
 
-	WindowFrame.Name = KFCHook.RandomString();
-	WindowFrame.Parent =KFCHook.ScreenGui;
+	WindowFrame.Name = Neverlose.RandomString();
+	WindowFrame.Parent = Neverlose.ScreenGui;
 	WindowFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 	WindowFrame.BackgroundColor3 = Color3.fromRGB(8, 8, 13)
 	WindowFrame.BackgroundTransparency = 0.055
@@ -3872,7 +3872,7 @@ functionKFCHook:CreateWindow(Config)
 	WindowFrame.Size = Window.Size
 	WindowFrame.Active = true;
 
-	if notKFCHook.EnabledBlur then
+	if not Neverlose.EnabledBlur then
 		WindowFrame.BackgroundTransparency = 0.0255
 	end;
 
@@ -3884,7 +3884,7 @@ functionKFCHook:CreateWindow(Config)
 			else
 				WindowFrame.Visible = true;
 
-				KFCHook.PlayAnimate(WindowFrame,VSlowTween , {
+				Neverlose.PlayAnimate(WindowFrame,VSlowTween , {
 					Position = UDim2.fromScale(0.5,0.5);
 				});
 
@@ -3896,187 +3896,187 @@ functionKFCHook:CreateWindow(Config)
 				WindowFrame.Parent = nil
 			else
 				WindowFrame.Visible = true;
-				WindowFrame.Parent =KFCHook.ScreenGui
+				WindowFrame.Parent = Neverlose.ScreenGui
 
 
 			end;
 		end;
 	end);
 
-	KFCHook:AddSignal(WindowFrame:GetPropertyChangedSignal('BackgroundTransparency'):Connect(renderParentWindow))
+	Neverlose:AddSignal(WindowFrame:GetPropertyChangedSignal('BackgroundTransparency'):Connect(renderParentWindow))
 
 	Window.SetRender = LPH_NO_VIRTUALIZE(function(self , value)
 		if value then
-			KFCHook.PlayAnimate(WindowFrame , SlowyTween , {
-				BackgroundTransparency = (KFCHook.EnabledBlur and 0.055) or 0.0255,
+			Neverlose.PlayAnimate(WindowFrame , SlowyTween , {
+				BackgroundTransparency = (Neverlose.EnabledBlur and 0.055) or 0.0255,
 				Size = Window.Size
 			})
 
-			KFCHook.PlayAnimate(LogoImage , SlowyTween , {
+			Neverlose.PlayAnimate(LogoImage , SlowyTween , {
 				ImageTransparency = 0
 			})
 
-			KFCHook.PlayAnimate(WindowName , SlowyTween , {
+			Neverlose.PlayAnimate(WindowName , SlowyTween , {
 				TextTransparency = 0
 			})
 
-			KFCHook.PlayAnimate(WindowContent , SlowyTween , {
+			Neverlose.PlayAnimate(WindowContent , SlowyTween , {
 				TextTransparency = 0.650
 			})
 
-			KFCHook.PlayAnimate(LineFrame , SlowyTween , {
+			Neverlose.PlayAnimate(LineFrame , SlowyTween , {
 				BackgroundTransparency = 0.650
 			})
 
-			KFCHook.PlayAnimate(AccountProfile , SlowyTween , {
+			Neverlose.PlayAnimate(AccountProfile , SlowyTween , {
 				ImageTransparency = 0
 			})
 
-			KFCHook.PlayAnimate(AccountName , SlowyTween , {
+			Neverlose.PlayAnimate(AccountName , SlowyTween , {
 				TextTransparency = 0
 			})
 
-			KFCHook.PlayAnimate(ExpireLabel , SlowyTween , {
+			Neverlose.PlayAnimate(ExpireLabel , SlowyTween , {
 				TextTransparency = 0.650
 			})
 
-			KFCHook.PlayAnimate(LineFrame_2 , SlowyTween , {
+			Neverlose.PlayAnimate(LineFrame_2 , SlowyTween , {
 				BackgroundTransparency = 0.650
 			})
 
-			KFCHook.PlayAnimate(UserSettingButton , SlowyTween , {
+			Neverlose.PlayAnimate(UserSettingButton , SlowyTween , {
 				TextTransparency = 0.5
 			})
 
-			KFCHook.PlayAnimate(RightMenuFrame , SlowyTween , {
+			Neverlose.PlayAnimate(RightMenuFrame , SlowyTween , {
 				BackgroundTransparency = 0.600
 			})
 
-			KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 				Transparency = 0.650
 			})
 
-			KFCHook.PlayAnimate(LineFrame_3 , SlowyTween , {
+			Neverlose.PlayAnimate(LineFrame_3 , SlowyTween , {
 				BackgroundTransparency = 0.650
 			})
 
-			KFCHook.PlayAnimate(ConfigFrame , SlowyTween , {
+			Neverlose.PlayAnimate(ConfigFrame , SlowyTween , {
 				BackgroundTransparency = 0.750
 			})
 
-			KFCHook.PlayAnimate(UIStroke_2 , SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke_2 , SlowyTween , {
 				Transparency = 0.650
 			})
 
-			KFCHook.PlayAnimate(ConfigIcon , SlowyTween , {
+			Neverlose.PlayAnimate(ConfigIcon , SlowyTween , {
 				TextTransparency = 0.250
 			})
 
-			KFCHook.PlayAnimate(LineFrame_4 , SlowyTween , {
+			Neverlose.PlayAnimate(LineFrame_4 , SlowyTween , {
 				BackgroundTransparency = 0.650
 			})
 
-			KFCHook.PlayAnimate(ConfigName , SlowyTween , {
+			Neverlose.PlayAnimate(ConfigName , SlowyTween , {
 				TextTransparency = 0.350
 			})
 
-			KFCHook.PlayAnimate(ConfigBthIcon , SlowyTween , {
+			Neverlose.PlayAnimate(ConfigBthIcon , SlowyTween , {
 				TextTransparency = 0.250
 			})
 
-			KFCHook.PlayAnimate(SearchIcon , SlowyTween , {
+			Neverlose.PlayAnimate(SearchIcon , SlowyTween , {
 				TextTransparency = 0.250
 			})
 
-			KFCHook.PlayAnimate(SearchBox , SlowyTween , {
+			Neverlose.PlayAnimate(SearchBox , SlowyTween , {
 				TextTransparency = 0.350
 			})
 
 			Window.Shadow:Render(true);
 		else
 
-			KFCHook.PlayAnimate(WindowFrame , SlowyTween , {
+			Neverlose.PlayAnimate(WindowFrame , SlowyTween , {
 				BackgroundTransparency = 1,
 				Size = Window.Size + UDim2.fromOffset(-15,-15)
 			})
 
-			KFCHook.PlayAnimate(LogoImage , SlowyTween , {
+			Neverlose.PlayAnimate(LogoImage , SlowyTween , {
 				ImageTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(WindowName , SlowyTween , {
+			Neverlose.PlayAnimate(WindowName , SlowyTween , {
 				TextTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(WindowContent , SlowyTween , {
+			Neverlose.PlayAnimate(WindowContent , SlowyTween , {
 				TextTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(LineFrame , SlowyTween , {
+			Neverlose.PlayAnimate(LineFrame , SlowyTween , {
 				BackgroundTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(AccountProfile , SlowyTween , {
+			Neverlose.PlayAnimate(AccountProfile , SlowyTween , {
 				ImageTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(AccountName , SlowyTween , {
+			Neverlose.PlayAnimate(AccountName , SlowyTween , {
 				TextTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(ExpireLabel , SlowyTween , {
+			Neverlose.PlayAnimate(ExpireLabel , SlowyTween , {
 				TextTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(LineFrame_2 , SlowyTween , {
+			Neverlose.PlayAnimate(LineFrame_2 , SlowyTween , {
 				BackgroundTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(UserSettingButton , SlowyTween , {
+			Neverlose.PlayAnimate(UserSettingButton , SlowyTween , {
 				TextTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(RightMenuFrame , SlowyTween , {
+			Neverlose.PlayAnimate(RightMenuFrame , SlowyTween , {
 				BackgroundTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 				Transparency = 1
 			})
 
-			KFCHook.PlayAnimate(LineFrame_3 , SlowyTween , {
+			Neverlose.PlayAnimate(LineFrame_3 , SlowyTween , {
 				BackgroundTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(ConfigFrame , SlowyTween , {
+			Neverlose.PlayAnimate(ConfigFrame , SlowyTween , {
 				BackgroundTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(UIStroke_2 , SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke_2 , SlowyTween , {
 				Transparency = 1
 			})
 
-			KFCHook.PlayAnimate(ConfigIcon , SlowyTween , {
+			Neverlose.PlayAnimate(ConfigIcon , SlowyTween , {
 				TextTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(LineFrame_4 , SlowyTween , {
+			Neverlose.PlayAnimate(LineFrame_4 , SlowyTween , {
 				BackgroundTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(ConfigName , SlowyTween , {
+			Neverlose.PlayAnimate(ConfigName , SlowyTween , {
 				TextTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(ConfigBthIcon , SlowyTween , {
+			Neverlose.PlayAnimate(ConfigBthIcon , SlowyTween , {
 				TextTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(SearchIcon , SlowyTween , {
+			Neverlose.PlayAnimate(SearchIcon , SlowyTween , {
 				TextTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(SearchBox , SlowyTween , {
+			Neverlose.PlayAnimate(SearchBox , SlowyTween , {
 				TextTransparency = 1
 			})
 
@@ -4084,19 +4084,19 @@ functionKFCHook:CreateWindow(Config)
 		end;
 	end);
 
-	Window.Shadow =KFCHook:CreateShadow(WindowFrame);
+	Window.Shadow = Neverlose:CreateShadow(WindowFrame);
 	Window.Shadow:Render(false);
 
 	task.delay(0.25,function()
 		WindowFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Window:SetRender(true);
-		KFCHook:AddSignal(Window.Signal:Connect(LPH_NO_VIRTUALIZE(function(...)
+		Neverlose:AddSignal(Window.Signal:Connect(LPH_NO_VIRTUALIZE(function(...)
 			Window:SetRender(...);
 		end)))
 	end)
 
-	ifKFCHook.EnabledBlur then
-		KFCHook:CreateBlurModule(WindowFrame,Window.Signal);
+	if Neverlose.EnabledBlur then
+		Neverlose:CreateBlurModule(WindowFrame,Window.Signal);
 	end;
 
 	do
@@ -4110,12 +4110,12 @@ functionKFCHook:CreateWindow(Config)
 		Frame.ZIndex = 7
 		Frame.BackgroundTransparency = 1;
 
-		KFCHook.Drag(Frame , WindowFrame , 0.15)
+		Neverlose.Drag(Frame , WindowFrame , 0.15)
 	end
 
 	UICorner.Parent = WindowFrame
 
-	LeftMenuFrame.Name = KFCHook.RandomString();
+	LeftMenuFrame.Name = Neverlose.RandomString();
 	LeftMenuFrame.Parent = WindowFrame
 	LeftMenuFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	LeftMenuFrame.BackgroundTransparency = 1.000
@@ -4123,7 +4123,7 @@ functionKFCHook:CreateWindow(Config)
 	LeftMenuFrame.BorderSizePixel = 0
 	LeftMenuFrame.Size = UDim2.new(0, 175, 1, 0)
 
-	HeadFrame.Name = KFCHook.RandomString();
+	HeadFrame.Name = Neverlose.RandomString();
 	HeadFrame.Parent = LeftMenuFrame
 	HeadFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	HeadFrame.BackgroundTransparency = 1.000
@@ -4132,7 +4132,7 @@ functionKFCHook:CreateWindow(Config)
 	HeadFrame.Size = UDim2.new(1, 0, 0, 50)
 	HeadFrame.ZIndex = 7
 
-	LogoImage.Name = KFCHook.RandomString();
+	LogoImage.Name = Neverlose.RandomString();
 	LogoImage.Parent = HeadFrame
 	LogoImage.AnchorPoint = Vector2.new(0, 0.5)
 	LogoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4143,12 +4143,12 @@ functionKFCHook:CreateWindow(Config)
 	LogoImage.Size = UDim2.new(0, 35, 0, 35)
 	LogoImage.ZIndex = 7
 	LogoImage.Image = Window.Logo
-	LogoImage.ImageColor3 =KFCHook.IconColor
+	LogoImage.ImageColor3 = Neverlose.IconColor
 
 	UICorner_2.CornerRadius = UDim.new(0, 7)
 	UICorner_2.Parent = LogoImage
 
-	WindowName.Name = KFCHook.RandomString();
+	WindowName.Name = Neverlose.RandomString();
 	WindowName.Parent = HeadFrame
 	WindowName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	WindowName.BackgroundTransparency = 1.000
@@ -4163,7 +4163,7 @@ functionKFCHook:CreateWindow(Config)
 	WindowName.TextSize = 18.000
 	WindowName.TextXAlignment = Enum.TextXAlignment.Left
 
-	WindowContent.Name = KFCHook.RandomString();
+	WindowContent.Name = Neverlose.RandomString();
 	WindowContent.Parent = HeadFrame
 	WindowContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	WindowContent.BackgroundTransparency = 1.000
@@ -4179,7 +4179,7 @@ functionKFCHook:CreateWindow(Config)
 	WindowContent.TextTransparency = 0.650
 	WindowContent.TextXAlignment = Enum.TextXAlignment.Left
 
-	LineFrame.Name = KFCHook.RandomString();
+	LineFrame.Name = Neverlose.RandomString();
 	LineFrame.Parent = HeadFrame
 	LineFrame.AnchorPoint = Vector2.new(0.5, 1)
 	LineFrame.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -4190,7 +4190,7 @@ functionKFCHook:CreateWindow(Config)
 	LineFrame.Size = UDim2.new(1, -10, 0, 1)
 	LineFrame.ZIndex = 5
 
-	LeftScrollingFrame.Name = KFCHook.RandomString();
+	LeftScrollingFrame.Name = Neverlose.RandomString();
 	LeftScrollingFrame.Parent = LeftMenuFrame
 	LeftScrollingFrame.Active = true
 	LeftScrollingFrame.AnchorPoint = Vector2.new(0.5, 0)
@@ -4208,11 +4208,11 @@ functionKFCHook:CreateWindow(Config)
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	UIListLayout.Padding = UDim.new(0, 5)
 
-	KFCHook:AddSignal(UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
+	Neverlose:AddSignal(UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
 		LeftScrollingFrame.CanvasSize = UDim2.fromOffset(0,UIListLayout.AbsoluteContentSize.Y + 1)
 	end)))
 
-	BottomFrame.Name = KFCHook.RandomString();
+	BottomFrame.Name = Neverlose.RandomString();
 	BottomFrame.Parent = LeftMenuFrame
 	BottomFrame.AnchorPoint = Vector2.new(0, 1)
 	BottomFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4223,7 +4223,7 @@ functionKFCHook:CreateWindow(Config)
 	BottomFrame.Size = UDim2.new(1, 0, 0, 50)
 	BottomFrame.ZIndex = 7
 
-	AccountProfile.Name = KFCHook.RandomString();
+	AccountProfile.Name = Neverlose.RandomString();
 	AccountProfile.Parent = BottomFrame
 	AccountProfile.AnchorPoint = Vector2.new(0, 0.5)
 	AccountProfile.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4233,12 +4233,12 @@ functionKFCHook:CreateWindow(Config)
 	AccountProfile.Position = UDim2.new(0, 10, 0.5, 0)
 	AccountProfile.Size = UDim2.new(0, 35, 0, 35)
 	AccountProfile.ZIndex = 7
-	AccountProfile.Image =KFCHook.UserProfile or ""
+	AccountProfile.Image = Neverlose.UserProfile or ""
 
 	UICorner_3.CornerRadius = UDim.new(1, 0)
 	UICorner_3.Parent = AccountProfile
 
-	AccountName.Name = KFCHook.RandomString();
+	AccountName.Name = Neverlose.RandomString();
 	AccountName.Parent = BottomFrame
 	AccountName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	AccountName.BackgroundTransparency = 1.000
@@ -4254,7 +4254,7 @@ functionKFCHook:CreateWindow(Config)
 	AccountName.TextXAlignment = Enum.TextXAlignment.Left
 	AccountName.TextTruncate = Enum.TextTruncate.SplitWord;
 
-	ExpireLabel.Name = KFCHook.RandomString();
+	ExpireLabel.Name = Neverlose.RandomString();
 	ExpireLabel.Parent = BottomFrame
 	ExpireLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	ExpireLabel.BackgroundTransparency = 1.000
@@ -4270,7 +4270,7 @@ functionKFCHook:CreateWindow(Config)
 	ExpireLabel.TextTransparency = 0.650
 	ExpireLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-	LineFrame_2.Name = KFCHook.RandomString();
+	LineFrame_2.Name = Neverlose.RandomString();
 	LineFrame_2.Parent = BottomFrame
 	LineFrame_2.AnchorPoint = Vector2.new(0.5, 0)
 	LineFrame_2.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -4281,7 +4281,7 @@ functionKFCHook:CreateWindow(Config)
 	LineFrame_2.Size = UDim2.new(1, -10, 0, 1)
 	LineFrame_2.ZIndex = 5
 
-	UserSettingButton.Name = KFCHook.RandomString();
+	UserSettingButton.Name = Neverlose.RandomString();
 	UserSettingButton.Parent = BottomFrame
 	UserSettingButton.AnchorPoint = Vector2.new(1, 0.5)
 	UserSettingButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4291,25 +4291,25 @@ functionKFCHook:CreateWindow(Config)
 	UserSettingButton.Position = UDim2.new(1, -7, 0.5, 0)
 	UserSettingButton.Size = UDim2.new(0, 25, 0, 25)
 	UserSettingButton.ZIndex = 7
-	UserSettingButton.FontFace =KFCHook.BuiltInBold
+	UserSettingButton.FontFace = Neverlose.BuiltInBold
 	UserSettingButton.Text = "chevron-large-right"
 	UserSettingButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 	UserSettingButton.TextSize = 13.000
 	UserSettingButton.TextTransparency = 0.5
 
-	KFCHook:AddSignal(BottomFrame.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
-		KFCHook.PlayAnimate(UserSettingButton,SlowyTween , {
+	Neverlose:AddSignal(BottomFrame.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
+		Neverlose.PlayAnimate(UserSettingButton,SlowyTween , {
 			TextTransparency = 0.25
 		})		
 	end)))
 
-	KFCHook:AddSignal(BottomFrame.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
-		KFCHook.PlayAnimate(UserSettingButton,SlowyTween , {
+	Neverlose:AddSignal(BottomFrame.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
+		Neverlose.PlayAnimate(UserSettingButton,SlowyTween , {
 			TextTransparency = 0.5
 		})		
 	end)))
 
-	RightMenuFrame.Name = KFCHook.RandomString();
+	RightMenuFrame.Name = Neverlose.RandomString();
 	RightMenuFrame.Parent = WindowFrame
 	RightMenuFrame.BackgroundColor3 = Color3.fromRGB(8, 8, 13)
 	RightMenuFrame.BackgroundTransparency = 0.600
@@ -4327,7 +4327,7 @@ functionKFCHook:CreateWindow(Config)
 	UICorner_4.CornerRadius = UDim.new(0, 13)
 	UICorner_4.Parent = RightMenuFrame
 
-	RightHeader.Name = KFCHook.RandomString();
+	RightHeader.Name = Neverlose.RandomString();
 	RightHeader.Parent = RightMenuFrame
 	RightHeader.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	RightHeader.BackgroundTransparency = 1.000
@@ -4336,7 +4336,7 @@ functionKFCHook:CreateWindow(Config)
 	RightHeader.Size = UDim2.new(1, 0, 0, 50)
 	RightHeader.ZIndex = 9
 
-	LineFrame_3.Name = KFCHook.RandomString();
+	LineFrame_3.Name = Neverlose.RandomString();
 	LineFrame_3.Parent = RightHeader
 	LineFrame_3.AnchorPoint = Vector2.new(0.5, 1)
 	LineFrame_3.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -4347,7 +4347,7 @@ functionKFCHook:CreateWindow(Config)
 	LineFrame_3.Size = UDim2.new(1, -10, 0, 1)
 	LineFrame_3.ZIndex = 9
 
-	ConfigFrame.Name = KFCHook.RandomString();
+	ConfigFrame.Name = Neverlose.RandomString();
 	ConfigFrame.Parent = RightHeader
 	ConfigFrame.AnchorPoint = Vector2.new(0, 0.5)
 	ConfigFrame.BackgroundColor3 = Color3.fromRGB(13, 17, 22)
@@ -4365,7 +4365,7 @@ functionKFCHook:CreateWindow(Config)
 	UICorner_5.CornerRadius = UDim.new(0, 4)
 	UICorner_5.Parent = ConfigFrame
 
-	ConfigIcon.Name = KFCHook.RandomString();
+	ConfigIcon.Name = Neverlose.RandomString();
 	ConfigIcon.Parent = ConfigFrame
 	ConfigIcon.AnchorPoint = Vector2.new(0, 0.5)
 	ConfigIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4375,14 +4375,14 @@ functionKFCHook:CreateWindow(Config)
 	ConfigIcon.Position = UDim2.new(0, 2, 0.5, 0)
 	ConfigIcon.Size = UDim2.new(0, 25, 0, 25)
 	ConfigIcon.ZIndex = 9
-	ConfigIcon.FontFace =KFCHook.BuiltInBold
+	ConfigIcon.FontFace = Neverlose.BuiltInBold
 	ConfigIcon.Text = "pencil-square"
 	ConfigIcon.TextColor3 = Color3.fromRGB(223, 223, 223)
 	ConfigIcon.TextSize = 16.000
 	ConfigIcon.TextTransparency = 0.250
 	ConfigIcon.TextWrapped = true
 
-	LineFrame_4.Name = KFCHook.RandomString();
+	LineFrame_4.Name = Neverlose.RandomString();
 	LineFrame_4.Parent = ConfigFrame
 	LineFrame_4.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
 	LineFrame_4.BackgroundTransparency = 0.650
@@ -4391,7 +4391,7 @@ functionKFCHook:CreateWindow(Config)
 	LineFrame_4.Position = UDim2.new(0, 30, 0, 0)
 	LineFrame_4.Size = UDim2.new(0, 1, 1, 0)
 
-	ConfigName.Name = KFCHook.RandomString();
+	ConfigName.Name = Neverlose.RandomString();
 	ConfigName.Parent = ConfigFrame
 	ConfigName.AnchorPoint = Vector2.new(0, 0.5)
 	ConfigName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4408,7 +4408,7 @@ functionKFCHook:CreateWindow(Config)
 	ConfigName.TextTransparency = 0.350
 	ConfigName.TextXAlignment = Enum.TextXAlignment.Left
 
-	ConfigBthIcon.Name = KFCHook.RandomString();
+	ConfigBthIcon.Name = Neverlose.RandomString();
 	ConfigBthIcon.Parent = ConfigFrame
 	ConfigBthIcon.AnchorPoint = Vector2.new(1, 0.5)
 	ConfigBthIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4418,14 +4418,14 @@ functionKFCHook:CreateWindow(Config)
 	ConfigBthIcon.Position = UDim2.new(1, -2, 0.5, 0)
 	ConfigBthIcon.Size = UDim2.new(0, 25, 0, 25)
 	ConfigBthIcon.ZIndex = 9
-	ConfigBthIcon.FontFace =KFCHook.BuiltInBold
+	ConfigBthIcon.FontFace = Neverlose.BuiltInBold
 	ConfigBthIcon.Text = "chevron-small-down"
 	ConfigBthIcon.TextColor3 = Color3.fromRGB(223, 223, 223)
 	ConfigBthIcon.TextSize = 16.000
 	ConfigBthIcon.TextTransparency = 0.250
 	ConfigBthIcon.TextWrapped = true
 
-	SearchFrame.Name = KFCHook.RandomString();
+	SearchFrame.Name = Neverlose.RandomString();
 	SearchFrame.Parent = RightHeader
 	SearchFrame.AnchorPoint = Vector2.new(1, 0.5)
 	SearchFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4437,7 +4437,7 @@ functionKFCHook:CreateWindow(Config)
 	SearchFrame.Size = UDim2.new(0, 30, 0, 30)
 	SearchFrame.ZIndex = 12
 
-	SearchIcon.Name = KFCHook.RandomString();
+	SearchIcon.Name = Neverlose.RandomString();
 	SearchIcon.Parent = SearchFrame
 	SearchIcon.AnchorPoint = Vector2.new(0, 0.5)
 	SearchIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4447,14 +4447,14 @@ functionKFCHook:CreateWindow(Config)
 	SearchIcon.Position = UDim2.new(0, 2, 0.5, 0)
 	SearchIcon.Size = UDim2.new(0, 25, 0, 25)
 	SearchIcon.ZIndex = 12
-	SearchIcon.FontFace =KFCHook.BuiltInBold
+	SearchIcon.FontFace = Neverlose.BuiltInBold
 	SearchIcon.Text = "magnifying-glass"
 	SearchIcon.TextColor3 = Color3.fromRGB(223, 223, 223)
 	SearchIcon.TextSize = 14.000
 	SearchIcon.TextTransparency = 0.45
 	SearchIcon.TextWrapped = true
 
-	SearchBox.Name = KFCHook.RandomString();
+	SearchBox.Name = Neverlose.RandomString();
 	SearchBox.Parent = SearchFrame
 	SearchBox.AnchorPoint = Vector2.new(0, 0.5)
 	SearchBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4473,7 +4473,7 @@ functionKFCHook:CreateWindow(Config)
 	SearchBox.TextTransparency = 1
 	SearchBox.TextXAlignment = Enum.TextXAlignment.Left
 
-	TabContainer.Name = KFCHook.RandomString();
+	TabContainer.Name = Neverlose.RandomString();
 	TabContainer.Parent = RightMenuFrame
 	TabContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	TabContainer.BackgroundTransparency = 1.000
@@ -4486,31 +4486,31 @@ functionKFCHook:CreateWindow(Config)
 
 	do
 		Window.Searching = false;
-		local Input =KFCHook:CreateInput(SearchIcon , LPH_NO_VIRTUALIZE(function()
+		local Input = Neverlose:CreateInput(SearchIcon , LPH_NO_VIRTUALIZE(function()
 			Window.Searching = not Window.Searching;
 
 			if Window.Searching then
-				KFCHook.PlayAnimate(SearchFrame , VSlowTween , {
+				Neverlose.PlayAnimate(SearchFrame , VSlowTween , {
 					Size = UDim2.new(0, 220, 0, 30)
 				})
 
-				KFCHook.PlayAnimate(SearchIcon , SlowyTween , {
+				Neverlose.PlayAnimate(SearchIcon , SlowyTween , {
 					TextTransparency = 0.25
 				})
 
-				KFCHook.PlayAnimate(SearchBox , VSlowTween , {
+				Neverlose.PlayAnimate(SearchBox , VSlowTween , {
 					TextTransparency = 0.350
 				})
 			else
-				KFCHook.PlayAnimate(SearchFrame , VSlowTween , {
+				Neverlose.PlayAnimate(SearchFrame , VSlowTween , {
 					Size = UDim2.new(0, 30, 0, 30)
 				})
 
-				KFCHook.PlayAnimate(SearchIcon , SlowyTween , {
+				Neverlose.PlayAnimate(SearchIcon , SlowyTween , {
 					TextTransparency = 0.45
 				})
 
-				KFCHook.PlayAnimate(SearchBox , SlowyTween , {
+				Neverlose.PlayAnimate(SearchBox , SlowyTween , {
 					TextTransparency = 1
 				})
 
@@ -4522,9 +4522,9 @@ functionKFCHook:CreateWindow(Config)
 		local last_thread;
 		local max_time = 0.2;
 
-		KFCHook:AddSignal(SearchBox:GetPropertyChangedSignal('Text'):Connect(LPH_NO_VIRTUALIZE(function()
+		Neverlose:AddSignal(SearchBox:GetPropertyChangedSignal('Text'):Connect(LPH_NO_VIRTUALIZE(function()
 			if not SearchBox.Text:byte() then
-				for i,v in next ,KFCHook.NameRegisitry do
+				for i,v in next , Neverlose.NameRegisitry do
 					v.Root.Visible = true;
 				end;
 
@@ -4540,7 +4540,7 @@ functionKFCHook:CreateWindow(Config)
 
 			last_thread = task.delay(max_time,function()
 				if SearchBox.Text:byte() and (tick() - wati_for_finish) > max_time then
-					for i,v in next ,KFCHook.NameRegisitry do
+					for i,v in next , Neverlose.NameRegisitry do
 						if string.find(string.lower(v.Idx) , string.lower(SearchBox.Text), 1, true) then
 							v.Root.Visible = true;
 						else
@@ -4551,19 +4551,19 @@ functionKFCHook:CreateWindow(Config)
 			end);
 		end)));
 
-		KFCHook:AddSignal(Input.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
-			KFCHook.PlayAnimate(SearchIcon , SlowyTween , {
+		Neverlose:AddSignal(Input.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose.PlayAnimate(SearchIcon , SlowyTween , {
 				TextTransparency = 0.25
 			})
 		end)))
 
-		KFCHook:AddSignal(Input.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
+		Neverlose:AddSignal(Input.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
 			if Window.Searching then
-				KFCHook.PlayAnimate(SearchIcon , SlowyTween , {
+				Neverlose.PlayAnimate(SearchIcon , SlowyTween , {
 					TextTransparency = 0.25
 				})
 			else
-				KFCHook.PlayAnimate(SearchIcon , SlowyTween , {
+				Neverlose.PlayAnimate(SearchIcon , SlowyTween , {
 					TextTransparency = 0.45
 				})
 			end;
@@ -4573,19 +4573,19 @@ functionKFCHook:CreateWindow(Config)
 	if Window.Enable3DRenderer then
 		local Part = Instance.new('Part');
 
-		Part.Name = KFCHook.RandomString();
+		Part.Name = Neverlose.RandomString();
 		Part.Anchored = true;
 		Part.Transparency = 1;
 		Part.CanCollide = false;
 		Part.CanTouch = false;
 		Part.AudioCanCollide = false;
-		Part.CollisionGroup =KFCHook.RandomString();
+		Part.CollisionGroup = Neverlose.RandomString();
 		Part.CFrame = CFrame.new(0,0,0);
 		Part.Size = Vector3.zero;
 
 		local SurfaceGui = Instance.new("SurfaceGui")
 
-		SurfaceGui.Parent =KFCHook.ScreenGui;
+		SurfaceGui.Parent = Neverlose.ScreenGui;
 		SurfaceGui.Adornee = Part;
 		SurfaceGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 		SurfaceGui.AlwaysOnTop = true
@@ -4595,7 +4595,7 @@ functionKFCHook:CreateWindow(Config)
 		SurfaceGui.PixelsPerStud = 40;
 
 		Window.SurfaceGui = SurfaceGui;
-		KFCHook.GlobalSurfaceGui = SurfaceGui;
+		Neverlose.GlobalSurfaceGui = SurfaceGui;
 
 		local PerfectScale = Vector2.new(1920 , 1080 + 300)
 
@@ -4604,7 +4604,7 @@ functionKFCHook:CreateWindow(Config)
 				local _,OnScreen = CurrentCamera:WorldToViewportPoint(Part.Position);
 
 				if OnScreen then
-					KFCHook.PlayAnimate(Part,VSlowTween , {
+					Neverlose.PlayAnimate(Part,VSlowTween , {
 						CFrame = CurrentCamera.CFrame * CFrame.new(0,0,-15) * CFrame.Angles(0,math.rad(180),0);
 					});
 				end;
@@ -4618,9 +4618,9 @@ functionKFCHook:CreateWindow(Config)
 			local PerfectDistance = XY_Incom.Magnitude;
 			local SizeIndicator = PerfectDistance / 1.35;
 
-			Part.Parent =KFCHook.BlurModuleParent or workspace;
+			Part.Parent = Neverlose.BlurModuleParent or workspace;
 
-			KFCHook.PlayAnimate(Part,VSlowTween , {
+			Neverlose.PlayAnimate(Part,VSlowTween , {
 				CFrame = (CurrentCamera.CFrame * CFrame.new(0,0,-25)) * CFrame.Angles(0,math.rad(180),0);
 			});
 
@@ -4629,7 +4629,7 @@ functionKFCHook:CreateWindow(Config)
 
 		function Window:Set3DRender(val)
 			Window.__3DRender = val;
-			KFCHook.Global3DRenderMode = val;
+			Neverlose.Global3DRenderMode = val;
 
 			if val then
 				Window.Load3DBlock();
@@ -4646,7 +4646,7 @@ functionKFCHook:CreateWindow(Config)
 	function Window:AddTabLabel(Name: string)
 		local TabLabel = Instance.new("TextLabel")
 
-		TabLabel.Name = KFCHook.RandomString()
+		TabLabel.Name = Neverlose.RandomString()
 		TabLabel.Parent = LeftScrollingFrame
 		TabLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		TabLabel.BackgroundTransparency = 1.000
@@ -4663,11 +4663,11 @@ functionKFCHook:CreateWindow(Config)
 
 		local SetRender = LPH_NO_VIRTUALIZE(function(val)
 			if val then
-				KFCHook.PlayAnimate(TabLabel , SlowyTween,{
+				Neverlose.PlayAnimate(TabLabel , SlowyTween,{
 					TextTransparency = 0.500
 				})
 			else
-				KFCHook.PlayAnimate(TabLabel , SlowyTween,{
+				Neverlose.PlayAnimate(TabLabel , SlowyTween,{
 					TextTransparency = 1
 				})
 			end
@@ -4679,14 +4679,14 @@ functionKFCHook:CreateWindow(Config)
 	end;
 
 	function Window:AddTab(Config)
-		Config =KFCHook:ProcessParams(Config , {
+		Config = Neverlose:ProcessParams(Config , {
 			Icon = "crosshairs",
 			Name = "Tab",
 			Type = "Double"
 		});
 
 		local Tab = {
-			Signal =KFCHook:CreateSignal(false);
+			Signal = Neverlose:CreateSignal(false);
 		};
 
 		local TabButton = Instance.new("Frame")
@@ -4696,7 +4696,7 @@ functionKFCHook:CreateWindow(Config)
 
 		Tab.Idx = TabButton;
 
-		TabButton.Name = KFCHook.RandomString();
+		TabButton.Name = Neverlose.RandomString();
 		TabButton.Parent = LeftScrollingFrame
 		TabButton.BackgroundColor3 = Color3.fromRGB(41, 45, 49)
 		TabButton.BackgroundTransparency = 0.500
@@ -4708,7 +4708,7 @@ functionKFCHook:CreateWindow(Config)
 		UICorner.CornerRadius = UDim.new(0, 6)
 		UICorner.Parent = TabButton
 
-		TabIcon.Name = KFCHook.RandomString();
+		TabIcon.Name = Neverlose.RandomString();
 		TabIcon.Parent = TabButton
 		TabIcon.AnchorPoint = Vector2.new(0, 0.5)
 		TabIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4718,13 +4718,13 @@ functionKFCHook:CreateWindow(Config)
 		TabIcon.Position = UDim2.new(0, 2, 0.5, 0)
 		TabIcon.Size = UDim2.new(0, 25, 0, 25)
 		TabIcon.ZIndex = 9
-		TabIcon.FontFace =KFCHook.BuiltInBold
+		TabIcon.FontFace = Neverlose.BuiltInBold
 		TabIcon.Text = Config.Icon;
-		TabIcon.TextColor3 =KFCHook.AccentColor
+		TabIcon.TextColor3 = Neverlose.AccentColor
 		TabIcon.TextSize = 16.000
 		TabIcon.TextWrapped = true
 
-		TabContentLabel.Name = KFCHook.RandomString();
+		TabContentLabel.Name = Neverlose.RandomString();
 		TabContentLabel.Parent = TabButton
 		TabContentLabel.AnchorPoint = Vector2.new(0, 0.5)
 		TabContentLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4746,7 +4746,7 @@ functionKFCHook:CreateWindow(Config)
 		local RightScroll = Instance.new("ScrollingFrame")
 		local UIListLayout_2 = Instance.new("UIListLayout")
 
-		TabFrame.Name = KFCHook.RandomString();
+		TabFrame.Name = Neverlose.RandomString();
 		TabFrame.Parent = TabContainer
 		TabFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 		TabFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4758,7 +4758,7 @@ functionKFCHook:CreateWindow(Config)
 		TabFrame.Size = UDim2.new(1, 0, 1, 0)
 		TabFrame.Visible = true;
 
-		LeftScroll.Name = KFCHook.RandomString();
+		LeftScroll.Name = Neverlose.RandomString();
 		LeftScroll.Parent = TabFrame
 		LeftScroll.Active = true
 		LeftScroll.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -4776,11 +4776,11 @@ functionKFCHook:CreateWindow(Config)
 		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 		UIListLayout.Padding = UDim.new(0, 5)
 
-		KFCHook:AddSignal(UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
+		Neverlose:AddSignal(UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
 			LeftScroll.CanvasSize = UDim2.fromOffset(0,UIListLayout.AbsoluteContentSize.Y + 1)
 		end)))
 
-		RightScroll.Name = KFCHook.RandomString();
+		RightScroll.Name = Neverlose.RandomString();
 		RightScroll.Parent = TabFrame
 		RightScroll.Active = true
 		RightScroll.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -4805,12 +4805,12 @@ functionKFCHook:CreateWindow(Config)
 			LeftScroll.Size = UDim2.new(1, 0, 1, -5);
 			LeftScroll.Position = UDim2.new(0.5, 0, 0.5, 0)
 		else
-			KFCHook:AddSignal(UIListLayout_2:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose:AddSignal(UIListLayout_2:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
 				RightScroll.CanvasSize = UDim2.fromOffset(0,UIListLayout_2.AbsoluteContentSize.Y + 1)
 			end)))
 		end;
 
-		KFCHook:AddSignal(TabIcon:GetPropertyChangedSignal('TextTransparency'):Connect(LPH_NO_VIRTUALIZE(function()
+		Neverlose:AddSignal(TabIcon:GetPropertyChangedSignal('TextTransparency'):Connect(LPH_NO_VIRTUALIZE(function()
 			if TabIcon.TextTransparency > 0.4 then
 				UIListLayout.Parent = nil;
 				UIListLayout_2.Parent = nil;
@@ -4828,29 +4828,29 @@ functionKFCHook:CreateWindow(Config)
 			Tab.Signal:SetValue(value);
 
 			if value then
-				KFCHook.PlayAnimate(TabButton , SlowyTween , {
+				Neverlose.PlayAnimate(TabButton , SlowyTween , {
 					BackgroundTransparency = 0.500
 				})
 
-				KFCHook.PlayAnimate(TabIcon , SlowyTween , {
+				Neverlose.PlayAnimate(TabIcon , SlowyTween , {
 					TextTransparency = 0,
-					TextColor3 =KFCHook.AccentColor
+					TextColor3 = Neverlose.AccentColor
 				})
 
-				KFCHook.PlayAnimate(TabContentLabel , SlowyTween , {
+				Neverlose.PlayAnimate(TabContentLabel , SlowyTween , {
 					TextTransparency = 0
 				})
 			else
-				KFCHook.PlayAnimate(TabButton , SlowyTween , {
+				Neverlose.PlayAnimate(TabButton , SlowyTween , {
 					BackgroundTransparency = 1
 				})
 
-				KFCHook.PlayAnimate(TabIcon , SlowyTween , {
+				Neverlose.PlayAnimate(TabIcon , SlowyTween , {
 					TextTransparency = 0.5,
 					TextColor3 = Color3.fromRGB(252, 252, 252)
 				})
 
-				KFCHook.PlayAnimate(TabContentLabel , SlowyTween , {
+				Neverlose.PlayAnimate(TabContentLabel , SlowyTween , {
 					TextTransparency = 0.5
 				})
 			end;
@@ -4864,7 +4864,7 @@ functionKFCHook:CreateWindow(Config)
 			Tab.SetValue(false);
 		end;
 
-		local over =KFCHook:CreateInput(TabButton,LPH_NO_VIRTUALIZE(function()
+		local over = Neverlose:CreateInput(TabButton,LPH_NO_VIRTUALIZE(function()
 			for i,v in next , Window.Tabs do
 				if v.Idx == TabButton then
 					v.SetValue(true);
@@ -4875,25 +4875,25 @@ functionKFCHook:CreateWindow(Config)
 			end;
 		end));
 
-		KFCHook:AddSignal(over.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
+		Neverlose:AddSignal(over.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
 			if Window.Tabs[Window.CurrentTab] == Tab then
-				KFCHook.PlayAnimate(TabButton , SlowyTween , {
+				Neverlose.PlayAnimate(TabButton , SlowyTween , {
 					BackgroundTransparency = 0.500
 				})
 			else
-				KFCHook.PlayAnimate(TabButton , SlowyTween , {
+				Neverlose.PlayAnimate(TabButton , SlowyTween , {
 					BackgroundTransparency = 0.8
 				})
 			end;
 		end)))
 
-		KFCHook:AddSignal(over.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
+		Neverlose:AddSignal(over.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
 			if Window.Tabs[Window.CurrentTab] == Tab then
-				KFCHook.PlayAnimate(TabButton , SlowyTween , {
+				Neverlose.PlayAnimate(TabButton , SlowyTween , {
 					BackgroundTransparency = 0.500
 				})
 			else
-				KFCHook.PlayAnimate(TabButton , SlowyTween , {
+				Neverlose.PlayAnimate(TabButton , SlowyTween , {
 					BackgroundTransparency = 1
 				})
 			end;
@@ -4909,22 +4909,22 @@ functionKFCHook:CreateWindow(Config)
 			else
 				Tab.SetValue(false);
 
-				KFCHook.PlayAnimate(TabButton , SlowyTween , {
+				Neverlose.PlayAnimate(TabButton , SlowyTween , {
 					BackgroundTransparency = 1
 				})
 
-				KFCHook.PlayAnimate(TabIcon , SlowyTween , {
+				Neverlose.PlayAnimate(TabIcon , SlowyTween , {
 					TextTransparency = 1,
 				})
 
-				KFCHook.PlayAnimate(TabContentLabel , SlowyTween , {
+				Neverlose.PlayAnimate(TabContentLabel , SlowyTween , {
 					TextTransparency = 1
 				})
 			end;
 		end));
 
 		function Tab:AddSection(Config)
-			Config =KFCHook:ProcessParams(Config , {
+			Config = Neverlose:ProcessParams(Config , {
 				Name = "SECTION",
 				Position = 'left'
 			});
@@ -4936,7 +4936,7 @@ functionKFCHook:CreateWindow(Config)
 			local UICorner = Instance.new("UICorner")
 			local UIListLayout = Instance.new("UIListLayout")
 
-			SectionFrame.Name = KFCHook.RandomString();
+			SectionFrame.Name = Neverlose.RandomString();
 			SectionFrame.Parent = (string.lower(Config.Position) == 'left' and LeftScroll) or RightScroll
 			SectionFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			SectionFrame.BackgroundTransparency = 1.000
@@ -4946,7 +4946,7 @@ functionKFCHook:CreateWindow(Config)
 			SectionFrame.Size = UDim2.new(1, -5, 0, 0)
 			SectionFrame.ZIndex = 9
 
-			SectionLabel.Name = KFCHook.RandomString();
+			SectionLabel.Name = Neverlose.RandomString();
 			SectionLabel.Parent = SectionFrame
 			SectionLabel.AnchorPoint = Vector2.new(0.5, 0)
 			SectionLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4963,7 +4963,7 @@ functionKFCHook:CreateWindow(Config)
 			SectionLabel.TextTransparency = 0.500
 			SectionLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-			SectionHandler.Name = KFCHook.RandomString();
+			SectionHandler.Name = Neverlose.RandomString();
 			SectionHandler.Parent = SectionFrame
 			SectionHandler.AnchorPoint = Vector2.new(0.5, 0)
 			SectionHandler.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -4990,41 +4990,41 @@ functionKFCHook:CreateWindow(Config)
 
 
 				if UIListLayout.AbsoluteContentSize.Y <= 1 then
-					KFCHook.PlayAnimate(SectionFrame , VSlowTween , {
+					Neverlose.PlayAnimate(SectionFrame , VSlowTween , {
 						Size = UDim2.new(1, -5, 0, 0)
 					})
 				else
-					KFCHook.PlayAnimate(SectionFrame , VSlowTween , {
+					Neverlose.PlayAnimate(SectionFrame , VSlowTween , {
 						Size = UDim2.new(1, -5, 0, UIListLayout.AbsoluteContentSize.Y + 19.5)
 					})
 				end;
 			end));
 
-			local Section =KFCHook:RegisiterItem(SectionHandler , Tab.Signal);
+			local Section = Neverlose:RegisiterItem(SectionHandler , Tab.Signal);
 
 			Section.SetRender = LPH_NO_VIRTUALIZE(function(value)
 				if value then
-					KFCHook.PlayAnimate(SectionLabel,SlowyTween,{
+					Neverlose.PlayAnimate(SectionLabel,SlowyTween,{
 						TextTransparency = 0.500
 					})
 
-					KFCHook.PlayAnimate(SectionHandler,SlowyTween,{
+					Neverlose.PlayAnimate(SectionHandler,SlowyTween,{
 						BackgroundTransparency = 0.500
 					})
 
-					KFCHook.PlayAnimate(UIStroke,SlowyTween,{
+					Neverlose.PlayAnimate(UIStroke,SlowyTween,{
 						Transparency = 0.650
 					})
 				else
-					KFCHook.PlayAnimate(SectionLabel,SlowyTween,{
+					Neverlose.PlayAnimate(SectionLabel,SlowyTween,{
 						TextTransparency = 1
 					})
 
-					KFCHook.PlayAnimate(SectionHandler,SlowyTween,{
+					Neverlose.PlayAnimate(SectionHandler,SlowyTween,{
 						BackgroundTransparency = 1
 					})
 
-					KFCHook.PlayAnimate(UIStroke,SlowyTween,{
+					Neverlose.PlayAnimate(UIStroke,SlowyTween,{
 						Transparency = 1
 					})
 				end;
@@ -5040,7 +5040,7 @@ functionKFCHook:CreateWindow(Config)
 	end;
 
 	function Window:_InitConfig()
-		local ConfigSignal =KFCHook:CreateSignal(false);
+		local ConfigSignal = Neverlose:CreateSignal(false);
 		local ConfigLib = {
 			Signals = {},
 		};
@@ -5063,76 +5063,76 @@ functionKFCHook:CreateWindow(Config)
 		local UICorner_3 = Instance.new("UICorner")
 		local UICorner_4 = Instance.new("UICorner")
 
-		local shadow =KFCHook:CreateShadow(ConfigMenu);
+		local shadow = Neverlose:CreateShadow(ConfigMenu);
 
 		ConfigLib.SetRender = LPH_NO_VIRTUALIZE(function(value)
 			if value then
 				ConfigMenu.Position = UDim2.fromOffset(ConfigFrame.AbsolutePosition.X + 110 , ConfigFrame.AbsolutePosition.Y + 96)
 
-				KFCHook.PlayAnimate(ConfigMenu , SlowyTween , {
+				Neverlose.PlayAnimate(ConfigMenu , SlowyTween , {
 					BackgroundTransparency = 0.035,
 					Position = UDim2.fromOffset(ConfigFrame.AbsolutePosition.X + 110 , ConfigFrame.AbsolutePosition.Y + 95)
 				})	
 
-				KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+				Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 					Transparency = 0.650
 				})
-				KFCHook.PlayAnimate(BasedLabel , SlowyTween , {
+				Neverlose.PlayAnimate(BasedLabel , SlowyTween , {
 					TextTransparency = 0.200
 				})	
 
-				KFCHook.PlayAnimate(UIStroke_2 , SlowyTween , {
+				Neverlose.PlayAnimate(UIStroke_2 , SlowyTween , {
 					Transparency = 0.65
 				})	
 
-				KFCHook.PlayAnimate(LineFrame , SlowyTween , {
+				Neverlose.PlayAnimate(LineFrame , SlowyTween , {
 					BackgroundTransparency = 0.650
 				})	
-				KFCHook.PlayAnimate(TextInput , SlowyTween , {
+				Neverlose.PlayAnimate(TextInput , SlowyTween , {
 					BackgroundTransparency = 0
 				})	
-				KFCHook.PlayAnimate(TextBox , SlowyTween , {
+				Neverlose.PlayAnimate(TextBox , SlowyTween , {
 					TextTransparency = 0.350
 				})	
-				KFCHook.PlayAnimate(Icon , SlowyTween , {
+				Neverlose.PlayAnimate(Icon , SlowyTween , {
 					TextTransparency = 0.350
 				})	
 
-				KFCHook.PlayAnimate(ConfigBthIcon , SlowyTween , {
+				Neverlose.PlayAnimate(ConfigBthIcon , SlowyTween , {
 					Rotation = 180
 				})	
 
 				shadow:Render(true)
 			else
-				KFCHook.PlayAnimate(ConfigBthIcon , SlowyTween , {
+				Neverlose.PlayAnimate(ConfigBthIcon , SlowyTween , {
 					Rotation = 0
 				})
 
-				KFCHook.PlayAnimate(ConfigMenu , SlowyTween , {
+				Neverlose.PlayAnimate(ConfigMenu , SlowyTween , {
 					BackgroundTransparency = 1,
 					Position = UDim2.fromOffset(ConfigFrame.AbsolutePosition.X + 110 , ConfigFrame.AbsolutePosition.Y + 96)
 				})	
 
-				KFCHook.PlayAnimate(UIStroke_2 , SlowyTween , {
+				Neverlose.PlayAnimate(UIStroke_2 , SlowyTween , {
 					Transparency = 1
 				})	
 
-				KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+				Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 					Transparency = 1
 				})
-				KFCHook.PlayAnimate(BasedLabel , SlowyTween , {
+				Neverlose.PlayAnimate(BasedLabel , SlowyTween , {
 					TextTransparency = 1
 				})	
-				KFCHook.PlayAnimate(LineFrame , SlowyTween , {
+				Neverlose.PlayAnimate(LineFrame , SlowyTween , {
 					BackgroundTransparency = 1
 				})	
-				KFCHook.PlayAnimate(TextInput , SlowyTween , {
+				Neverlose.PlayAnimate(TextInput , SlowyTween , {
 					BackgroundTransparency = 1
 				})	
-				KFCHook.PlayAnimate(TextBox , SlowyTween , {
+				Neverlose.PlayAnimate(TextBox , SlowyTween , {
 					TextTransparency = 1
 				})	
-				KFCHook.PlayAnimate(Icon , SlowyTween , {
+				Neverlose.PlayAnimate(Icon , SlowyTween , {
 					TextTransparency = 1
 				})	
 
@@ -5140,7 +5140,7 @@ functionKFCHook:CreateWindow(Config)
 			end;
 		end);
 
-		KFCHook:AddSignal(ConfigMenu:GetPropertyChangedSignal('BackgroundTransparency'):Connect(LPH_NO_VIRTUALIZE(function()
+		Neverlose:AddSignal(ConfigMenu:GetPropertyChangedSignal('BackgroundTransparency'):Connect(LPH_NO_VIRTUALIZE(function()
 			if ConfigMenu.BackgroundTransparency > 0.9 then
 				ConfigMenu.Visible = false;
 				UIListLayout.Parent = nil;
@@ -5150,16 +5150,16 @@ functionKFCHook:CreateWindow(Config)
 				ConfigMenu.Visible = true;
 				UIListLayout.Parent = ConfigMenu
 
-				ifKFCHook.Global3DRenderMode then
-					ConfigMenu.Parent =KFCHook.GlobalSurfaceGui;
+				if Neverlose.Global3DRenderMode then
+					ConfigMenu.Parent = Neverlose.GlobalSurfaceGui;
 				else
-					ConfigMenu.Parent =KFCHook.ScreenGui;
+					ConfigMenu.Parent = Neverlose.ScreenGui;
 				end;
 			end
 		end)))
 
-		ConfigMenu.Name = KFCHook.RandomString();
-		ConfigMenu.Parent =KFCHook.ScreenGui;
+		ConfigMenu.Name = Neverlose.RandomString();
+		ConfigMenu.Parent = Neverlose.ScreenGui;
 		ConfigMenu.AnchorPoint = Vector2.new(0.5, 0)
 		ConfigMenu.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
 		ConfigMenu.BackgroundTransparency = 0.035
@@ -5182,7 +5182,7 @@ functionKFCHook:CreateWindow(Config)
 		UIStroke.Color = Color3.fromRGB(45, 48, 58)
 		UIStroke.Parent = ConfigMenu
 
-		InputFrame.Name = KFCHook.RandomString();
+		InputFrame.Name = Neverlose.RandomString();
 		InputFrame.Parent = ConfigMenu
 		InputFrame.BackgroundColor3 = Color3.fromRGB(25, 27, 33)
 		InputFrame.BackgroundTransparency = 1.000
@@ -5191,7 +5191,7 @@ functionKFCHook:CreateWindow(Config)
 		InputFrame.Size = UDim2.new(1, 0, 0, 30)
 		InputFrame.ZIndex = 154
 
-		BasedLabel.Name = KFCHook.RandomString();
+		BasedLabel.Name = Neverlose.RandomString();
 		BasedLabel.Parent = InputFrame
 		BasedLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		BasedLabel.BackgroundTransparency = 1.000
@@ -5207,7 +5207,7 @@ functionKFCHook:CreateWindow(Config)
 		BasedLabel.TextTransparency = 0.200
 		BasedLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-		LineFrame.Name = KFCHook.RandomString();
+		LineFrame.Name = Neverlose.RandomString();
 		LineFrame.Parent = InputFrame
 		LineFrame.AnchorPoint = Vector2.new(0.5, 1)
 		LineFrame.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -5218,7 +5218,7 @@ functionKFCHook:CreateWindow(Config)
 		LineFrame.Size = UDim2.new(1, -20, 0, 1)
 		LineFrame.ZIndex = 154
 
-		BasedHandler.Name = KFCHook.RandomString();
+		BasedHandler.Name = Neverlose.RandomString();
 		BasedHandler.Parent = InputFrame
 		BasedHandler.AnchorPoint = Vector2.new(1, 0)
 		BasedHandler.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -5236,20 +5236,20 @@ functionKFCHook:CreateWindow(Config)
 		UIListLayout_2.VerticalAlignment = Enum.VerticalAlignment.Center
 		UIListLayout_2.Padding = UDim.new(0, 5)
 
-		KFCHook:AddSignal(UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
+		Neverlose:AddSignal(UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
 			if #ConfigLib.Signals <= 0 then
-				KFCHook.PlayAnimate(ConfigMenu , SlowyTween , {
+				Neverlose.PlayAnimate(ConfigMenu , SlowyTween , {
 					Size = UDim2.new(0, 220,0, UIListLayout.AbsoluteContentSize.Y + 0);
 				})
 			else
-				KFCHook.PlayAnimate(ConfigMenu , SlowyTween , {
+				Neverlose.PlayAnimate(ConfigMenu , SlowyTween , {
 					Size = UDim2.new(0, 220,0, UIListLayout.AbsoluteContentSize.Y + 5);
 				})
 			end;
 
 		end)));
 
-		TextInput.Name = KFCHook.RandomString();
+		TextInput.Name = Neverlose.RandomString();
 		TextInput.Parent = BasedHandler
 		TextInput.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
 		TextInput.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -5283,7 +5283,7 @@ functionKFCHook:CreateWindow(Config)
 		TextBox.TextTransparency = 0.350
 		TextBox.TextXAlignment = Enum.TextXAlignment.Left
 
-		LoadConfig.Name = KFCHook.RandomString();
+		LoadConfig.Name = Neverlose.RandomString();
 		LoadConfig.Parent = BasedHandler
 		LoadConfig.BackgroundColor3 = Color3.fromRGB(39, 40, 49)
 		LoadConfig.BackgroundTransparency = 1.000
@@ -5293,7 +5293,7 @@ functionKFCHook:CreateWindow(Config)
 		LoadConfig.Size = UDim2.new(0, 20, 0, 18)
 		LoadConfig.ZIndex = 153
 
-		Icon.Name = KFCHook.RandomString();
+		Icon.Name = Neverlose.RandomString();
 		Icon.Parent = LoadConfig
 		Icon.AnchorPoint = Vector2.new(0.5, 0.5)
 		Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -5303,7 +5303,7 @@ functionKFCHook:CreateWindow(Config)
 		Icon.Position = UDim2.new(0.5, 0, 0.5, 0)
 		Icon.Size = UDim2.new(1, 0, 1, 0)
 		Icon.ZIndex = 153
-		Icon.FontFace =KFCHook.BuiltInBold
+		Icon.FontFace = Neverlose.BuiltInBold
 		Icon.Text = "plus-large"
 		Icon.TextColor3 = Color3.fromRGB(223, 223, 223)
 		Icon.TextSize = 16.000
@@ -5319,7 +5319,7 @@ functionKFCHook:CreateWindow(Config)
 		local OpenButton = Instance.new("TextButton")
 		local UICorner = Instance.new("UICorner")
 
-		OpenButton.Name = KFCHook.RandomString();
+		OpenButton.Name = Neverlose.RandomString();
 		OpenButton.Parent = ConfigFrame
 		OpenButton.AnchorPoint = Vector2.new(0, 0.5)
 		OpenButton.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -5345,7 +5345,7 @@ functionKFCHook:CreateWindow(Config)
 		local UpdateSize = LPH_NO_VIRTUALIZE(function()
 			local size = TextService:GetTextSize(ConfigName.Text , ConfigName.TextSize,ConfigName.Font,Vector2.new(math.huge,math.huge));
 
-			KFCHook.PlayAnimate(ConfigFrame,SlowyTween , {
+			Neverlose.PlayAnimate(ConfigFrame,SlowyTween , {
 				Size = UDim2.fromOffset(size.X + 75, 30)
 			});
 		end);
@@ -5356,7 +5356,7 @@ functionKFCHook:CreateWindow(Config)
 			local ikc = {};
 			
 			local cd = 0;
-			for Flag,v in next ,KFCHook.Flags do
+			for Flag,v in next , Neverlose.Flags do
 				if v and v.GetValue then
 					local data = v:GetValue();
 
@@ -5382,17 +5382,17 @@ functionKFCHook:CreateWindow(Config)
 				cd += 1;
 			end;
 
-			returnKFCHook.Base64Encode(Encryption.new(HttpService:JSONEncode(ikc)));
+			return Neverlose.Base64Encode(Encryption.new(HttpService:JSONEncode(ikc)));
 		end;
 
 		function ConfigLib:LoadData(data)
-			local coded = HttpService:JSONDecode(Encryption.reverse(KFCHook.Base64Decode(data)));
+			local coded = HttpService:JSONDecode(Encryption.reverse(Neverlose.Base64Decode(data)));
 
 			for i,v in next , coded do
 				if v.Idx then
-					ifKFCHook.Flags[v.Idx] then
+					if Neverlose.Flags[v.Idx] then
 						task.spawn(function()
-							KFCHook.Flags[v.Idx]:SetValue(v.Value)
+							Neverlose.Flags[v.Idx]:SetValue(v.Value)
 						end)
 					end;
 				end;
@@ -5442,7 +5442,7 @@ functionKFCHook:CreateWindow(Config)
 				local BasedLabel = Instance.new("TextLabel")
 				local UIStroke = Instance.new("UIStroke")
 
-				ConfigItemFrame.Name = KFCHook.RandomString();
+				ConfigItemFrame.Name = Neverlose.RandomString();
 				ConfigItemFrame.Parent = ConfigMenu
 				ConfigItemFrame.BackgroundColor3 = Color3.fromRGB(21, 20, 27)
 				ConfigItemFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -5451,7 +5451,7 @@ functionKFCHook:CreateWindow(Config)
 				ConfigItemFrame.ZIndex = 153
 				ConfigItemFrame:SetAttribute('ConfigItem',true);
 
-				BasedHandler.Name = KFCHook.RandomString();
+				BasedHandler.Name = Neverlose.RandomString();
 				BasedHandler.Parent = ConfigItemFrame
 				BasedHandler.AnchorPoint = Vector2.new(1, 0)
 				BasedHandler.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -5469,7 +5469,7 @@ functionKFCHook:CreateWindow(Config)
 				UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 				UIListLayout.Padding = UDim.new(0, 5)
 
-				DeleteConfig.Name = KFCHook.RandomString();
+				DeleteConfig.Name = Neverlose.RandomString();
 				DeleteConfig.Parent = BasedHandler
 				DeleteConfig.BackgroundColor3 = Color3.fromRGB(39, 40, 49)
 				DeleteConfig.BackgroundTransparency = 1.000
@@ -5479,7 +5479,7 @@ functionKFCHook:CreateWindow(Config)
 				DeleteConfig.Size = UDim2.new(0, 20, 0, 18)
 				DeleteConfig.ZIndex = 153
 
-				Icon.Name = KFCHook.RandomString();
+				Icon.Name = Neverlose.RandomString();
 				Icon.Parent = DeleteConfig
 				Icon.AnchorPoint = Vector2.new(0.5, 0.5)
 				Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -5489,7 +5489,7 @@ functionKFCHook:CreateWindow(Config)
 				Icon.Position = UDim2.new(0.5, 0, 0.5, 0)
 				Icon.Size = UDim2.new(1, 0, 1, 0)
 				Icon.ZIndex = 153
-				Icon.FontFace =KFCHook.BuiltInBold
+				Icon.FontFace = Neverlose.BuiltInBold
 				Icon.Text = "trash-can"
 				Icon.TextColor3 = Color3.fromRGB(223, 223, 223)
 				Icon.TextSize = 16.000
@@ -5499,7 +5499,7 @@ functionKFCHook:CreateWindow(Config)
 				UICorner.CornerRadius = UDim.new(0, 4)
 				UICorner.Parent = DeleteConfig
 
-				LoadConfig.Name = KFCHook.RandomString();
+				LoadConfig.Name = Neverlose.RandomString();
 				LoadConfig.Parent = BasedHandler
 				LoadConfig.BackgroundColor3 = Color3.fromRGB(39, 40, 49)
 				LoadConfig.BackgroundTransparency = 1.000
@@ -5509,7 +5509,7 @@ functionKFCHook:CreateWindow(Config)
 				LoadConfig.Size = UDim2.new(0, 20, 0, 18)
 				LoadConfig.ZIndex = 153
 
-				Icon_2.Name = KFCHook.RandomString();
+				Icon_2.Name = Neverlose.RandomString();
 				Icon_2.Parent = LoadConfig
 				Icon_2.AnchorPoint = Vector2.new(0.5, 0.5)
 				Icon_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -5519,7 +5519,7 @@ functionKFCHook:CreateWindow(Config)
 				Icon_2.Position = UDim2.new(0.5, 0, 0.5, 0)
 				Icon_2.Size = UDim2.new(1, 0, 1, 0)
 				Icon_2.ZIndex = 153
-				Icon_2.FontFace =KFCHook.BuiltInBold
+				Icon_2.FontFace = Neverlose.BuiltInBold
 				Icon_2.Text = "arrow-right-from-portrait-rectangle"
 				Icon_2.TextColor3 = Color3.fromRGB(223, 223, 223)
 				Icon_2.TextSize = 16.000
@@ -5532,7 +5532,7 @@ functionKFCHook:CreateWindow(Config)
 				UICorner_3.CornerRadius = UDim.new(0, 5)
 				UICorner_3.Parent = ConfigItemFrame
 
-				BasedLabel.Name = KFCHook.RandomString();
+				BasedLabel.Name = Neverlose.RandomString();
 				BasedLabel.Parent = ConfigItemFrame
 				BasedLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				BasedLabel.BackgroundTransparency = 1.000
@@ -5554,43 +5554,43 @@ functionKFCHook:CreateWindow(Config)
 
 				local Render = LPH_NO_VIRTUALIZE(function(rst)
 					if rst then
-						KFCHook.PlayAnimate(ConfigItemFrame,SlowyTween,{
+						Neverlose.PlayAnimate(ConfigItemFrame,SlowyTween,{
 							BackgroundTransparency = 0
 						})
 
-						KFCHook.PlayAnimate(Icon,SlowyTween,{
+						Neverlose.PlayAnimate(Icon,SlowyTween,{
 							TextTransparency = 0.400
 						})
 
-						KFCHook.PlayAnimate(Icon_2,SlowyTween,{
+						Neverlose.PlayAnimate(Icon_2,SlowyTween,{
 							TextTransparency = 0.400
 						})
 
-						KFCHook.PlayAnimate(BasedLabel,SlowyTween,{
+						Neverlose.PlayAnimate(BasedLabel,SlowyTween,{
 							TextTransparency = 0.200
 						})
 
-						KFCHook.PlayAnimate(UIStroke,SlowyTween,{
+						Neverlose.PlayAnimate(UIStroke,SlowyTween,{
 							Transparency = 0.500
 						})
 					else
-						KFCHook.PlayAnimate(ConfigItemFrame,SlowyTween,{
+						Neverlose.PlayAnimate(ConfigItemFrame,SlowyTween,{
 							BackgroundTransparency = 1
 						})
 
-						KFCHook.PlayAnimate(Icon,SlowyTween,{
+						Neverlose.PlayAnimate(Icon,SlowyTween,{
 							TextTransparency = 1
 						})
 
-						KFCHook.PlayAnimate(Icon_2,SlowyTween,{
+						Neverlose.PlayAnimate(Icon_2,SlowyTween,{
 							TextTransparency = 1
 						})
 
-						KFCHook.PlayAnimate(BasedLabel,SlowyTween,{
+						Neverlose.PlayAnimate(BasedLabel,SlowyTween,{
 							TextTransparency = 1
 						})
 
-						KFCHook.PlayAnimate(UIStroke,SlowyTween,{
+						Neverlose.PlayAnimate(UIStroke,SlowyTween,{
 							Transparency = 1
 						})
 					end;
@@ -5600,18 +5600,18 @@ functionKFCHook:CreateWindow(Config)
 				table.insert(ConfigLib.Signals , ConfigSignal:Connect(Render));
 
 				table.insert(ConfigLib.Signals , ConfigItemFrame.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
-					KFCHook.PlayAnimate(UIStroke,SlowyTween,{
+					Neverlose.PlayAnimate(UIStroke,SlowyTween,{
 						Transparency = 0.25
 					})
 				end)));
 
 				table.insert(ConfigLib.Signals , ConfigItemFrame.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
-					KFCHook.PlayAnimate(UIStroke,SlowyTween,{
+					Neverlose.PlayAnimate(UIStroke,SlowyTween,{
 						Transparency = 0.500
 					})
 				end)));
 
-				local deleter,signal =KFCHook:CreateInput(DeleteConfig,function()
+				local deleter,signal = Neverlose:CreateInput(DeleteConfig,function()
 					if ConfigNameStr == "Default" then
 						Logging.new("trash-can","You can't delete default config!",3.5)
 						return;
@@ -5627,7 +5627,7 @@ functionKFCHook:CreateWindow(Config)
 				end);
 
 
-				local _,load_signal =KFCHook:CreateInput(LoadConfig,function()
+				local _,load_signal = Neverlose:CreateInput(LoadConfig,function()
 					local path = Window.ConfigFolder..'/'..ConfigNameStr;
 
 					if isfile(path) then
@@ -5650,28 +5650,28 @@ functionKFCHook:CreateWindow(Config)
 				table.insert(ConfigLib.Signals , load_signal);
 
 				table.insert(ConfigLib.Signals , deleter.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
-					KFCHook.PlayAnimate(Icon,SlowyTween,{
+					Neverlose.PlayAnimate(Icon,SlowyTween,{
 						TextTransparency = 0.2,
 						TextColor3 = Color3.fromRGB(223, 125, 125)
 					})
 				end)))
 
 				table.insert(ConfigLib.Signals , deleter.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
-					KFCHook.PlayAnimate(Icon,SlowyTween,{
+					Neverlose.PlayAnimate(Icon,SlowyTween,{
 						TextTransparency = 0.400,
 						TextColor3 = Color3.fromRGB(223, 223, 223)
 					})
 				end)))
 
 				table.insert(ConfigLib.Signals , LoadConfig.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
-					KFCHook.PlayAnimate(Icon_2,SlowyTween,{
+					Neverlose.PlayAnimate(Icon_2,SlowyTween,{
 						TextTransparency = 0.2,
-						TextColor3 =KFCHook.AccentColor
+						TextColor3 = Neverlose.AccentColor
 					})
 				end)))
 
 				table.insert(ConfigLib.Signals , LoadConfig.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
-					KFCHook.PlayAnimate(Icon_2,SlowyTween,{
+					Neverlose.PlayAnimate(Icon_2,SlowyTween,{
 						TextTransparency = 0.400,
 						TextColor3 = Color3.fromRGB(223, 223, 223)
 					})
@@ -5711,7 +5711,7 @@ functionKFCHook:CreateWindow(Config)
 			end;
 		end);
 
-		local hover_write =KFCHook:CreateInput(ConfigIcon,function()
+		local hover_write = Neverlose:CreateInput(ConfigIcon,function()
 			local path = Window.ConfigFolder..'/'..(ConfigLib.SelectedConfig or "Default");
 
 			if isfile(path) then
@@ -5721,20 +5721,20 @@ functionKFCHook:CreateWindow(Config)
 			end;
 		end);
 
-		KFCHook:AddSignal(hover_write.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
-			KFCHook.PlayAnimate(ConfigIcon,SlowyTween,{
+		Neverlose:AddSignal(hover_write.MouseEnter:Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose.PlayAnimate(ConfigIcon,SlowyTween,{
 				TextTransparency = 0.1
 			})
 		end)));
 
-		KFCHook:AddSignal(hover_write.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
-			KFCHook.PlayAnimate(ConfigIcon,SlowyTween,{
+		Neverlose:AddSignal(hover_write.MouseLeave:Connect(LPH_NO_VIRTUALIZE(function()
+			Neverlose.PlayAnimate(ConfigIcon,SlowyTween,{
 				TextTransparency = 0.25
 			})
 		end)));
 
 
-		local mv =KFCHook:CreateInput(LoadConfig , function()
+		local mv = Neverlose:CreateInput(LoadConfig , function()
 			local cfg_name = TextBox.Text;
 
 			if cfg_name and cfg_name:byte() and not cfg_name:find('/',1,true) and not cfg_name:find('\\',1,true) then
@@ -5754,14 +5754,14 @@ functionKFCHook:CreateWindow(Config)
 			end;
 		end);
 
-		KFCHook:AddSignal(mv.MouseEnter:Connect(function()
-			KFCHook.PlayAnimate(Icon , SlowyTween , {
+		Neverlose:AddSignal(mv.MouseEnter:Connect(function()
+			Neverlose.PlayAnimate(Icon , SlowyTween , {
 				TextTransparency = 0.1
 			})
 		end))
 
-		KFCHook:AddSignal(mv.MouseLeave:Connect(function()
-			KFCHook.PlayAnimate(Icon , SlowyTween , {
+		Neverlose:AddSignal(mv.MouseLeave:Connect(function()
+			Neverlose.PlayAnimate(Icon , SlowyTween , {
 				TextTransparency = 0.35
 			})
 		end))
@@ -5778,7 +5778,7 @@ functionKFCHook:CreateWindow(Config)
 
 			ConfigLib.UnsafeThread = UserInputService.InputBegan:Connect(function(Input)
 				if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-					if notKFCHook:IsMouseOverFrame(ConfigMenu) then
+					if not Neverlose:IsMouseOverFrame(ConfigMenu) then
 						if ConfigLib.UnsafeThread then
 							ConfigLib.UnsafeThread:Disconnect();
 							ConfigLib.UnsafeThread = nil;
@@ -5795,9 +5795,9 @@ functionKFCHook:CreateWindow(Config)
 
 	Window:_InitConfig();
 
-	local UserSettings =KFCHook:CreateOptionWindow(BottomFrame , BottomFrame.ZIndex + 13);
+	local UserSettings = Neverlose:CreateOptionWindow(BottomFrame , BottomFrame.ZIndex + 13);
 	local reciveSignal;
-	KFCHook:CreateInput(BottomFrame , LPH_NO_VIRTUALIZE(function()
+	Neverlose:CreateInput(BottomFrame , LPH_NO_VIRTUALIZE(function()
 		if reciveSignal then
 			reciveSignal:Disconnect();
 			reciveSignal = nil;	
@@ -5807,7 +5807,7 @@ functionKFCHook:CreateWindow(Config)
 
 		reciveSignal = UserInputService.InputBegan:Connect(function(Input)
 			if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-				if notKFCHook:IsMouseOverFrame(UserSettings.Root) and notKFCHook:IsMouseOverFrame(BottomFrame) and notKFCHook.IsMosueOverOtherFrame then
+				if not Neverlose:IsMouseOverFrame(UserSettings.Root) and not Neverlose:IsMouseOverFrame(BottomFrame) and not Neverlose.IsMosueOverOtherFrame then
 					if reciveSignal then
 						reciveSignal:Disconnect();
 						reciveSignal = nil;	
@@ -5822,8 +5822,8 @@ functionKFCHook:CreateWindow(Config)
 	Window.UserSettings = UserSettings;
 
 	function Window:SetAccount(Config)
-		Config =KFCHook:ProcessParams(Config , {
-			Profile =KFCHook.UserProfile,
+		Config = Neverlose:ProcessParams(Config , {
+			Profile = Neverlose.UserProfile,
 			Username = LocalPlayer.DisplayName,
 			Expires = "Free User",
 		});
@@ -5849,7 +5849,7 @@ functionKFCHook:CreateWindow(Config)
 		Window.Size = newsize;
 
 		if Window.Signal:GetValue() then
-			KFCHook.PlayAnimate(WindowFrame , VSlowTween , {
+			Neverlose.PlayAnimate(WindowFrame , VSlowTween , {
 				Size = Window.Size
 			})
 		end
@@ -5857,7 +5857,7 @@ functionKFCHook:CreateWindow(Config)
 
 	Window:SetAccount();
 
-	KFCHook:AddSignal(UserInputService.InputBegan:Connect(LPH_NO_VIRTUALIZE(function(value,ISTYPING)
+	Neverlose:AddSignal(UserInputService.InputBegan:Connect(LPH_NO_VIRTUALIZE(function(value,ISTYPING)
 		if value.KeyCode == Window.Keybind or value.KeyCode.Name == Window.Keybind then
 			if not ISTYPING then
 				Window:ToggleInterface()
@@ -5874,18 +5874,18 @@ functionKFCHook:CreateWindow(Config)
 	end;
 
 	function Window:Watermark()
-		ifKFCHook.__WatermarkCache then
-			returnKFCHook.__WatermarkCache;
+		if Neverlose.__WatermarkCache then
+			return Neverlose.__WatermarkCache;
 		end;
 
 		local Watermark_lb = {};
 		local Watermark = Instance.new("Frame")
 		local UICorner = Instance.new("UICorner")
 		local UIListLayout = Instance.new("UIListLayout")
-		local Shadow =KFCHook:CreateShadow(Watermark);
+		local Shadow = Neverlose:CreateShadow(Watermark);
 
-		Watermark.Name = KFCHook.RandomString();
-		Watermark.Parent =KFCHook.ScreenGui
+		Watermark.Name = Neverlose.RandomString();
+		Watermark.Parent = Neverlose.ScreenGui
 		Watermark.AnchorPoint = Vector2.new(1, 0)
 		Watermark.BackgroundColor3 = Color3.fromRGB(8, 8, 13)
 		Watermark.BackgroundTransparency = 0.200
@@ -5916,18 +5916,18 @@ functionKFCHook:CreateWindow(Config)
 				Watermark.Visible = false;
 				Watermark.Parent = nil;
 			else
-				Watermark.Parent =KFCHook.ScreenGui
+				Watermark.Parent = Neverlose.ScreenGui
 				Watermark.Visible = true;
 			end;
 		end));
 
 		UIListLayout:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(LPH_NO_VIRTUALIZE(function()
-			KFCHook.PlayAnimate(Watermark , SlowyTween , {
+			Neverlose.PlayAnimate(Watermark , SlowyTween , {
 				Size = UDim2.new(0, UIListLayout.AbsoluteContentSize.X + 5, 0, 30)
 			})
 		end));
 
-		KFCHook.__WatermarkCache = Watermark_lb;
+		Neverlose.__WatermarkCache = Watermark_lb;
 
 		Shadow:Render(true);
 
@@ -5938,7 +5938,7 @@ functionKFCHook:CreateWindow(Config)
 			Watermark_lb.Status = value;
 
 			if value then
-				KFCHook.PlayAnimate(Watermark,SlowyTween , {
+				Neverlose.PlayAnimate(Watermark,SlowyTween , {
 					BackgroundTransparency = 0.200
 				})
 
@@ -5948,7 +5948,7 @@ functionKFCHook:CreateWindow(Config)
 					pcall(v,true);
 				end;
 			else
-				KFCHook.PlayAnimate(Watermark,SlowyTween , {
+				Neverlose.PlayAnimate(Watermark,SlowyTween , {
 					BackgroundTransparency = 1
 				})
 
@@ -5974,7 +5974,7 @@ functionKFCHook:CreateWindow(Config)
 			Frame.BorderSizePixel = 0
 			Frame.Size = UDim2.new(0, 50, 0, 30)
 
-			Content.Name = KFCHook.RandomString();
+			Content.Name = Neverlose.RandomString();
 			Content.Parent = Frame
 			Content.AnchorPoint = Vector2.new(0, 0.5)
 			Content.BackgroundColor3 = Color3.fromRGB(186, 186, 186)
@@ -5991,7 +5991,7 @@ functionKFCHook:CreateWindow(Config)
 			Content.TextTransparency = 0.200
 			Content.TextXAlignment = Enum.TextXAlignment.Left
 
-			Icon.Name = KFCHook.RandomString();
+			Icon.Name = Neverlose.RandomString();
 			Icon.Parent = Frame
 			Icon.AnchorPoint = Vector2.new(0, 0.5)
 			Icon.BackgroundColor3 = Color3.fromRGB(186, 186, 186)
@@ -6001,9 +6001,9 @@ functionKFCHook:CreateWindow(Config)
 			Icon.Position = UDim2.new(0, 10, 0.5, 0)
 			Icon.Size = UDim2.new(0, 20, 0, 20)
 			Icon.ZIndex = 17
-			Icon.FontFace =KFCHook.BuiltInBold;
+			Icon.FontFace = Neverlose.BuiltInBold;
 			Icon.Text = IconStr
-			Icon.TextColor3 =KFCHook.AccentColor
+			Icon.TextColor3 = Neverlose.AccentColor
 			Icon.TextSize = 18.000
 			Icon.TextTransparency = 0.250
 			Icon.TextWrapped = true
@@ -6012,11 +6012,11 @@ functionKFCHook:CreateWindow(Config)
 				local size = TextService:GetTextSize(Content.Text , Content.TextSize,Content.Font,Vector2.new(math.huge,math.huge))
 
 				if InnerBlock.Visible then
-					KFCHook.PlayAnimate(Frame,VSlowTween,{
+					Neverlose.PlayAnimate(Frame,VSlowTween,{
 						Size = UDim2.new(0, size.X + 35, 0, 30)
 					})
 				else
-					KFCHook.PlayAnimate(Frame,VSlowTween,{
+					Neverlose.PlayAnimate(Frame,VSlowTween,{
 						Size = UDim2.new(0, 0, 0, 30)
 					})
 				end;
@@ -6038,20 +6038,20 @@ functionKFCHook:CreateWindow(Config)
 
 			InnerBlock.SetRender = LPH_NO_VIRTUALIZE(function(value)
 				if value and InnerBlock.Visible then
-					KFCHook.PlayAnimate(Content,SlowyTween , {
+					Neverlose.PlayAnimate(Content,SlowyTween , {
 						TextTransparency = 0.200
 					})
 
-					KFCHook.PlayAnimate(Icon,SlowyTween , {
+					Neverlose.PlayAnimate(Icon,SlowyTween , {
 						TextTransparency = 0.250
 					})
 				else
 
-					KFCHook.PlayAnimate(Content,SlowyTween , {
+					Neverlose.PlayAnimate(Content,SlowyTween , {
 						TextTransparency = 1
 					})
 
-					KFCHook.PlayAnimate(Icon,SlowyTween , {
+					Neverlose.PlayAnimate(Icon,SlowyTween , {
 						TextTransparency = 1
 					})
 				end;
@@ -6066,7 +6066,7 @@ functionKFCHook:CreateWindow(Config)
 			end;
 
 			function InnerBlock:Input(func)
-				local c,s =KFCHook:CreateInput(Frame,func);
+				local c,s = Neverlose:CreateInput(Frame,func);
 
 				return s;
 			end;
@@ -6082,17 +6082,17 @@ functionKFCHook:CreateWindow(Config)
 	return Window;
 end;
 
-functionKFCHook:CreateNotification()
-	ifKFCHook.__Notification_Cache then
-		returnKFCHook.__Notification_Cache;
+function Neverlose:CreateNotification()
+	if Neverlose.__Notification_Cache then
+		return Neverlose.__Notification_Cache;
 	end;
 
 	local Notifier = {};
 	local Notification = Instance.new("Frame")
 	local UIListLayout = Instance.new("UIListLayout")
 
-	Notification.Name = KFCHook.RandomString();
-	Notification.Parent =KFCHook.ScreenGui;
+	Notification.Name = Neverlose.RandomString();
+	Notification.Parent = Neverlose.ScreenGui;
 	Notification.AnchorPoint = Vector2.new(1, 0)
 	Notification.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Notification.BackgroundTransparency = 1.000
@@ -6106,18 +6106,18 @@ functionKFCHook:CreateNotification()
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	UIListLayout.Padding = UDim.new(0, 0)
 
-	KFCHook.__Notification_Cache = Notifier;
+	Neverlose.__Notification_Cache = Notifier;
 
 	function Notifier.new(Config)
-		Config =KFCHook:ProcessParams(Config , {
+		Config = Neverlose:ProcessParams(Config , {
 			Title = "Notification",
 			Content = "Hello World!",
-			Logo =KFCHook.GlobalLogo or "rbxasset://textures/ui/VerifiedBadgeNameIcon.png",
+			Logo = Neverlose.GlobalLogo or "rbxasset://textures/ui/VerifiedBadgeNameIcon.png",
 			Duration = 5,
 		});
 
-		ifKFCHook.__WatermarkCache then
-			KFCHook.PlayAnimate(Notification,SlowyTween , {
+		if Neverlose.__WatermarkCache then
+			Neverlose.PlayAnimate(Notification,SlowyTween , {
 				Position = UDim2.new(1, -25, 0, 55)
 			});
 		end;
@@ -6130,9 +6130,9 @@ functionKFCHook:CreateNotification()
 		local UICorner_2 = Instance.new("UICorner")
 		local NotifyName = Instance.new("TextLabel")
 		local NotifyContent = Instance.new("TextLabel");
-		local shadow =KFCHook:CreateShadow(NotifyFrame , true);
+		local shadow = Neverlose:CreateShadow(NotifyFrame , true);
 
-		ContainerFrame.Name = KFCHook.RandomString();
+		ContainerFrame.Name = Neverlose.RandomString();
 		ContainerFrame.Parent = Notification
 		ContainerFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		ContainerFrame.BackgroundTransparency = 1.000
@@ -6140,7 +6140,7 @@ functionKFCHook:CreateNotification()
 		ContainerFrame.BorderSizePixel = 0
 		ContainerFrame.Size = UDim2.new(0, 0, 0, 100)
 
-		NotifyFrame.Name = KFCHook.RandomString();
+		NotifyFrame.Name = Neverlose.RandomString();
 		NotifyFrame.Parent = ContainerFrame
 		NotifyFrame.AnchorPoint = Vector2.new(1, 0)
 		NotifyFrame.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -6159,7 +6159,7 @@ functionKFCHook:CreateNotification()
 		UIStroke.Color = Color3.fromRGB(45, 48, 58)
 		UIStroke.Parent = NotifyFrame
 
-		LogoImage.Name = KFCHook.RandomString();
+		LogoImage.Name = Neverlose.RandomString();
 		LogoImage.Parent = NotifyFrame
 		LogoImage.AnchorPoint = Vector2.new(0, 0.5)
 		LogoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -6170,12 +6170,12 @@ functionKFCHook:CreateNotification()
 		LogoImage.Size = UDim2.new(0, 35, 0, 35)
 		LogoImage.ZIndex = 131
 		LogoImage.Image = Config.Logo
-		LogoImage.ImageColor3 =KFCHook.IconColor;
+		LogoImage.ImageColor3 = Neverlose.IconColor;
 
 		UICorner_2.CornerRadius = UDim.new(0, 7)
 		UICorner_2.Parent = LogoImage
 
-		NotifyName.Name = KFCHook.RandomString();
+		NotifyName.Name = Neverlose.RandomString();
 		NotifyName.Parent = NotifyFrame
 		NotifyName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		NotifyName.BackgroundTransparency = 1.000
@@ -6190,7 +6190,7 @@ functionKFCHook:CreateNotification()
 		NotifyName.TextSize = 17.000
 		NotifyName.TextXAlignment = Enum.TextXAlignment.Left
 
-		NotifyContent.Name = KFCHook.RandomString();
+		NotifyContent.Name = Neverlose.RandomString();
 		NotifyContent.Parent = NotifyFrame
 		NotifyContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		NotifyContent.BackgroundTransparency = 1.000
@@ -6214,7 +6214,7 @@ functionKFCHook:CreateNotification()
 		NotifyFrame.Size = UDim2.new(0, MainSize + 65, 0, 55);
 
 		shadow:Render(true)
-		KFCHook.PlayAnimate(NotifyFrame , VSlowTween , {
+		Neverlose.PlayAnimate(NotifyFrame , VSlowTween , {
 			Position = UDim2.new(1, 0, 0, 0)
 		})
 
@@ -6222,37 +6222,37 @@ functionKFCHook:CreateNotification()
 
 		task.delay(Config.Duration or 5 , LPH_NO_VIRTUALIZE(function()
 
-			ifKFCHook.__WatermarkCache then
-				KFCHook.PlayAnimate(Notification,SlowyTween , {
+			if Neverlose.__WatermarkCache then
+				Neverlose.PlayAnimate(Notification,SlowyTween , {
 					Position = UDim2.new(1, -25, 0, 55)
 				});
 			end;
 
 			shadow:Render(false)
 
-			KFCHook.PlayAnimate(NotifyFrame , SlowyTween , {
+			Neverlose.PlayAnimate(NotifyFrame , SlowyTween , {
 				BackgroundTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 				Transparency = 1
 			})
 
-			KFCHook.PlayAnimate(LogoImage , SlowyTween , {
+			Neverlose.PlayAnimate(LogoImage , SlowyTween , {
 				ImageTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(NotifyName , SlowyTween , {
+			Neverlose.PlayAnimate(NotifyName , SlowyTween , {
 				TextTransparency = 1
 			})
 
-			KFCHook.PlayAnimate(NotifyContent , SlowyTween , {
+			Neverlose.PlayAnimate(NotifyContent , SlowyTween , {
 				TextTransparency = 1
 			})
 
 			task.wait(0.125);
 
-			KFCHook.PlayAnimate(ContainerFrame , SlowyTween , {
+			Neverlose.PlayAnimate(ContainerFrame , SlowyTween , {
 				Size = UDim2.new(0, 0, 0, 0)
 			})
 
@@ -6265,29 +6265,29 @@ functionKFCHook:CreateNotification()
 	return Notifier;
 end;
 
-functionKFCHook:CreateLogger()
-	ifKFCHook.__LogSystem then
-		return 	KFCHook.__LogSystem;
+function Neverlose:CreateLogger()
+	if Neverlose.__LogSystem then
+		return 	Neverlose.__LogSystem;
 	end;
 
 	local Logging = {};
 	local Log = Instance.new("Frame")
 	local UIListLayout = Instance.new("UIListLayout")
 
-	Log.Name = KFCHook.RandomString();
-	Log.Parent =KFCHook.ScreenGui
+	Log.Name = Neverlose.RandomString();
+	Log.Parent = Neverlose.ScreenGui
 	Log.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Log.BackgroundTransparency = 1.000
 	Log.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Log.BorderSizePixel = 0
-	Log.Position = UDim2.new(0, 25, 0, 5 + math.abs(KFCHook.ScreenGui.AbsolutePosition.Y))
+	Log.Position = UDim2.new(0, 25, 0, 5 + math.abs(Neverlose.ScreenGui.AbsolutePosition.Y))
 	Log.Size = UDim2.new(0, 25, 0, 25)
 
 	UIListLayout.Parent = Log
 	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	UIListLayout.Padding = UDim.new(0, 12)
 
-	KFCHook.__LogSystem = Logging;
+	Neverlose.__LogSystem = Logging;
 
 	function Logging.new(IconStr: string , Message: string , Duration: number)
 		Duration = Duration or 3;
@@ -6301,9 +6301,9 @@ functionKFCHook:CreateLogger()
 		local Line = Instance.new("Frame")
 		local UICorner_2 = Instance.new("UICorner")
 		local Icon = Instance.new("TextLabel")
-		local Shadow =KFCHook:CreateShadow(LogFrame , true);
+		local Shadow = Neverlose:CreateShadow(LogFrame , true);
 
-		LogFrame.Name = KFCHook.RandomString();
+		LogFrame.Name = Neverlose.RandomString();
 		LogFrame.Parent = Log
 		LogFrame.AnchorPoint = Vector2.new(0.5, 0)
 		LogFrame.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -6322,7 +6322,7 @@ functionKFCHook:CreateLogger()
 		UIStroke.Color = Color3.fromRGB(45, 48, 58)
 		UIStroke.Parent = LogFrame
 
-		LogContent.Name = KFCHook.RandomString();
+		LogContent.Name = Neverlose.RandomString();
 		LogContent.Parent = LogFrame
 		LogContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		LogContent.BackgroundTransparency = 1.000
@@ -6338,10 +6338,10 @@ functionKFCHook:CreateLogger()
 		LogContent.TextTransparency = 1--0.250
 		LogContent.TextXAlignment = Enum.TextXAlignment.Left
 
-		Line.Name = KFCHook.RandomString();
+		Line.Name = Neverlose.RandomString();
 		Line.Parent = LogFrame
 		Line.AnchorPoint = Vector2.new(0, 0.5)
-		Line.BackgroundColor3 =KFCHook.AccentColor
+		Line.BackgroundColor3 = Neverlose.AccentColor
 		Line.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Line.BackgroundTransparency = 1 --0
 		Line.BorderSizePixel = 0
@@ -6352,7 +6352,7 @@ functionKFCHook:CreateLogger()
 		UICorner_2.CornerRadius = UDim.new(0, 4)
 		UICorner_2.Parent = Line
 
-		Icon.Name = KFCHook.RandomString();
+		Icon.Name = Neverlose.RandomString();
 		Icon.Parent = LogFrame
 		Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Icon.BackgroundTransparency = 1.000
@@ -6361,7 +6361,7 @@ functionKFCHook:CreateLogger()
 		Icon.Position = UDim2.new(0, 7, 0, 3)
 		Icon.Size = UDim2.new(0, 15, 0, 15)
 		Icon.ZIndex = 133
-		Icon.FontFace =KFCHook.BuiltInBold
+		Icon.FontFace = Neverlose.BuiltInBold
 		Icon.Text = IconStr
 		Icon.TextColor3 = Color3.fromRGB(223, 223, 223)
 		Icon.TextSize = 13.000
@@ -6370,7 +6370,7 @@ functionKFCHook:CreateLogger()
 
 		local size = TextService:GetTextSize(LogContent.Text,LogContent.TextSize,LogContent.Font,Vector2.new(math.huge,math.huge));
 
-		KFCHook.PlayAnimate(LogFrame , SlowyTween , {
+		Neverlose.PlayAnimate(LogFrame , SlowyTween , {
 			Size = UDim2.new(0, size.X + 35, 0, 20),
 			BackgroundTransparency =  0.075
 		});
@@ -6378,19 +6378,19 @@ functionKFCHook:CreateLogger()
 		task.delay(0.15,LPH_NO_VIRTUALIZE(function()
 			Shadow:Render(true);
 
-			KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 				Transparency = 0.650
 			});
 
-			KFCHook.PlayAnimate(LogContent , SlowyTween , {
+			Neverlose.PlayAnimate(LogContent , SlowyTween , {
 				TextTransparency = 0.25
 			});
 
-			KFCHook.PlayAnimate(Line , SlowyTween , {
+			Neverlose.PlayAnimate(Line , SlowyTween , {
 				BackgroundTransparency = 0
 			});
 
-			KFCHook.PlayAnimate(Icon , SlowyTween , {
+			Neverlose.PlayAnimate(Icon , SlowyTween , {
 				TextTransparency = 0.25
 			});
 
@@ -6398,23 +6398,23 @@ functionKFCHook:CreateLogger()
 
 			Shadow:Render(false);
 
-			KFCHook.PlayAnimate(LogFrame , SlowyTween , {
+			Neverlose.PlayAnimate(LogFrame , SlowyTween , {
 				BackgroundTransparency =  1
 			});
 
-			KFCHook.PlayAnimate(UIStroke , SlowyTween , {
+			Neverlose.PlayAnimate(UIStroke , SlowyTween , {
 				Transparency = 1
 			});
 
-			KFCHook.PlayAnimate(LogContent , SlowyTween , {
+			Neverlose.PlayAnimate(LogContent , SlowyTween , {
 				TextTransparency = 1
 			});
 
-			KFCHook.PlayAnimate(Line , SlowyTween , {
+			Neverlose.PlayAnimate(Line , SlowyTween , {
 				BackgroundTransparency = 1
 			});
 
-			KFCHook.PlayAnimate(Icon , SlowyTween , {
+			Neverlose.PlayAnimate(Icon , SlowyTween , {
 				TextTransparency = 1
 			});
 
@@ -6427,12 +6427,12 @@ functionKFCHook:CreateLogger()
 	return Logging
 end;
 
-functionKFCHook:CreateIndicator()
+function Neverlose:CreateIndicator()
 	local IndicatorFrame = Instance.new("Frame")
 	local UIListLayout = Instance.new("UIListLayout")
 
-	IndicatorFrame.Name = KFCHook.RandomString();
-	IndicatorFrame.Parent =KFCHook.ScreenGui;
+	IndicatorFrame.Name = Neverlose.RandomString();
+	IndicatorFrame.Parent = Neverlose.ScreenGui;
 	IndicatorFrame.AnchorPoint = Vector2.new(0, 0.5)
 	IndicatorFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	IndicatorFrame.BackgroundTransparency = 1.000
@@ -6457,7 +6457,7 @@ functionKFCHook:CreateIndicator()
 	Indicators.Root = IndicatorFrame;
 
 	function Indicators.new(Config)
-		Config =KFCHook:ProcessParams(Config , {
+		Config = Neverlose:ProcessParams(Config , {
 			Name = "Indicator",
 			Icon = 'crosshairs',
 			Color = 'Red',
@@ -6475,9 +6475,9 @@ functionKFCHook:CreateIndicator()
 		local UIGradient = Instance.new("UIGradient")
 		local Icon = Instance.new("TextLabel")
 		local Content = Instance.new("TextLabel")
-		local Shadow =KFCHook:CreateShadow(IndicatorItem);
+		local Shadow = Neverlose:CreateShadow(IndicatorItem);
 
-		IndicatorItem.Name = KFCHook.RandomString();
+		IndicatorItem.Name = Neverlose.RandomString();
 		IndicatorItem.BackgroundColor3 = Color3.fromRGB(8, 8, 13)
 		IndicatorItem.BackgroundTransparency = 1
 		IndicatorItem.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -6500,7 +6500,7 @@ functionKFCHook:CreateIndicator()
 		UICorner.CornerRadius = UDim.new(0, 25)
 		UICorner.Parent = IndicatorItem
 
-		Line.Name = KFCHook.RandomString();
+		Line.Name = Neverlose.RandomString();
 		Line.Parent = IndicatorItem
 		Line.AnchorPoint = Vector2.new(0, 0.5)
 		Line.BackgroundColor3 = Color3.fromRGB(186, 186, 186)
@@ -6518,7 +6518,7 @@ functionKFCHook:CreateIndicator()
 		UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(1.00, 1.00)}
 		UIGradient.Parent = Line
 
-		Icon.Name = KFCHook.RandomString();
+		Icon.Name = Neverlose.RandomString();
 		Icon.Parent = IndicatorItem
 		Icon.AnchorPoint = Vector2.new(0, 0.5)
 		Icon.BackgroundColor3 = Color3.fromRGB(186, 186, 186)
@@ -6528,14 +6528,14 @@ functionKFCHook:CreateIndicator()
 		Icon.Position = UDim2.new(0, 10, 0.5, 0)
 		Icon.Size = UDim2.new(0, 25, 0, 25)
 		Icon.ZIndex = 17
-		Icon.FontFace =KFCHook.BuiltInBold;
+		Icon.FontFace = Neverlose.BuiltInBold;
 		Icon.Text = Config.Icon
 		Icon.TextColor3 = Color3.fromRGB(186, 186, 186)
 		Icon.TextSize = 21.000
 		Icon.TextTransparency = 1
 		Icon.TextWrapped = true
 
-		Content.Name = KFCHook.RandomString();
+		Content.Name = Neverlose.RandomString();
 		Content.Parent = IndicatorItem
 		Content.AnchorPoint = Vector2.new(0, 0.5)
 		Content.BackgroundColor3 = Color3.fromRGB(186, 186, 186)
@@ -6555,7 +6555,7 @@ functionKFCHook:CreateIndicator()
 		Indicator.Update = LPH_NO_VIRTUALIZE(function()
 			local text = TextService:GetTextSize(Content.Text,Content.TextSize , Content.Font , Vector2.new(math.huge,math.huge));
 
-			KFCHook.PlayAnimate(IndicatorItem , SlowyTween , {
+			Neverlose.PlayAnimate(IndicatorItem , SlowyTween , {
 				Size = UDim2.new(0, text.X + 60, 0, 40);
 			})
 		end);
@@ -6564,42 +6564,42 @@ functionKFCHook:CreateIndicator()
 			Indicator.Visible = value;
 
 			if value then
-				KFCHook.PlayAnimate(IndicatorItem , SlowyTween , {
+				Neverlose.PlayAnimate(IndicatorItem , SlowyTween , {
 					BackgroundTransparency = 0.200
 				});
 
-				KFCHook.PlayAnimate(Line , SlowyTween , {
+				Neverlose.PlayAnimate(Line , SlowyTween , {
 					BackgroundTransparency = 0,
 					BackgroundColor3 = Indicators.Color[Indicator.CurrentColor]
 				});
 
-				KFCHook.PlayAnimate(Icon , VSlowTween , {
+				Neverlose.PlayAnimate(Icon , VSlowTween , {
 					TextTransparency = 0.250,
 					TextColor3 = Indicators.Color[Indicator.CurrentColor]
 				});
 
-				KFCHook.PlayAnimate(Content , VSlowTween , {
+				Neverlose.PlayAnimate(Content , VSlowTween , {
 					TextTransparency = 0.2,
 					TextColor3 = Indicators.Color[Indicator.CurrentColor]
 				});
 
 				Shadow:Render(true);
 			else
-				KFCHook.PlayAnimate(IndicatorItem , SlowyTween , {
+				Neverlose.PlayAnimate(IndicatorItem , SlowyTween , {
 					BackgroundTransparency = 1
 				});
 
-				KFCHook.PlayAnimate(Line , SlowyTween , {
+				Neverlose.PlayAnimate(Line , SlowyTween , {
 					BackgroundTransparency = 1,
 					BackgroundColor3 = Indicators.Color[Indicator.CurrentColor]
 				});
 
-				KFCHook.PlayAnimate(Icon , VSlowTween , {
+				Neverlose.PlayAnimate(Icon , VSlowTween , {
 					TextTransparency = 1,
 					TextColor3 = Indicators.Color[Indicator.CurrentColor]
 				});
 
-				KFCHook.PlayAnimate(Content , VSlowTween , {
+				Neverlose.PlayAnimate(Content , VSlowTween , {
 					TextTransparency = 1,
 					TextColor3 = Indicators.Color[Indicator.CurrentColor]
 				});
@@ -6635,14 +6635,14 @@ functionKFCHook:CreateIndicator()
 	return Indicators;
 end;
 
-functionKFCHook:Unload()
-	if notKFCHook.UnloadEnabled then
+function Neverlose:Unload()
+	if not Neverlose.UnloadEnabled then
 		return;	
 	end;
 
-	KFCHook.ScreenGui:Destroy();
+	Neverlose.ScreenGui:Destroy();
 
-	for i,v in next ,KFCHook.GlobalSignals do
+	for i,v in next , Neverlose.GlobalSignals do
 		pcall(v.Disconnect,v)
 	end;
 end;
@@ -6670,4 +6670,4 @@ local function DisableHCWatermark()
 end
 
 task.spawn(DisableHCWatermark)
-returnKFCHook;
+return Neverlose;

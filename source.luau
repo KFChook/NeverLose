@@ -208,15 +208,15 @@ if getcustomasset then
 	end;
 
 	pcall(function()
-		if not isfile(dir..'/'..'logo.png') then
-			local byte = game:HttpGet(string.format(link,'logo.png'));
+		if not isfile(dir..'/'..'8E144EBC-78B2-4075-8FC6-D01B6FF348B8.png') then
+			local byte = game:HttpGet(string.format(link,'8E144EBC-78B2-4075-8FC6-D01B6FF348B8.png'));
 
-			writefile(dir..'/'..'logo.png' , byte);
+			writefile(dir..'/'..'8E144EBC-78B2-4075-8FC6-D01B6FF348B8.png' , byte);
 			task.wait();
 		end;
 
-		if isfile(dir..'/'..'logo.png') then
-			Neverlose.GlobalLogo = getcustomasset(dir..'/'..'logo.png')
+		if isfile(dir..'/'..'8E144EBC-78B2-4075-8FC6-D01B6FF348B8.png') then
+			Neverlose.GlobalLogo = getcustomasset(dir..'/'..'8E144EBC-78B2-4075-8FC6-D01B6FF348B8.png')
 		end;
 	end);
 

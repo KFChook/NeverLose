@@ -197,7 +197,7 @@ Neverlose.RegisiteryColor = {};
 Neverlose.NameRegisitry = {};
 Neverlose.IsMosueOverOtherFrame = false;
 Neverlose.GlobalLogo = "rbxassetid://98861852277971";
-Neverlose.ImageColorMapping = "rbxassetid://4155801252";
+Neverlose.ImageColorMapping = "rbxassetid://98861852277971";
 
 if getcustomasset then
 	local link = "https://github.com/4lpaca-pin/Neverlose/blob/main/assets/%s?raw=true";

@@ -369,10 +369,10 @@ Logging.new("crosshairs",'Hit thatguy in the neck for 100 damage',15)
 task.wait(2)
 Logging.new("crosshairs-slash",'Missed shot due to prediction error & YOUR NN',15)
 
-HC:SetRender(true);
+HC:SetRender(false);
 
 while true do task.wait(3)
-	Watermark:SetRender(true);
+	Watermark:SetRender(false);
 	
 	Watermark:SetRender(false);
 	HC:SetRender(false);

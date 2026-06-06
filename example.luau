@@ -12,7 +12,7 @@ local window = NeverLose:CreateWindow({
 	Size = NeverLose.Scales.Default,
 	ConfigFolder = "KfcHookConfigs",
 	Enable3DRenderer = false,
-	Keybind = "Insert"
+	Keybind = "RightShift"
 });
 
 local Watermark = window:Watermark();

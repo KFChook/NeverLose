@@ -199,40 +199,7 @@ Neverlose.IsMosueOverOtherFrame = false;
 Neverlose.GlobalLogo = "rbxassetid://98861852277971";
 Neverlose.ImageColorMapping = "rbxassetid://98861852277971";
 
-if getcustomasset then
-	local link = "https://github.com/KFChook/NeverLose/blob/main/assets/8E144EBC-78B2-4075-8FC6-D01B6FF348B8.png";
-	local dir = 'NLAssets';
 
-	if not isfolder(dir) then
-		makefolder(dir);
-	end;
-
-	pcall(function()
-		if not isfile(dir..'/'..'8E144EBC-78B2-4075-8FC6-D01B6FF348B8.png') then
-			local byte = game:HttpGet(string.format(link,'8E144EBC-78B2-4075-8FC6-D01B6FF348B8.png'));
-
-			writefile(dir..'/'..'8E144EBC-78B2-4075-8FC6-D01B6FF348B8.png' , byte);
-			task.wait();
-		end;
-
-		if isfile(dir..'/'..'8E144EBC-78B2-4075-8FC6-D01B6FF348B8.png') then
-			Neverlose.GlobalLogo = getcustomasset(dir..'/'..'8E144EBC-78B2-4075-8FC6-D01B6FF348B8.png')
-		end;
-	end);
-
-	pcall(function()
-		if not isfile(dir..'/'..'saturation_value_gradient.png') then
-			local byte = game:HttpGet(string.format(link,'saturation_value_gradient.png'));
-
-			writefile(dir..'/'..'saturation_value_gradient.png' , byte);
-			task.wait();
-		end;
-
-		if isfile(dir..'/'..'saturation_value_gradient.png') then
-			Neverlose.ImageColorMapping = getcustomasset(dir..'/'..'saturation_value_gradient.png')
-		end;
-	end);
-end;
 
 function Neverlose:AddSignal(RBXSignal)
 	if Neverlose.UnloadEnabled then

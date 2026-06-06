@@ -7,8 +7,8 @@ local Logging = NeverLose:CreateLogger();
 local Indicator = NeverLose:CreateIndicator();
 local window = NeverLose:CreateWindow({
 	Logo = NeverLose.GlobalLogo,
-	Name = "KfcHook",
-	Content = "Tha Bronx 3",
+	Name = "Neverlose",
+	Content = "Counter-Strike 2",
 	Size = NeverLose.Scales.Default,
 	ConfigFolder = "NeverLoseConfigs",
 	Enable3DRenderer = false,
@@ -369,4 +369,25 @@ Notification.new({
 Logging.new("crosshairs",'Hit thatguy in the neck for 100 damage',15)
 task.wait(2)
 Logging.new("crosshairs-slash",'Missed shot due to prediction error & YOUR NN',15)
+
+HC:SetRender(false);
+
+while true do task.wait(3)
+	Watermark:SetRender(true);
+	
+	HC:SetColor('Red')
+	HC:SetText("FL")
+	task.wait(3);
+	Watermark:SetRender(false);
+	HC:SetColor('Green');
+	HC:SetText("AUTO")
+	task.wait(3)
+	Watermark:SetRender(true);
+	HC:SetColor('White')
+	HC:SetText("HC")
+	task.wait(1)
+	Watermark:SetRender(false);
+	HC:SetRender(false);
+	task.wait(1)
+	HC:SetRender(true);
 end

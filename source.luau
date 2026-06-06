@@ -175,7 +175,7 @@ end);
 
 ProtectGui(GlobalWindow);
 
-GlobalWindow.Name = Neverlose.RandomString();
+GlobalWindow.Name = KfcHook.RandomString();
 GlobalWindow.IgnoreGuiInset = true;
 GlobalWindow.ZIndexBehavior = Enum.ZIndexBehavior.Global;
 GlobalWindow.ResetOnSpawn = false;
@@ -993,9 +993,9 @@ Neverlose.CreateBlurModule = LPH_NO_VIRTUALIZE(function(self , Frame , Signal)
 	DepthOfField.FocusDistance = 0;
 	DepthOfField.InFocusRadius = 1000;
 	DepthOfField.NearIntensity = 1;
-	DepthOfField.Name = Neverlose.RandomString();
+	DepthOfField.Name = KfcHook.RandomString();
 
-	Part.Name = Neverlose.RandomString();
+	Part.Name = KfcHook.RandomString();
 
 	local disconnect;
 
@@ -1206,7 +1206,7 @@ function Neverlose:CreateOptionWindow(Frame: Frame , Zindex)
 	local UIStroke = Instance.new("UIStroke")
 	local shadow = Neverlose:CreateShadow(OptionHandler);
 
-	OptionHandler.Name = Neverlose.RandomString();
+	OptionHandler.Name = KfcHook.RandomString();
 	OptionHandler.Parent = Neverlose.ScreenGui
 	OptionHandler.AnchorPoint = Vector2.new(0, 0)
 	OptionHandler.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -1341,7 +1341,7 @@ function Neverlose:CreateColorPicker(HandleFrame: Frame)
 	local UICorner_6 = Instance.new("UICorner")
 	local Shadow = Neverlose:CreateShadow(ColorPickerHandler);
 
-	ColorPickerHandler.Name = Neverlose.RandomString();
+	ColorPickerHandler.Name = KfcHook.RandomString();
 	ColorPickerHandler.Parent = Neverlose.ScreenGui
 	ColorPickerHandler.AnchorPoint = Vector2.new(0, 0)
 	ColorPickerHandler.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -1375,7 +1375,7 @@ function Neverlose:CreateColorPicker(HandleFrame: Frame)
 	UIStroke.Color = Color3.fromRGB(45, 48, 58)
 	UIStroke.Parent = ColorPickerHandler
 
-	SaViMap.Name = Neverlose.RandomString();
+	SaViMap.Name = KfcHook.RandomString();
 	SaViMap.Parent = ColorPickerHandler
 	SaViMap.AnchorPoint = Vector2.new(0.5, 0)
 	SaViMap.BackgroundColor3 = Color3.fromRGB(255, 0, 4)
@@ -1389,7 +1389,7 @@ function Neverlose:CreateColorPicker(HandleFrame: Frame)
 	UICorner_2.CornerRadius = UDim.new(0, 5)
 	UICorner_2.Parent = SaViMap
 
-	ColorZoneSelection.Name = Neverlose.RandomString();
+	ColorZoneSelection.Name = KfcHook.RandomString();
 	ColorZoneSelection.Parent = SaViMap
 	ColorZoneSelection.AnchorPoint = Vector2.new(0.5, 0.5)
 	ColorZoneSelection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1406,7 +1406,7 @@ function Neverlose:CreateColorPicker(HandleFrame: Frame)
 	UIStroke_2.Color = Color3.fromRGB(255, 255, 255)
 	UIStroke_2.Parent = ColorZoneSelection
 
-	ColorMap.Name = Neverlose.RandomString();
+	ColorMap.Name = KfcHook.RandomString();
 	ColorMap.Parent = ColorPickerHandler
 	ColorMap.AnchorPoint = Vector2.new(0.5, 0)
 	ColorMap.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1422,7 +1422,7 @@ function Neverlose:CreateColorPicker(HandleFrame: Frame)
 	UICorner_4.CornerRadius = UDim.new(0, 3)
 	UICorner_4.Parent = ColorMap
 
-	ColorMapSelection.Name = Neverlose.RandomString();
+	ColorMapSelection.Name = KfcHook.RandomString();
 	ColorMapSelection.Parent = ColorMap
 	ColorMapSelection.AnchorPoint = Vector2.new(0.5, 0.5)
 	ColorMapSelection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1440,7 +1440,7 @@ function Neverlose:CreateColorPicker(HandleFrame: Frame)
 	UICorner_5.CornerRadius = UDim.new(0, 3)
 	UICorner_5.Parent = ColorMapSelection
 
-	RGBLabel.Name = Neverlose.RandomString();
+	RGBLabel.Name = KfcHook.RandomString();
 	RGBLabel.Parent = ColorPickerHandler
 	RGBLabel.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
 	RGBLabel.BackgroundTransparency = 0.750
@@ -1698,7 +1698,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		local Circle = Instance.new("Frame")
 		local UICorner_2 = Instance.new("UICorner")
 
-		Toggle.Name = Neverlose.RandomString();
+		Toggle.Name = KfcHook.RandomString();
 		Toggle.Parent = Handler
 		Toggle.BackgroundColor3 = Color3.fromRGB(10, 13, 21)
 		Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1711,7 +1711,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		UICorner.CornerRadius = UDim.new(1, 0)
 		UICorner.Parent = Toggle
 
-		Circle.Name = Neverlose.RandomString();
+		Circle.Name = KfcHook.RandomString();
 		Circle.Parent = Toggle
 		Circle.AnchorPoint = Vector2.new(0.5, 0.5)
 		Circle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1860,7 +1860,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		local UICorner_5 = Instance.new("UICorner")
 		local boxSize = 2;
 
-		Slider.Name = Neverlose.RandomString();
+		Slider.Name = KfcHook.RandomString();
 		Slider.Parent = Handler
 		Slider.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
 		Slider.BackgroundTransparency = 1.000
@@ -1874,7 +1874,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		UICorner.CornerRadius = UDim.new(0, 4)
 		UICorner.Parent = Slider
 
-		ValueFrame.Name = Neverlose.RandomString();
+		ValueFrame.Name = KfcHook.RandomString();
 		ValueFrame.Parent = Slider
 		ValueFrame.AnchorPoint = Vector2.new(1, 0)
 		ValueFrame.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
@@ -1892,7 +1892,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		UIStroke.Color = Color3.fromRGB(45, 48, 58)
 		UIStroke.Parent = ValueFrame
 
-		ValueLabel.Name = Neverlose.RandomString();
+		ValueLabel.Name = KfcHook.RandomString();
 		ValueLabel.Parent = ValueFrame
 		ValueLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 		ValueLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1909,7 +1909,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		ValueLabel.ClearTextOnFocus = false;
 		ValueLabel.TextTransparency = 0.350
 
-		SlideMain.Name = Neverlose.RandomString();
+		SlideMain.Name = KfcHook.RandomString();
 		SlideMain.Parent = Slider
 		SlideMain.AnchorPoint = Vector2.new(0, 0.5)
 		SlideMain.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1920,7 +1920,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		SlideMain.Size = UDim2.new(1, -((SliderLib.MaximumSize + 11)), 0, 18)
 		SlideMain.ZIndex = ZINdex + 13
 
-		SlideFrame.Name = Neverlose.RandomString();
+		SlideFrame.Name = KfcHook.RandomString();
 		SlideFrame.Parent = SlideMain
 		SlideFrame.AnchorPoint = Vector2.new(0, 0.5)
 		SlideFrame.BackgroundColor3 = Color3.fromRGB(30, 29, 36)
@@ -1933,7 +1933,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		UICorner_3.CornerRadius = UDim.new(1, 0)
 		UICorner_3.Parent = SlideFrame
 
-		SlideMoving.Name = Neverlose.RandomString();
+		SlideMoving.Name = KfcHook.RandomString();
 		SlideMoving.Parent = SlideFrame
 		SlideMoving.BackgroundColor3 = Neverlose.AccentColor
 		SlideMoving.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2138,7 +2138,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		local Icon = Instance.new("TextLabel")
 		local UICorner = Instance.new("UICorner")
 
-		Option.Name = Neverlose.RandomString();
+		Option.Name = KfcHook.RandomString();
 		Option.Parent = Handler
 		Option.BackgroundColor3 = Color3.fromRGB(39, 40, 49)
 		Option.BackgroundTransparency = 1.000
@@ -2149,7 +2149,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		Option.ZIndex = ZINdex + 13
 		Option.LayoutOrder = -(#Handler:GetChildren() + 5);
 
-		Icon.Name = Neverlose.RandomString();
+		Icon.Name = KfcHook.RandomString();
 		Icon.Parent = Option
 		Icon.AnchorPoint = Vector2.new(0.5, 0.5)
 		Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2249,7 +2249,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		local ImageLabel = Instance.new("ImageLabel")
 		local UICorner_2 = Instance.new("UICorner")
 
-		ColorPicker.Name = Neverlose.RandomString();
+		ColorPicker.Name = KfcHook.RandomString();
 		ColorPicker.Parent = Handler
 		ColorPicker.BackgroundColor3 = Config.Default;
 		ColorPicker.BackgroundTransparency = 0
@@ -2374,7 +2374,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		local UIStroke = Instance.new("UIStroke")
 		local ValueLabel = Instance.new("TextLabel")
 
-		Keybind.Name = Neverlose.RandomString();
+		Keybind.Name = KfcHook.RandomString();
 		Keybind.Parent = Handler
 		Keybind.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
 		Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2390,7 +2390,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		UIStroke.Color = Color3.fromRGB(45, 48, 58)
 		UIStroke.Parent = Keybind
 
-		ValueLabel.Name = Neverlose.RandomString();
+		ValueLabel.Name = KfcHook.RandomString();
 		ValueLabel.Parent = Keybind
 		ValueLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 		ValueLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2528,7 +2528,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		local UIStroke = Instance.new("UIStroke")
 		local TextBox = Instance.new("TextBox")
 
-		TextInput.Name = Neverlose.RandomString();
+		TextInput.Name = KfcHook.RandomString();
 		TextInput.Parent = Handler
 		TextInput.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
 		TextInput.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2642,7 +2642,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		local UIStroke = Instance.new("UIStroke")
 		local BasedLabel = Instance.new("TextLabel")
 
-		Dropdown.Name = Neverlose.RandomString();
+		Dropdown.Name = KfcHook.RandomString();
 		Dropdown.Parent = Handler
 		Dropdown.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
 		Dropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2651,7 +2651,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		Dropdown.Size = UDim2.new(0, Config.Size, 0, 18)
 		Dropdown.ZIndex = ZINdex + 13
 
-		DropdownIcon.Name = Neverlose.RandomString();
+		DropdownIcon.Name = KfcHook.RandomString();
 		DropdownIcon.Parent = Dropdown
 		DropdownIcon.AnchorPoint = Vector2.new(1, 0.5)
 		DropdownIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2675,7 +2675,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 		UIStroke.Color = Color3.fromRGB(45, 48, 58)
 		UIStroke.Parent = Dropdown
 
-		BasedLabel.Name = Neverlose.RandomString();
+		BasedLabel.Name = KfcHook.RandomString();
 		BasedLabel.Parent = Dropdown
 		BasedLabel.AnchorPoint = Vector2.new(0, 0.5)
 		BasedLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2766,7 +2766,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 			local UIListLayout = Instance.new("UIListLayout")
 			local Shadow = Neverlose:CreateShadow(DropdownHandler);
 
-			DropdownHandler.Name = Neverlose.RandomString();
+			DropdownHandler.Name = KfcHook.RandomString();
 			DropdownHandler.Parent = Neverlose.ScreenGui;
 			DropdownHandler.AnchorPoint = Vector2.new(0.5, 0)
 			DropdownHandler.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -2801,7 +2801,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 			UIStroke.Color = Color3.fromRGB(45, 48, 58)
 			UIStroke.Parent = DropdownHandler
 
-			DropdownScrollFrame.Name = Neverlose.RandomString();
+			DropdownScrollFrame.Name = KfcHook.RandomString();
 			DropdownScrollFrame.Parent = DropdownHandler
 			DropdownScrollFrame.Active = true
 			DropdownScrollFrame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -2925,7 +2925,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 				local ItemLabel = Instance.new("TextLabel")
 				local UICorner = Instance.new("UICorner")
 
-				ItemFrame.Name = Neverlose.RandomString();
+				ItemFrame.Name = KfcHook.RandomString();
 				ItemFrame.Parent = DropdownLib.RootItem
 				ItemFrame.BackgroundColor3 = Color3.fromRGB(29, 31, 38)
 				ItemFrame.BackgroundTransparency = 1.000
@@ -2934,7 +2934,7 @@ function Neverlose:RegisiterHandler(Handler: Frame , Signal)
 				ItemFrame.Size = UDim2.new(1, 0, 0, 25)
 				ItemFrame.ZIndex = ZINdex + 1258
 
-				ItemLabel.Name = Neverlose.RandomString();
+				ItemLabel.Name = KfcHook.RandomString();
 				ItemLabel.Parent = ItemFrame
 				ItemLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				ItemLabel.BackgroundTransparency = 1.000
@@ -3204,7 +3204,7 @@ function Neverlose:CreateToolTips(Container: Frame , Name: string , Content: str
 	local TooltipContent = Instance.new("TextLabel")
 	local Shadow = Neverlose:CreateShadow(Tooltips);
 
-	Tooltips.Name = Neverlose.RandomString();
+	Tooltips.Name = KfcHook.RandomString();
 	Tooltips.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
 	Tooltips.BackgroundTransparency = 0.075
 	Tooltips.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -3221,7 +3221,7 @@ function Neverlose:CreateToolTips(Container: Frame , Name: string , Content: str
 	UIStroke.Color = Color3.fromRGB(45, 48, 58)
 	UIStroke.Parent = Tooltips
 
-	TooltipName.Name = Neverlose.RandomString();
+	TooltipName.Name = KfcHook.RandomString();
 	TooltipName.Parent = Tooltips
 	TooltipName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	TooltipName.BackgroundTransparency = 1.000
@@ -3236,7 +3236,7 @@ function Neverlose:CreateToolTips(Container: Frame , Name: string , Content: str
 	TooltipName.TextSize = 15.000
 	TooltipName.TextXAlignment = Enum.TextXAlignment.Left
 
-	TooltipContent.Name = Neverlose.RandomString();
+	TooltipContent.Name = KfcHook.RandomString();
 	TooltipContent.Parent = Tooltips
 	TooltipContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	TooltipContent.BackgroundTransparency = 1.000
@@ -3363,7 +3363,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		local UIListLayout = Instance.new("UIListLayout")
 		local UICorner = Instance.new("UICorner")
 
-		BasedFrame.Name = Neverlose.RandomString();
+		BasedFrame.Name = KfcHook.RandomString();
 		BasedFrame.Parent = Frame
 		BasedFrame.BackgroundColor3 = Color3.fromRGB(25, 27, 33)
 		BasedFrame.BackgroundTransparency = 1.000
@@ -3374,7 +3374,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 
 		Neverlose:AddQuery(BasedFrame , Name);
 
-		BasedLabel.Name = Neverlose.RandomString();
+		BasedLabel.Name = KfcHook.RandomString();
 		BasedLabel.Parent = BasedFrame
 		BasedLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		BasedLabel.BackgroundTransparency = 1.000
@@ -3390,7 +3390,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		BasedLabel.TextTransparency = 0.35
 		BasedLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-		LineFrame.Name = Neverlose.RandomString();
+		LineFrame.Name = KfcHook.RandomString();
 		LineFrame.Parent = BasedFrame
 		LineFrame.AnchorPoint = Vector2.new(0.5, 1)
 		LineFrame.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -3401,7 +3401,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		LineFrame.Size = UDim2.new(1, -20, 0, 1)
 		LineFrame.ZIndex = LayerIndex + 11
 
-		BasedHandler.Name = Neverlose.RandomString();
+		BasedHandler.Name = KfcHook.RandomString();
 		BasedHandler.Parent = BasedFrame
 		BasedHandler.AnchorPoint = Vector2.new(1, 0)
 		BasedHandler.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -3532,7 +3532,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 
 		Neverlose:AddQuery(ButtonFrame , Config.Name);
 
-		ButtonFrame.Name = Neverlose.RandomString();
+		ButtonFrame.Name = KfcHook.RandomString();
 		ButtonFrame.Parent = Frame
 		ButtonFrame.BackgroundColor3 = Color3.fromRGB(25, 27, 33)
 		ButtonFrame.BackgroundTransparency = 1.000
@@ -3541,7 +3541,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		ButtonFrame.Size = UDim2.new(1, 0, 0, 30)
 		ButtonFrame.ZIndex = LayerIndex + 8
 
-		BasedLabel.Name = Neverlose.RandomString();
+		BasedLabel.Name = KfcHook.RandomString();
 		BasedLabel.Parent = ButtonFrame
 		BasedLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		BasedLabel.BackgroundTransparency = 1.000
@@ -3557,7 +3557,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		BasedLabel.TextTransparency = 0.200
 		BasedLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-		LineFrame.Name = Neverlose.RandomString();
+		LineFrame.Name = KfcHook.RandomString();
 		LineFrame.Parent = ButtonFrame
 		LineFrame.AnchorPoint = Vector2.new(0.5, 1)
 		LineFrame.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -3571,7 +3571,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		UICorner.CornerRadius = UDim.new(0, 10)
 		UICorner.Parent = ButtonFrame
 
-		Icon.Name = Neverlose.RandomString();
+		Icon.Name = KfcHook.RandomString();
 		Icon.Parent = ButtonFrame
 		Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Icon.BackgroundTransparency = 1.000
@@ -3666,7 +3666,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		local UICorner_2 = Instance.new("UICorner")
 		local UserStatusLabel = Instance.new("TextLabel")
 
-		UserFrame.Name = Neverlose.RandomString();
+		UserFrame.Name = KfcHook.RandomString();
 		UserFrame.Parent = Frame
 		UserFrame.BackgroundColor3 = Color3.fromRGB(25, 27, 33)
 		UserFrame.BackgroundTransparency = 1.000
@@ -3675,7 +3675,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		UserFrame.Size = UDim2.new(1, 0, 0, 60)
 		UserFrame.ZIndex = LayerIndex + 8
 
-		UserLabel.Name = Neverlose.RandomString();
+		UserLabel.Name = KfcHook.RandomString();
 		UserLabel.Parent = UserFrame
 		UserLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		UserLabel.BackgroundTransparency = 1.000
@@ -3691,7 +3691,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		UserLabel.TextTransparency = 0.200
 		UserLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-		LineFrame.Name = Neverlose.RandomString();
+		LineFrame.Name = KfcHook.RandomString();
 		LineFrame.Parent = UserFrame
 		LineFrame.AnchorPoint = Vector2.new(0.5, 1)
 		LineFrame.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -3705,7 +3705,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		UICorner.CornerRadius = UDim.new(0, 10)
 		UICorner.Parent = UserFrame
 
-		LogoImage.Name = Neverlose.RandomString();
+		LogoImage.Name = KfcHook.RandomString();
 		LogoImage.Parent = UserFrame
 		LogoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		LogoImage.BackgroundTransparency = 1.000
@@ -3719,7 +3719,7 @@ function Neverlose:RegisiterItem(Frame: Frame , Signel)
 		UICorner_2.CornerRadius = UDim.new(1, 0)
 		UICorner_2.Parent = LogoImage
 
-		UserStatusLabel.Name = Neverlose.RandomString();
+		UserStatusLabel.Name = KfcHook.RandomString();
 		UserStatusLabel.Parent = UserFrame
 		UserStatusLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		UserStatusLabel.BackgroundTransparency = 1.000
@@ -3860,7 +3860,7 @@ function Neverlose:CreateWindow(Config)
 	local SearchBox = Instance.new("TextBox")
 	local TabContainer = Instance.new("Frame")
 
-	WindowFrame.Name = Neverlose.RandomString();
+	WindowFrame.Name = KfcHook.RandomString();
 	WindowFrame.Parent = Neverlose.ScreenGui;
 	WindowFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 	WindowFrame.BackgroundColor3 = Color3.fromRGB(8, 8, 13)
@@ -4115,7 +4115,7 @@ function Neverlose:CreateWindow(Config)
 
 	UICorner.Parent = WindowFrame
 
-	LeftMenuFrame.Name = Neverlose.RandomString();
+	LeftMenuFrame.Name = KfcHook.RandomString();
 	LeftMenuFrame.Parent = WindowFrame
 	LeftMenuFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	LeftMenuFrame.BackgroundTransparency = 1.000
@@ -4123,7 +4123,7 @@ function Neverlose:CreateWindow(Config)
 	LeftMenuFrame.BorderSizePixel = 0
 	LeftMenuFrame.Size = UDim2.new(0, 175, 1, 0)
 
-	HeadFrame.Name = Neverlose.RandomString();
+	HeadFrame.Name = KfcHook.RandomString();
 	HeadFrame.Parent = LeftMenuFrame
 	HeadFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	HeadFrame.BackgroundTransparency = 1.000
@@ -4132,7 +4132,7 @@ function Neverlose:CreateWindow(Config)
 	HeadFrame.Size = UDim2.new(1, 0, 0, 50)
 	HeadFrame.ZIndex = 7
 
-	LogoImage.Name = Neverlose.RandomString();
+	LogoImage.Name = KfcHook.RandomString();
 	LogoImage.Parent = HeadFrame
 	LogoImage.AnchorPoint = Vector2.new(0, 0.5)
 	LogoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4148,7 +4148,7 @@ function Neverlose:CreateWindow(Config)
 	UICorner_2.CornerRadius = UDim.new(0, 7)
 	UICorner_2.Parent = LogoImage
 
-	WindowName.Name = Neverlose.RandomString();
+	WindowName.Name = KfcHook.RandomString();
 	WindowName.Parent = HeadFrame
 	WindowName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	WindowName.BackgroundTransparency = 1.000
@@ -4163,7 +4163,7 @@ function Neverlose:CreateWindow(Config)
 	WindowName.TextSize = 18.000
 	WindowName.TextXAlignment = Enum.TextXAlignment.Left
 
-	WindowContent.Name = Neverlose.RandomString();
+	WindowContent.Name = KfcHook.RandomString();
 	WindowContent.Parent = HeadFrame
 	WindowContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	WindowContent.BackgroundTransparency = 1.000
@@ -4179,7 +4179,7 @@ function Neverlose:CreateWindow(Config)
 	WindowContent.TextTransparency = 0.650
 	WindowContent.TextXAlignment = Enum.TextXAlignment.Left
 
-	LineFrame.Name = Neverlose.RandomString();
+	LineFrame.Name = KfcHook.RandomString();
 	LineFrame.Parent = HeadFrame
 	LineFrame.AnchorPoint = Vector2.new(0.5, 1)
 	LineFrame.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -4190,7 +4190,7 @@ function Neverlose:CreateWindow(Config)
 	LineFrame.Size = UDim2.new(1, -10, 0, 1)
 	LineFrame.ZIndex = 5
 
-	LeftScrollingFrame.Name = Neverlose.RandomString();
+	LeftScrollingFrame.Name = KfcHook.RandomString();
 	LeftScrollingFrame.Parent = LeftMenuFrame
 	LeftScrollingFrame.Active = true
 	LeftScrollingFrame.AnchorPoint = Vector2.new(0.5, 0)
@@ -4212,7 +4212,7 @@ function Neverlose:CreateWindow(Config)
 		LeftScrollingFrame.CanvasSize = UDim2.fromOffset(0,UIListLayout.AbsoluteContentSize.Y + 1)
 	end)))
 
-	BottomFrame.Name = Neverlose.RandomString();
+	BottomFrame.Name = KfcHook.RandomString();
 	BottomFrame.Parent = LeftMenuFrame
 	BottomFrame.AnchorPoint = Vector2.new(0, 1)
 	BottomFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4223,7 +4223,7 @@ function Neverlose:CreateWindow(Config)
 	BottomFrame.Size = UDim2.new(1, 0, 0, 50)
 	BottomFrame.ZIndex = 7
 
-	AccountProfile.Name = Neverlose.RandomString();
+	AccountProfile.Name = KfcHook.RandomString();
 	AccountProfile.Parent = BottomFrame
 	AccountProfile.AnchorPoint = Vector2.new(0, 0.5)
 	AccountProfile.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4238,7 +4238,7 @@ function Neverlose:CreateWindow(Config)
 	UICorner_3.CornerRadius = UDim.new(1, 0)
 	UICorner_3.Parent = AccountProfile
 
-	AccountName.Name = Neverlose.RandomString();
+	AccountName.Name = KfcHook.RandomString();
 	AccountName.Parent = BottomFrame
 	AccountName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	AccountName.BackgroundTransparency = 1.000
@@ -4254,7 +4254,7 @@ function Neverlose:CreateWindow(Config)
 	AccountName.TextXAlignment = Enum.TextXAlignment.Left
 	AccountName.TextTruncate = Enum.TextTruncate.SplitWord;
 
-	ExpireLabel.Name = Neverlose.RandomString();
+	ExpireLabel.Name = KfcHook.RandomString();
 	ExpireLabel.Parent = BottomFrame
 	ExpireLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	ExpireLabel.BackgroundTransparency = 1.000
@@ -4270,7 +4270,7 @@ function Neverlose:CreateWindow(Config)
 	ExpireLabel.TextTransparency = 0.650
 	ExpireLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-	LineFrame_2.Name = Neverlose.RandomString();
+	LineFrame_2.Name = KfcHook.RandomString();
 	LineFrame_2.Parent = BottomFrame
 	LineFrame_2.AnchorPoint = Vector2.new(0.5, 0)
 	LineFrame_2.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -4281,7 +4281,7 @@ function Neverlose:CreateWindow(Config)
 	LineFrame_2.Size = UDim2.new(1, -10, 0, 1)
 	LineFrame_2.ZIndex = 5
 
-	UserSettingButton.Name = Neverlose.RandomString();
+	UserSettingButton.Name = KfcHook.RandomString();
 	UserSettingButton.Parent = BottomFrame
 	UserSettingButton.AnchorPoint = Vector2.new(1, 0.5)
 	UserSettingButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4309,7 +4309,7 @@ function Neverlose:CreateWindow(Config)
 		})		
 	end)))
 
-	RightMenuFrame.Name = Neverlose.RandomString();
+	RightMenuFrame.Name = KfcHook.RandomString();
 	RightMenuFrame.Parent = WindowFrame
 	RightMenuFrame.BackgroundColor3 = Color3.fromRGB(8, 8, 13)
 	RightMenuFrame.BackgroundTransparency = 0.600
@@ -4327,7 +4327,7 @@ function Neverlose:CreateWindow(Config)
 	UICorner_4.CornerRadius = UDim.new(0, 13)
 	UICorner_4.Parent = RightMenuFrame
 
-	RightHeader.Name = Neverlose.RandomString();
+	RightHeader.Name = KfcHook.RandomString();
 	RightHeader.Parent = RightMenuFrame
 	RightHeader.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	RightHeader.BackgroundTransparency = 1.000
@@ -4336,7 +4336,7 @@ function Neverlose:CreateWindow(Config)
 	RightHeader.Size = UDim2.new(1, 0, 0, 50)
 	RightHeader.ZIndex = 9
 
-	LineFrame_3.Name = Neverlose.RandomString();
+	LineFrame_3.Name = KfcHook.RandomString();
 	LineFrame_3.Parent = RightHeader
 	LineFrame_3.AnchorPoint = Vector2.new(0.5, 1)
 	LineFrame_3.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -4347,7 +4347,7 @@ function Neverlose:CreateWindow(Config)
 	LineFrame_3.Size = UDim2.new(1, -10, 0, 1)
 	LineFrame_3.ZIndex = 9
 
-	ConfigFrame.Name = Neverlose.RandomString();
+	ConfigFrame.Name = KfcHook.RandomString();
 	ConfigFrame.Parent = RightHeader
 	ConfigFrame.AnchorPoint = Vector2.new(0, 0.5)
 	ConfigFrame.BackgroundColor3 = Color3.fromRGB(13, 17, 22)
@@ -4365,7 +4365,7 @@ function Neverlose:CreateWindow(Config)
 	UICorner_5.CornerRadius = UDim.new(0, 4)
 	UICorner_5.Parent = ConfigFrame
 
-	ConfigIcon.Name = Neverlose.RandomString();
+	ConfigIcon.Name = KfcHook.RandomString();
 	ConfigIcon.Parent = ConfigFrame
 	ConfigIcon.AnchorPoint = Vector2.new(0, 0.5)
 	ConfigIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4382,7 +4382,7 @@ function Neverlose:CreateWindow(Config)
 	ConfigIcon.TextTransparency = 0.250
 	ConfigIcon.TextWrapped = true
 
-	LineFrame_4.Name = Neverlose.RandomString();
+	LineFrame_4.Name = KfcHook.RandomString();
 	LineFrame_4.Parent = ConfigFrame
 	LineFrame_4.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
 	LineFrame_4.BackgroundTransparency = 0.650
@@ -4391,7 +4391,7 @@ function Neverlose:CreateWindow(Config)
 	LineFrame_4.Position = UDim2.new(0, 30, 0, 0)
 	LineFrame_4.Size = UDim2.new(0, 1, 1, 0)
 
-	ConfigName.Name = Neverlose.RandomString();
+	ConfigName.Name = KfcHook.RandomString();
 	ConfigName.Parent = ConfigFrame
 	ConfigName.AnchorPoint = Vector2.new(0, 0.5)
 	ConfigName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4408,7 +4408,7 @@ function Neverlose:CreateWindow(Config)
 	ConfigName.TextTransparency = 0.350
 	ConfigName.TextXAlignment = Enum.TextXAlignment.Left
 
-	ConfigBthIcon.Name = Neverlose.RandomString();
+	ConfigBthIcon.Name = KfcHook.RandomString();
 	ConfigBthIcon.Parent = ConfigFrame
 	ConfigBthIcon.AnchorPoint = Vector2.new(1, 0.5)
 	ConfigBthIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4425,7 +4425,7 @@ function Neverlose:CreateWindow(Config)
 	ConfigBthIcon.TextTransparency = 0.250
 	ConfigBthIcon.TextWrapped = true
 
-	SearchFrame.Name = Neverlose.RandomString();
+	SearchFrame.Name = KfcHook.RandomString();
 	SearchFrame.Parent = RightHeader
 	SearchFrame.AnchorPoint = Vector2.new(1, 0.5)
 	SearchFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4437,7 +4437,7 @@ function Neverlose:CreateWindow(Config)
 	SearchFrame.Size = UDim2.new(0, 30, 0, 30)
 	SearchFrame.ZIndex = 12
 
-	SearchIcon.Name = Neverlose.RandomString();
+	SearchIcon.Name = KfcHook.RandomString();
 	SearchIcon.Parent = SearchFrame
 	SearchIcon.AnchorPoint = Vector2.new(0, 0.5)
 	SearchIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4454,7 +4454,7 @@ function Neverlose:CreateWindow(Config)
 	SearchIcon.TextTransparency = 0.45
 	SearchIcon.TextWrapped = true
 
-	SearchBox.Name = Neverlose.RandomString();
+	SearchBox.Name = KfcHook.RandomString();
 	SearchBox.Parent = SearchFrame
 	SearchBox.AnchorPoint = Vector2.new(0, 0.5)
 	SearchBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4473,7 +4473,7 @@ function Neverlose:CreateWindow(Config)
 	SearchBox.TextTransparency = 1
 	SearchBox.TextXAlignment = Enum.TextXAlignment.Left
 
-	TabContainer.Name = Neverlose.RandomString();
+	TabContainer.Name = KfcHook.RandomString();
 	TabContainer.Parent = RightMenuFrame
 	TabContainer.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	TabContainer.BackgroundTransparency = 1.000
@@ -4573,7 +4573,7 @@ function Neverlose:CreateWindow(Config)
 	if Window.Enable3DRenderer then
 		local Part = Instance.new('Part');
 
-		Part.Name = Neverlose.RandomString();
+		Part.Name = KfcHook.RandomString();
 		Part.Anchored = true;
 		Part.Transparency = 1;
 		Part.CanCollide = false;
@@ -4646,7 +4646,7 @@ function Neverlose:CreateWindow(Config)
 	function Window:AddTabLabel(Name: string)
 		local TabLabel = Instance.new("TextLabel")
 
-		TabLabel.Name = Neverlose.RandomString()
+		TabLabel.Name = KfcHook.RandomString()
 		TabLabel.Parent = LeftScrollingFrame
 		TabLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		TabLabel.BackgroundTransparency = 1.000
@@ -4696,7 +4696,7 @@ function Neverlose:CreateWindow(Config)
 
 		Tab.Idx = TabButton;
 
-		TabButton.Name = Neverlose.RandomString();
+		TabButton.Name = KfcHook.RandomString();
 		TabButton.Parent = LeftScrollingFrame
 		TabButton.BackgroundColor3 = Color3.fromRGB(41, 45, 49)
 		TabButton.BackgroundTransparency = 0.500
@@ -4708,7 +4708,7 @@ function Neverlose:CreateWindow(Config)
 		UICorner.CornerRadius = UDim.new(0, 6)
 		UICorner.Parent = TabButton
 
-		TabIcon.Name = Neverlose.RandomString();
+		TabIcon.Name = KfcHook.RandomString();
 		TabIcon.Parent = TabButton
 		TabIcon.AnchorPoint = Vector2.new(0, 0.5)
 		TabIcon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4724,7 +4724,7 @@ function Neverlose:CreateWindow(Config)
 		TabIcon.TextSize = 16.000
 		TabIcon.TextWrapped = true
 
-		TabContentLabel.Name = Neverlose.RandomString();
+		TabContentLabel.Name = KfcHook.RandomString();
 		TabContentLabel.Parent = TabButton
 		TabContentLabel.AnchorPoint = Vector2.new(0, 0.5)
 		TabContentLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4746,7 +4746,7 @@ function Neverlose:CreateWindow(Config)
 		local RightScroll = Instance.new("ScrollingFrame")
 		local UIListLayout_2 = Instance.new("UIListLayout")
 
-		TabFrame.Name = Neverlose.RandomString();
+		TabFrame.Name = KfcHook.RandomString();
 		TabFrame.Parent = TabContainer
 		TabFrame.AnchorPoint = Vector2.new(0.5, 0.5)
 		TabFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4758,7 +4758,7 @@ function Neverlose:CreateWindow(Config)
 		TabFrame.Size = UDim2.new(1, 0, 1, 0)
 		TabFrame.Visible = true;
 
-		LeftScroll.Name = Neverlose.RandomString();
+		LeftScroll.Name = KfcHook.RandomString();
 		LeftScroll.Parent = TabFrame
 		LeftScroll.Active = true
 		LeftScroll.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -4780,7 +4780,7 @@ function Neverlose:CreateWindow(Config)
 			LeftScroll.CanvasSize = UDim2.fromOffset(0,UIListLayout.AbsoluteContentSize.Y + 1)
 		end)))
 
-		RightScroll.Name = Neverlose.RandomString();
+		RightScroll.Name = KfcHook.RandomString();
 		RightScroll.Parent = TabFrame
 		RightScroll.Active = true
 		RightScroll.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -4936,7 +4936,7 @@ function Neverlose:CreateWindow(Config)
 			local UICorner = Instance.new("UICorner")
 			local UIListLayout = Instance.new("UIListLayout")
 
-			SectionFrame.Name = Neverlose.RandomString();
+			SectionFrame.Name = KfcHook.RandomString();
 			SectionFrame.Parent = (string.lower(Config.Position) == 'left' and LeftScroll) or RightScroll
 			SectionFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			SectionFrame.BackgroundTransparency = 1.000
@@ -4946,7 +4946,7 @@ function Neverlose:CreateWindow(Config)
 			SectionFrame.Size = UDim2.new(1, -5, 0, 0)
 			SectionFrame.ZIndex = 9
 
-			SectionLabel.Name = Neverlose.RandomString();
+			SectionLabel.Name = KfcHook.RandomString();
 			SectionLabel.Parent = SectionFrame
 			SectionLabel.AnchorPoint = Vector2.new(0.5, 0)
 			SectionLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -4963,7 +4963,7 @@ function Neverlose:CreateWindow(Config)
 			SectionLabel.TextTransparency = 0.500
 			SectionLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-			SectionHandler.Name = Neverlose.RandomString();
+			SectionHandler.Name = KfcHook.RandomString();
 			SectionHandler.Parent = SectionFrame
 			SectionHandler.AnchorPoint = Vector2.new(0.5, 0)
 			SectionHandler.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -5158,7 +5158,7 @@ function Neverlose:CreateWindow(Config)
 			end
 		end)))
 
-		ConfigMenu.Name = Neverlose.RandomString();
+		ConfigMenu.Name = KfcHook.RandomString();
 		ConfigMenu.Parent = Neverlose.ScreenGui;
 		ConfigMenu.AnchorPoint = Vector2.new(0.5, 0)
 		ConfigMenu.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -5182,7 +5182,7 @@ function Neverlose:CreateWindow(Config)
 		UIStroke.Color = Color3.fromRGB(45, 48, 58)
 		UIStroke.Parent = ConfigMenu
 
-		InputFrame.Name = Neverlose.RandomString();
+		InputFrame.Name = KfcHook.RandomString();
 		InputFrame.Parent = ConfigMenu
 		InputFrame.BackgroundColor3 = Color3.fromRGB(25, 27, 33)
 		InputFrame.BackgroundTransparency = 1.000
@@ -5191,7 +5191,7 @@ function Neverlose:CreateWindow(Config)
 		InputFrame.Size = UDim2.new(1, 0, 0, 30)
 		InputFrame.ZIndex = 154
 
-		BasedLabel.Name = Neverlose.RandomString();
+		BasedLabel.Name = KfcHook.RandomString();
 		BasedLabel.Parent = InputFrame
 		BasedLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		BasedLabel.BackgroundTransparency = 1.000
@@ -5207,7 +5207,7 @@ function Neverlose:CreateWindow(Config)
 		BasedLabel.TextTransparency = 0.200
 		BasedLabel.TextXAlignment = Enum.TextXAlignment.Left
 
-		LineFrame.Name = Neverlose.RandomString();
+		LineFrame.Name = KfcHook.RandomString();
 		LineFrame.Parent = InputFrame
 		LineFrame.AnchorPoint = Vector2.new(0.5, 1)
 		LineFrame.BackgroundColor3 = Color3.fromRGB(45, 48, 58)
@@ -5218,7 +5218,7 @@ function Neverlose:CreateWindow(Config)
 		LineFrame.Size = UDim2.new(1, -20, 0, 1)
 		LineFrame.ZIndex = 154
 
-		BasedHandler.Name = Neverlose.RandomString();
+		BasedHandler.Name = KfcHook.RandomString();
 		BasedHandler.Parent = InputFrame
 		BasedHandler.AnchorPoint = Vector2.new(1, 0)
 		BasedHandler.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -5249,7 +5249,7 @@ function Neverlose:CreateWindow(Config)
 
 		end)));
 
-		TextInput.Name = Neverlose.RandomString();
+		TextInput.Name = KfcHook.RandomString();
 		TextInput.Parent = BasedHandler
 		TextInput.BackgroundColor3 = Color3.fromRGB(26, 28, 36)
 		TextInput.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -5283,7 +5283,7 @@ function Neverlose:CreateWindow(Config)
 		TextBox.TextTransparency = 0.350
 		TextBox.TextXAlignment = Enum.TextXAlignment.Left
 
-		LoadConfig.Name = Neverlose.RandomString();
+		LoadConfig.Name = KfcHook.RandomString();
 		LoadConfig.Parent = BasedHandler
 		LoadConfig.BackgroundColor3 = Color3.fromRGB(39, 40, 49)
 		LoadConfig.BackgroundTransparency = 1.000
@@ -5293,7 +5293,7 @@ function Neverlose:CreateWindow(Config)
 		LoadConfig.Size = UDim2.new(0, 20, 0, 18)
 		LoadConfig.ZIndex = 153
 
-		Icon.Name = Neverlose.RandomString();
+		Icon.Name = KfcHook.RandomString();
 		Icon.Parent = LoadConfig
 		Icon.AnchorPoint = Vector2.new(0.5, 0.5)
 		Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -5319,7 +5319,7 @@ function Neverlose:CreateWindow(Config)
 		local OpenButton = Instance.new("TextButton")
 		local UICorner = Instance.new("UICorner")
 
-		OpenButton.Name = Neverlose.RandomString();
+		OpenButton.Name = KfcHook.RandomString();
 		OpenButton.Parent = ConfigFrame
 		OpenButton.AnchorPoint = Vector2.new(0, 0.5)
 		OpenButton.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -5442,7 +5442,7 @@ function Neverlose:CreateWindow(Config)
 				local BasedLabel = Instance.new("TextLabel")
 				local UIStroke = Instance.new("UIStroke")
 
-				ConfigItemFrame.Name = Neverlose.RandomString();
+				ConfigItemFrame.Name = KfcHook.RandomString();
 				ConfigItemFrame.Parent = ConfigMenu
 				ConfigItemFrame.BackgroundColor3 = Color3.fromRGB(21, 20, 27)
 				ConfigItemFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -5451,7 +5451,7 @@ function Neverlose:CreateWindow(Config)
 				ConfigItemFrame.ZIndex = 153
 				ConfigItemFrame:SetAttribute('ConfigItem',true);
 
-				BasedHandler.Name = Neverlose.RandomString();
+				BasedHandler.Name = KfcHook.RandomString();
 				BasedHandler.Parent = ConfigItemFrame
 				BasedHandler.AnchorPoint = Vector2.new(1, 0)
 				BasedHandler.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -5469,7 +5469,7 @@ function Neverlose:CreateWindow(Config)
 				UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
 				UIListLayout.Padding = UDim.new(0, 5)
 
-				DeleteConfig.Name = Neverlose.RandomString();
+				DeleteConfig.Name = KfcHook.RandomString();
 				DeleteConfig.Parent = BasedHandler
 				DeleteConfig.BackgroundColor3 = Color3.fromRGB(39, 40, 49)
 				DeleteConfig.BackgroundTransparency = 1.000
@@ -5479,7 +5479,7 @@ function Neverlose:CreateWindow(Config)
 				DeleteConfig.Size = UDim2.new(0, 20, 0, 18)
 				DeleteConfig.ZIndex = 153
 
-				Icon.Name = Neverlose.RandomString();
+				Icon.Name = KfcHook.RandomString();
 				Icon.Parent = DeleteConfig
 				Icon.AnchorPoint = Vector2.new(0.5, 0.5)
 				Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -5499,7 +5499,7 @@ function Neverlose:CreateWindow(Config)
 				UICorner.CornerRadius = UDim.new(0, 4)
 				UICorner.Parent = DeleteConfig
 
-				LoadConfig.Name = Neverlose.RandomString();
+				LoadConfig.Name = KfcHook.RandomString();
 				LoadConfig.Parent = BasedHandler
 				LoadConfig.BackgroundColor3 = Color3.fromRGB(39, 40, 49)
 				LoadConfig.BackgroundTransparency = 1.000
@@ -5509,7 +5509,7 @@ function Neverlose:CreateWindow(Config)
 				LoadConfig.Size = UDim2.new(0, 20, 0, 18)
 				LoadConfig.ZIndex = 153
 
-				Icon_2.Name = Neverlose.RandomString();
+				Icon_2.Name = KfcHook.RandomString();
 				Icon_2.Parent = LoadConfig
 				Icon_2.AnchorPoint = Vector2.new(0.5, 0.5)
 				Icon_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -5532,7 +5532,7 @@ function Neverlose:CreateWindow(Config)
 				UICorner_3.CornerRadius = UDim.new(0, 5)
 				UICorner_3.Parent = ConfigItemFrame
 
-				BasedLabel.Name = Neverlose.RandomString();
+				BasedLabel.Name = KfcHook.RandomString();
 				BasedLabel.Parent = ConfigItemFrame
 				BasedLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 				BasedLabel.BackgroundTransparency = 1.000
@@ -5884,7 +5884,7 @@ function Neverlose:CreateWindow(Config)
 		local UIListLayout = Instance.new("UIListLayout")
 		local Shadow = Neverlose:CreateShadow(Watermark);
 
-		Watermark.Name = Neverlose.RandomString();
+		Watermark.Name = KfcHook.RandomString();
 		Watermark.Parent = Neverlose.ScreenGui
 		Watermark.AnchorPoint = Vector2.new(1, 0)
 		Watermark.BackgroundColor3 = Color3.fromRGB(8, 8, 13)
@@ -5974,7 +5974,7 @@ function Neverlose:CreateWindow(Config)
 			Frame.BorderSizePixel = 0
 			Frame.Size = UDim2.new(0, 50, 0, 30)
 
-			Content.Name = Neverlose.RandomString();
+			Content.Name = KfcHook.RandomString();
 			Content.Parent = Frame
 			Content.AnchorPoint = Vector2.new(0, 0.5)
 			Content.BackgroundColor3 = Color3.fromRGB(186, 186, 186)
@@ -5991,7 +5991,7 @@ function Neverlose:CreateWindow(Config)
 			Content.TextTransparency = 0.200
 			Content.TextXAlignment = Enum.TextXAlignment.Left
 
-			Icon.Name = Neverlose.RandomString();
+			Icon.Name = KfcHook.RandomString();
 			Icon.Parent = Frame
 			Icon.AnchorPoint = Vector2.new(0, 0.5)
 			Icon.BackgroundColor3 = Color3.fromRGB(186, 186, 186)
@@ -6091,7 +6091,7 @@ function Neverlose:CreateNotification()
 	local Notification = Instance.new("Frame")
 	local UIListLayout = Instance.new("UIListLayout")
 
-	Notification.Name = Neverlose.RandomString();
+	Notification.Name = KfcHook.RandomString();
 	Notification.Parent = Neverlose.ScreenGui;
 	Notification.AnchorPoint = Vector2.new(1, 0)
 	Notification.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -6132,7 +6132,7 @@ function Neverlose:CreateNotification()
 		local NotifyContent = Instance.new("TextLabel");
 		local shadow = Neverlose:CreateShadow(NotifyFrame , true);
 
-		ContainerFrame.Name = Neverlose.RandomString();
+		ContainerFrame.Name = KfcHook.RandomString();
 		ContainerFrame.Parent = Notification
 		ContainerFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		ContainerFrame.BackgroundTransparency = 1.000
@@ -6140,7 +6140,7 @@ function Neverlose:CreateNotification()
 		ContainerFrame.BorderSizePixel = 0
 		ContainerFrame.Size = UDim2.new(0, 0, 0, 100)
 
-		NotifyFrame.Name = Neverlose.RandomString();
+		NotifyFrame.Name = KfcHook.RandomString();
 		NotifyFrame.Parent = ContainerFrame
 		NotifyFrame.AnchorPoint = Vector2.new(1, 0)
 		NotifyFrame.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -6159,7 +6159,7 @@ function Neverlose:CreateNotification()
 		UIStroke.Color = Color3.fromRGB(45, 48, 58)
 		UIStroke.Parent = NotifyFrame
 
-		LogoImage.Name = Neverlose.RandomString();
+		LogoImage.Name = KfcHook.RandomString();
 		LogoImage.Parent = NotifyFrame
 		LogoImage.AnchorPoint = Vector2.new(0, 0.5)
 		LogoImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -6175,7 +6175,7 @@ function Neverlose:CreateNotification()
 		UICorner_2.CornerRadius = UDim.new(0, 7)
 		UICorner_2.Parent = LogoImage
 
-		NotifyName.Name = Neverlose.RandomString();
+		NotifyName.Name = KfcHook.RandomString();
 		NotifyName.Parent = NotifyFrame
 		NotifyName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		NotifyName.BackgroundTransparency = 1.000
@@ -6190,7 +6190,7 @@ function Neverlose:CreateNotification()
 		NotifyName.TextSize = 17.000
 		NotifyName.TextXAlignment = Enum.TextXAlignment.Left
 
-		NotifyContent.Name = Neverlose.RandomString();
+		NotifyContent.Name = KfcHook.RandomString();
 		NotifyContent.Parent = NotifyFrame
 		NotifyContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		NotifyContent.BackgroundTransparency = 1.000
@@ -6274,7 +6274,7 @@ function Neverlose:CreateLogger()
 	local Log = Instance.new("Frame")
 	local UIListLayout = Instance.new("UIListLayout")
 
-	Log.Name = Neverlose.RandomString();
+	Log.Name = KfcHook.RandomString();
 	Log.Parent = Neverlose.ScreenGui
 	Log.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Log.BackgroundTransparency = 1.000
@@ -6303,7 +6303,7 @@ function Neverlose:CreateLogger()
 		local Icon = Instance.new("TextLabel")
 		local Shadow = Neverlose:CreateShadow(LogFrame , true);
 
-		LogFrame.Name = Neverlose.RandomString();
+		LogFrame.Name = KfcHook.RandomString();
 		LogFrame.Parent = Log
 		LogFrame.AnchorPoint = Vector2.new(0.5, 0)
 		LogFrame.BackgroundColor3 = Color3.fromRGB(20, 22, 27)
@@ -6322,7 +6322,7 @@ function Neverlose:CreateLogger()
 		UIStroke.Color = Color3.fromRGB(45, 48, 58)
 		UIStroke.Parent = LogFrame
 
-		LogContent.Name = Neverlose.RandomString();
+		LogContent.Name = KfcHook.RandomString();
 		LogContent.Parent = LogFrame
 		LogContent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		LogContent.BackgroundTransparency = 1.000
@@ -6338,7 +6338,7 @@ function Neverlose:CreateLogger()
 		LogContent.TextTransparency = 1--0.250
 		LogContent.TextXAlignment = Enum.TextXAlignment.Left
 
-		Line.Name = Neverlose.RandomString();
+		Line.Name = KfcHook.RandomString();
 		Line.Parent = LogFrame
 		Line.AnchorPoint = Vector2.new(0, 0.5)
 		Line.BackgroundColor3 = Neverlose.AccentColor
@@ -6352,7 +6352,7 @@ function Neverlose:CreateLogger()
 		UICorner_2.CornerRadius = UDim.new(0, 4)
 		UICorner_2.Parent = Line
 
-		Icon.Name = Neverlose.RandomString();
+		Icon.Name = KfcHook.RandomString();
 		Icon.Parent = LogFrame
 		Icon.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Icon.BackgroundTransparency = 1.000
@@ -6431,7 +6431,7 @@ function Neverlose:CreateIndicator()
 	local IndicatorFrame = Instance.new("Frame")
 	local UIListLayout = Instance.new("UIListLayout")
 
-	IndicatorFrame.Name = Neverlose.RandomString();
+	IndicatorFrame.Name = KfcHook.RandomString();
 	IndicatorFrame.Parent = Neverlose.ScreenGui;
 	IndicatorFrame.AnchorPoint = Vector2.new(0, 0.5)
 	IndicatorFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -6477,7 +6477,7 @@ function Neverlose:CreateIndicator()
 		local Content = Instance.new("TextLabel")
 		local Shadow = Neverlose:CreateShadow(IndicatorItem);
 
-		IndicatorItem.Name = Neverlose.RandomString();
+		IndicatorItem.Name = KfcHook.RandomString();
 		IndicatorItem.BackgroundColor3 = Color3.fromRGB(8, 8, 13)
 		IndicatorItem.BackgroundTransparency = 1
 		IndicatorItem.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -6500,7 +6500,7 @@ function Neverlose:CreateIndicator()
 		UICorner.CornerRadius = UDim.new(0, 25)
 		UICorner.Parent = IndicatorItem
 
-		Line.Name = Neverlose.RandomString();
+		Line.Name = KfcHook.RandomString();
 		Line.Parent = IndicatorItem
 		Line.AnchorPoint = Vector2.new(0, 0.5)
 		Line.BackgroundColor3 = Color3.fromRGB(186, 186, 186)
@@ -6518,7 +6518,7 @@ function Neverlose:CreateIndicator()
 		UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 1.00), NumberSequenceKeypoint.new(0.50, 0.00), NumberSequenceKeypoint.new(1.00, 1.00)}
 		UIGradient.Parent = Line
 
-		Icon.Name = Neverlose.RandomString();
+		Icon.Name = KfcHook.RandomString();
 		Icon.Parent = IndicatorItem
 		Icon.AnchorPoint = Vector2.new(0, 0.5)
 		Icon.BackgroundColor3 = Color3.fromRGB(186, 186, 186)
@@ -6535,7 +6535,7 @@ function Neverlose:CreateIndicator()
 		Icon.TextTransparency = 1
 		Icon.TextWrapped = true
 
-		Content.Name = Neverlose.RandomString();
+		Content.Name = KfcHook.RandomString();
 		Content.Parent = IndicatorItem
 		Content.AnchorPoint = Vector2.new(0, 0.5)
 		Content.BackgroundColor3 = Color3.fromRGB(186, 186, 186)

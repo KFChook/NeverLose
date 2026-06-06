@@ -200,7 +200,7 @@ Neverlose.GlobalLogo = "rbxassetid://98861852277971";
 Neverlose.ImageColorMapping = "rbxassetid://98861852277971";
 
 if getcustomasset then
-	local link = "https://github.com/4lpaca-pin/Neverlose/blob/main/assets/%s?raw=true";
+	local link = "https://github.com/KFChook/NeverLose/blob/main/assets/8E144EBC-78B2-4075-8FC6-D01B6FF348B8.png";
 	local dir = 'NLAssets';
 
 	if not isfolder(dir) then
@@ -5858,7 +5858,7 @@ function Neverlose:CreateWindow(Config)
 		Config = Neverlose:ProcessParams(Config , {
 			Profile = Neverlose.UserProfile,
 			Username = LocalPlayer.DisplayName,
-			Expires = "Never",
+			Expires = "Free User",
 		});
 
 		AccountName.Text = Config.Username;

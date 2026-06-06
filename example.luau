@@ -371,19 +371,9 @@ HC:SetRender(false);
 while true do task.wait(3)
 	Watermark:SetRender(false);
 	
-	HC:SetColor('Red')
-	HC:SetText("FL")
-	task.wait(3);
-	Watermark:SetRender(false);
-	HC:SetColor('Green');
-	HC:SetText("AUTO")
-	task.wait(3)
+
 	Watermark:SetRender(false);
 	HC:SetColor('White')
 	HC:SetText("HC")
-	task.wait(1)
-	Watermark:SetRender(false);
-	HC:SetRender(false);
-	task.wait(1)
 	HC:SetRender(false);
 end

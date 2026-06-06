@@ -377,6 +377,4 @@ while true do task.wait(3)
 	
 	Watermark:SetRender(false);
 	HC:SetRender(false);
-	task.wait(1)
-	HC:SetRender(true);
 end
